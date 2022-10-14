@@ -15,6 +15,7 @@ class Experience extends Component {
         const technologies = work.technologies;
         const mainTechnologies = work.mainTech;
         const mainTechLogo = work.mainTech[1];
+        const jobDescription = work.description;
 
         var mainTech = mainTechnologies.map((technology, i) => {
           return (
@@ -29,6 +30,9 @@ class Experience extends Component {
               {technology}
             </Badge>
           );
+        });
+        var descriptions = jobDescription.map((description, i) => {
+          return <li key={i}>{description}</li>;
         });
         return (
           <VerticalTimelineElement
@@ -59,6 +63,7 @@ class Experience extends Component {
               {work.company}
             </h4>
             <div style={{ textAlign: "left", marginTop: "15px" }}>{tech}</div>
+            <ul>{descriptions}</ul>
           </VerticalTimelineElement>
         );
       });

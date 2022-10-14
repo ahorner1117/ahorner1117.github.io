@@ -13,7 +13,7 @@
       {
         "title": "Hot Spots Co",
         "startDate": "2022",
-        "description": "This website is currently in the development stage, Hot Spots Co is a company involved in AirBnb arbitrage. This technology stack for this website utilizes HTML, Javascript, CSS, and Bootstrap.",
+        "description": "This website is currently in the development stage, Hot Spots Co is a company involved in AirBnb arbitrage. The technology stack used for this website includes HTML, Javascript, CSS, and Bootstrap.",
         "images": [
           "/images/Hot_Spots_Transparent-2-resized.png",
           "images/portfolio/photography/p2.jpg"
@@ -93,6 +93,11 @@
           "Node.js",
           "fab fa-node-js"
         ],
+        "description": [
+          "Developed API routes using Node.js and Express to transfer data packets gathered from bluetooth gateways to their corresponding cloud portal.",
+          "Developed server-side logic, including data storage and optimizing website performance.",
+          "Developed dynamic user-role based components focused on security and user permissions."
+        ],
         "technologies": [
           "Node.js",
           "JavaScript",
@@ -112,6 +117,12 @@
         "mainTech": [
           "React.js & Next.js",
           "fab fa-react"
+        ],
+        "description": [
+          "Using Javascript, created QR code with augmented reality to provide product information. Inside Walmart, customers can scan corresponding QR code and point their camera at any product to see an informative video explaining the products objective.",
+          "Implemented Shopify buy button using Javascript and jQuery to bind shopping carts across multiple domains using Shopify and Wordpress",
+          "Setup affiliate program to reimburse company brand ambassadors programtically based on their amount of sales each month.",
+          "Implemented Algolia third party search functionality through a customized build, added search filters based on customer type, built product and collection filters for search page."
         ],
         "technologies": [
           "JavaScript",
@@ -138,6 +149,11 @@
         "Java",
         "fab fa-java"
       ],
+      "description": [
+        "Developed Java application with maven using selenium to parse CSV files containing call records from our softphone, used that data to make REST API calls to a CRM to update the deal stage based on the disposition of the call.",
+        "Created a Java web application to make API requests to update hundreds of thousands of customer records and cancel insurance policies if customer did not pay their premium, stored updates in MySQL database. The front end GUI contained charts from google charts API to display customers policy cancellations by month.",
+        "Created custom email signatures using HTML and CSS for entire company."
+      ],
       "technologies": [
         "Java",
         "HTML",
@@ -157,6 +173,11 @@
       "mainTech": [
         "T-SQL",
         "fa fa-database"
+      ],
+      "description": [
+        "Designed, developed and maintained clinical trial components from initial build throughout the entire study build project lifecycle.",
+        "Built new clinical trial database components based on the interpretation of study build requirements within assigned timelines.",
+        "Restored databases and analyzed data discrepancies between the UI and the database using SQL scripts in SSMS and excel."
       ],
       "technologies": [
         "Databases",
