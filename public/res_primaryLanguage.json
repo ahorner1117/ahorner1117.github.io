@@ -1,0 +1,171 @@
+{
+    "basic_info": {
+      "description_header": "Hi",
+      "description": "👋 I'm Anthony Horner. I am a web developer and applications engineer located in South Florida. I enjoy building web applications utilizing the most superior technologies such as Javascript, React.js, Node.js, Typescript, HTML and SCSS / CSS.",
+      "section_name": {
+        "about": "About me",
+        "projects": "Projects",
+        "skills": "Skills",
+        "experience": "Experience"
+      }
+    },
+    "projects": [
+      {
+        "title": "Hot Spots Co",
+        "startDate": "2022",
+        "description": "This website is currently in the development stage, Hot Spots Co is a company involved in AirBnb arbitrage. This technology stack for this website utilizes HTML, Javascript, CSS, and Bootstrap.",
+        "images": [
+          "/images/Hot_Spots_Transparent-2-resized.png",
+          "images/portfolio/photography/p2.jpg"
+        ],
+        "url": "/Hot-Spots-Co",
+        "technologies": [
+          {
+            "class": "devicon-bootstrap-plain",
+            "name": "Bootstrap"
+          },
+          {
+            "class": "devicon-javascript-plain",
+            "name": "JavaScript"
+          },          
+          {
+            "class": "devicon-html5-plain",
+            "name": "HTML5"
+          }
+        ]
+      },
+      {
+        "title": "AC Disaster",
+        "startDate": "2020",
+        "description": "As a freelance developer, I had the pleasure of maintaining, optimizing, and adding new features to ACDisaster.com such as the Staff section.",
+        "images": [
+          "images/portfolio/acdisaster/ac-disaster.svg",
+          "images/portfolio/acdisaster/acdisaster-2.jpg"
+        ],
+        "url": "https://www.acdisaster.com",
+        "technologies": [
+          {
+            "class": "devicon-html5-plain",
+            "name": "HTML5"
+          },
+          {
+            "class": "devicon-sass-plain",
+            "name": "SCSS"
+          },
+          {
+            "class": "devicon-javascript-plain",
+            "name": "JavaScript"
+          }
+        ],
+        "mainTechLogo": "fa-js"
+      },
+      {
+        "title": "Karl Max Enterprise",
+        "startDate": "2018",
+        "description": "Karl Max Enterprise is an insurance agency that provides fast and afforable Home and Auto insurance quotes in the click of a button.",
+        "images": [
+          "images/kmax-ent.png",
+          "images/portfolio/adventure/p2.jpg"
+        ],
+        "url": "/karl-max-enterprise",
+        "technologies": [
+          {
+            "class": "devicon-html5-plain",
+            "name": "HTML5"
+          },
+          {
+            "class": "devicon-css3-plain",
+            "name": "CSS"
+          },
+          {
+            "class": "devicon-bootstrap-plain",
+            "name": "Bootstrap"
+          }
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Preddio Technologies",
+        "title": "Application Engineer",
+        "years": "06.2022 - Present",
+        "mainTech": [
+          "Node.js",
+          "fab fa-node-js"
+        ],
+        "technologies": [
+          "Node.js",
+          "JavaScript",
+          "Microservices",
+          "Davra",
+          "REST API",
+          "Postman",
+          "Bootstrap",
+          "Git",
+          "Azure"
+        ]
+      },
+      {
+        "company": "Redcon1",
+        "title": "Front End Developer",
+        "years": "03.2021 - 06.2022",
+        "mainTech": [
+          "React.js & Next.js",
+          "fab fa-react"
+        ],
+        "technologies": [
+          "JavaScript",
+          "React.js",
+          "Next.js",
+          "Liquid",
+          "HTML",
+          "SCSS",
+          "Shopify Plus",
+          "Wordpress",
+          "PHP",
+          "jQuery",
+          "AJAX",
+          "REST API",
+          "Nacelle",
+          "Contentful"
+        ]
+      },
+      {
+      "company": "Insurance Express",
+      "title": "Software Developer",
+      "years": "11.2020 - 03.2021",
+      "mainTech": [
+        "Java",
+        "fab fa-java"
+      ],
+      "technologies": [
+        "Java",
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Heroku",
+        "SQL",
+        "Postman",
+        "AMS360",
+        "Git"
+      ]
+    },
+    {
+      "company": "Anju Software",
+      "title": "Clinical Development Intern",
+      "years": "07.2019 - 11.2020",
+      "mainTech": [
+        "T-SQL",
+        "fa fa-database"
+      ],
+      "technologies": [
+        "Databases",
+        "T-SQL",
+        "SMSS",
+        "Data Analysis",
+        "SQL",
+        "MySQL"
+      ]
+    }
+    ]
+  }
