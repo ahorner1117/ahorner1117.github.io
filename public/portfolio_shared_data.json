@@ -34,6 +34,11 @@
           "level": "90"
         },
         {
+          "name": "React",
+          "class": "devicon-react-plain",
+          "level": "90"
+        },
+        {
           "name": "JavaScript",
           "class": "devicon-javascript-plain",
           "level": "70"
