@@ -47,6 +47,34 @@ header {
 	padding-bottom: 0;
 }
 
+.back-to-top {
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: black;
+	cursor: pointer;
+}
+
+.back-to-top:hover{
+	transform: rotate(360deg);
+}
+
+.back-to-top:after {
+	content: '';
+	  display: inline-block;
+	margin-top: 20px;
+	margin-left: 17px;
+	width: 1.4em;
+	height: 1.4em;
+	border-top: 0.5em solid white;
+	border-right: 0.5em solid white;
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+  }
 .language-icon {
 	font-size: 50px;
 	cursor: pointer;
