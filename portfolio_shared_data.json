@@ -29,9 +29,14 @@
           "level": "95"
         },
         {
-          "name": "TypeScript",
-          "class": "devicon-typescript-plain",
-          "level": "90"
+          "name": "Sass",
+          "class": "devicon-sass-original",
+          "level": "75"
+        },
+        {
+          "name": "Bootstrap",
+          "class": "devicon-bootstrap-plain",
+          "level": "85"
         },
         {
           "name": "JavaScript",
@@ -39,9 +44,14 @@
           "level": "70"
         },
         {
-          "name": "Sass",
-          "class": "devicon-sass-original",
-          "level": "75"
+          "name": "TypeScript",
+          "class": "devicon-typescript-plain",
+          "level": "90"
+        },
+        {
+          "name": "React",
+          "class": "devicon-react-plain",
+          "level": "90"
         },
         {
           "name": "Next.js",
@@ -54,9 +64,9 @@
           "level": "85"
         },
         {
-          "name": "Bootstrap",
-          "class": "devicon-bootstrap-plain",
-          "level": "85"
+          "name": "Express.js",
+          "class": "devicon-express-original",
+          "level": "50"
         },
         {
           "name": "Wordpress",

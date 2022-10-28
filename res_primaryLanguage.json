@@ -18,7 +18,7 @@
           "/images/Hot_Spots_Transparent-2-resized.png",
           "images/portfolio/photography/p2.jpg"
         ],
-        "url": "/Hot-Spots-Co",
+        "url": "/Hot-Spots-Co/index.html",
         "technologies": [
           {
             "class": "devicon-bootstrap-plain",
@@ -67,7 +67,7 @@
           "images/kmax-ent.png",
           "images/portfolio/adventure/p2.jpg"
         ],
-        "url": "/karl-max-enterprise",
+        "url": "/karl-max-enterprise/index.html",
         "technologies": [
           {
             "class": "devicon-html5-plain",
