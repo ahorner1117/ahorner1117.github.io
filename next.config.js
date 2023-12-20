@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
-/* 	output: 'export',
+	output: 'export',
 
 	webpack(config) {
 		config.module.rules.push({
@@ -11,7 +11,7 @@ const nextConfig = {
 			use: ["@svgr/webpack"]
 		});
 		return config;
-	} */
+	}
 };
 
 module.exports = nextConfig;
