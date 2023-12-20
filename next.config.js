@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
-
+	output: 'export',
 
 	webpack(config) {
 		config.module.rules.push({
