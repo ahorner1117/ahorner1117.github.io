@@ -4,6 +4,13 @@ const nextConfig = {
 	swcMinify: true,
 	output: 'export',
 
+	exportPathMap: function () {
+		return {
+		  '/': { page: '/' },
+		  // Add other routes as needed
+		};
+	  },
+	  
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/i,
