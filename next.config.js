@@ -3,7 +3,7 @@ const nextConfig = {
 	images: { unoptimized: true },
 	reactStrictMode: true,
 	swcMinify: true,
-	output: 'export',
+	output: 'standalone',
 
 	webpack(config) {
 		config.module.rules.push({
