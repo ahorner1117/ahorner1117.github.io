@@ -50,7 +50,8 @@ export const TECHNOLOGIES = [
 		items: [
 			{ name: "Figma", icon: <FaFigma size={32} /> },
 			{ name: "Zeplin", icon: <ZeplinIcon width={36} /> },
-			{ name: "XD", icon: <AdobeXDIcon width={32} /> }
+			{ name: "XD", icon: <AdobeXDIcon width={32} /> },
+			{ name: 'Gimp', icon: <i className="devicon-gimp-plain text-2xl" />}
 		]
 	},
 	{
