@@ -20,42 +20,42 @@ export const ProjectCard = ({ project }) => {
 		setIsModalOpen(false);
 	};
 
-  const Tools = () => {
-    return (
-      <div className="flex items-center flex-col justify-center mt-2 mt-auto">
-      <p className="text-xs align pr-2">Tools: </p>
-      <div className="flex items-center pb-6">
-        {project?.tools &&
-          Object.keys(project.tools).map((tool, index) => {
-            switch (tool) {
-              case "FaShopify":
-                return (
-                  <div className="mr-2 mt-2" key={index}>
-                    <FaShopify width={32} />
-                  </div>
-                );
-              case "FaGit":
-                return (
-                  <div className="mr-2 mt-2" key={index}>
-                    <FaGit width={32} />
-                  </div>
-                );
-              case "FaWordpress":
-                return (
-                  <div className="mr-2 mt-2" key={index}>
-                    <FaWordpress width={32} />
-                  </div>
-                );
-              default:
-                return (
-                  <i key={index} className={`mr-2 mt-2 ${tool}`} title={project.tools[tool]} />
-                );
-            }
-          })}
-      </div>
-    </div>
-    )
-  }
+	const Tools = () => {
+		return (
+			<div className="flex items-center flex-col justify-center mt-2 mt-auto">
+				<p className="text-xs align pr-2">Tools: </p>
+				<div className="flex items-center pb-6">
+					{project?.tools &&
+						Object.keys(project.tools).map((tool, index) => {
+							switch (tool) {
+								case "FaShopify":
+									return (
+										<div className="mr-2 mt-2" key={index}>
+											<FaShopify alt="Shopify" width={32} />
+										</div>
+									);
+								case "FaGit":
+									return (
+										<div className="mr-2 mt-2" key={index}>
+											<FaGit width={32} />
+										</div>
+									);
+								case "FaWordpress":
+									return (
+										<div className="mr-2 mt-2" key={index}>
+											<FaWordpress width={32} />
+										</div>
+									);
+								default:
+									return (
+										<i key={index} className={`mr-2 mt-2 ${tool}`} title={project.tools[tool]} />
+									);
+							}
+						})}
+				</div>
+			</div>
+		);
+	};
 
 	return (
 		<LazyMotion features={domAnimation}>
@@ -80,39 +80,7 @@ export const ProjectCard = ({ project }) => {
 						</div>
 					</div>
 				</div>
-        <Tools />
-{/* 				<div className="flex items-center flex-col justify-center mt-2 mt-auto">
-					<p className="text-xs align pr-2">Tools: </p>
-					<div className="flex items-center pb-6">
-						{project?.tools &&
-							Object.keys(project.tools).map((tool, index) => {
-								switch (tool) {
-									case "FaShopify":
-										return (
-											<div className="mr-2 mt-2" key={index}>
-												<FaShopify width={32} />
-											</div>
-										);
-									case "FaGit":
-										return (
-											<div className="mr-2 mt-2" key={index}>
-												<FaGit width={32} />
-											</div>
-										);
-									case "FaWordpress":
-										return (
-											<div className="mr-2 mt-2" key={index}>
-												<FaWordpress width={32} />
-											</div>
-										);
-									default:
-										return (
-											<i key={index} className={`mr-2 mt-2 ${tool}`} title={project.tools[tool]} />
-										);
-								}
-							})}
-					</div>
-				</div> */}
+				<Tools />
 			</div>
 			<Modal
 				isOpen={isModalOpen}
@@ -132,7 +100,7 @@ export const ProjectCard = ({ project }) => {
 						/>
 						<h2 className="text-2xl font-bold mb-2">{project.title}</h2>
 						<p className="text-sm mb-4">{project.description}</p>
-            <Tools />
+						<Tools />
 
 						<div className="flex justify-between items-center">
 							<button className="btn">
