@@ -69,7 +69,7 @@ const experiences = [
 ];
 
 const TimelineItem = ({ experience, side }) => {
-  const ref = useRef(null);
+	const ref = useRef(null);
 
 	const isItemInView = useInView(ref, { once: true });
 
@@ -79,17 +79,17 @@ const TimelineItem = ({ experience, side }) => {
 		</li>
 	));
 
-
 	return (
 		<LazyMotion features={domAnimation}>
 			<div
 				ref={ref}
 				style={{
-					transform: side === 'right' && isItemInView
-          ? 'translateX(-50px)'
-          : side === 'left' && isItemInView
-          ? 'translateX(50px)'
-          : 'none',
+					transform:
+						side === "right" && isItemInView
+							? "md:translateX(-50px)"
+							: side === "left" && isItemInView
+							? "md:translateX(50px)"
+							: "none",
 					opacity: isItemInView ? 1 : 0,
 					transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 				}}
@@ -114,7 +114,7 @@ const VerticalTimeline = () => {
 			<h2 className="text-4xl font-bold mb-16 text-center">Work Experience</h2>
 			<div className="container mx-auto px-6">
 				<div className="relative w-full">
-					<div className="hidden md:block border-l-2 border-purple-600 border-purple-450 absolute left-1/2 transform -translate-x-1/2 h-full"></div>
+					<div className="hidden md:block border-l-2 border-purple-600 border-purple-450 absolute md:left-1/2 transform -translate-x-1/2 h-full"></div>
 					{experiences.map((experience, index) => (
 						<TimelineItem
 							key={experience.id}
