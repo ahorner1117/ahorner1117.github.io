@@ -62,6 +62,7 @@ export const TECHNOLOGIES = [
 			{ name: "WordPresss", icon: <FaWordpressSimple size={32} /> },
 			{ name: "Shopify Plus", icon: <FaShopify size={32} /> },
 			{ name: "Jira", icon: <JiraIcon width={32} /> },
+			{ name: "NPM", icon: <i className="devicon-npm-original-wordmark text-2xl" />},
 			{ name: "Git", icon: <FaGit size={32} /> },
 			{ name: "Trello", icon: <FaTrello size={32} /> },
 			{ name: "Github", icon: <AiFillGithub size={32} /> },

@@ -35,6 +35,23 @@ export const ecommerce = [
 		}
 	},
 	{
+		title: "Chicago Bulls Store",
+		link: "https://shop.bulls.com/",
+		description:
+			"As a developer on the Chicago Bulls store, my responsibilities included converting Figma files into Shopify webpages. I designed pages with a focus on empowering Shopify admins to easily update content without the need for code changes, utilizing the customizer for seamless modifications. Additionally, I engineered an employee discount app using React and leveraged checkout extensibility. For this application, I seamlessly integrated with Shopify's Admin API and Storefront API, ensuring efficient and effective functionality.",
+		imageUrl:
+			"https://shop.bulls.com/cdn/shop/files/store-logo-white.png?v=1695604844&width=600",
+		caseStudyUrl: "",
+		tools: {
+			"devicon-nextjs-original": "Next.js",
+			"devicon-typescript-plain": "Typescript",
+			"devicon-graphql-plain": "GraphQL",
+			FaShopify: "Shopify Plus",
+			"devicon-github-original": "Github",
+			"devicon-tailwindcss-plain": "TailwindCSS"
+		}
+	},
+	{
 		title: "US Soccer",
 		link: "https://store.ussoccer.com/",
 		description:
