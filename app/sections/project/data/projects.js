@@ -9,6 +9,7 @@ export const ecommerce = [
 		caseStudyUrl: "#",
 		tools: {
 			"devicon-javascript-plain": "Javascript",
+			"devicon-jquery-plain": "jQuery",
 			"devicon-react-original": "React",
 			"devicon-css3-plain-wordmark": "CSS",
 			"devicon-graphql-plain": "GraphQL",
@@ -26,6 +27,7 @@ export const ecommerce = [
 		caseStudyUrl: "",
 		tools: {
 			"devicon-nextjs-original": "Next.js",
+			"devicon-typescript-plain": "Typescript",
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
 			"devicon-github-original": "Github",
@@ -58,6 +60,7 @@ export const ecommerce = [
 		caseStudyUrl: "#",
 		tools: {
 			"devicon-nextjs-original": "Next.js",
+			"devicon-typescript-plain": "Typescript",
 			"devicon-tailwindcss-plain": "TailwindCSS",
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
@@ -73,6 +76,7 @@ export const ecommerce = [
 		caseStudyUrl: "#",
 		tools: {
 			"devicon-nextjs-original": "Next.js",
+			"devicon-typescript-plain": "Typescript",
 			"devicon-graphql-plain": "GraphQL",
 			"devicon-sass-original": "SASS",
 			FaShopify: "Shopify Plus",
