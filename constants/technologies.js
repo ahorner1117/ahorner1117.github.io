@@ -22,13 +22,14 @@ export const TECHNOLOGIES = [
 	{
 		category: "Main Tech Stack",
 		items: [
+			{ name: "React", icon: <FaReact size={32} /> },
+			{ name: "Next", icon: <TbBrandNextjs size={32} /> },
+			{ name: "Typescript", icon: <i className="devicon-typescript-plain text-2xl" /> },
 			{ name: "HTML", icon: <AiFillHtml5 size={32} /> },
 			{ name: "CSS", icon: <DiCss3 size={32} /> },
 			{ name: "SASS", icon: <FaSass size={32} /> },
 			{ name: "JS", icon: <IoLogoJavascript size={32} /> },
 			{ name: "jQuery", icon: <i className="devicon-jquery-plain text-2xl" /> },
-			{ name: "React", icon: <FaReact size={32} /> },
-			{ name: "Next", icon: <TbBrandNextjs size={32} /> },
 			{ name: "Tailwind CSS", icon: <TbBrandTailwind size={32} /> },
 			{ name: "Bootstrap", icon: <BsBootstrap size={32} /> },
 			{ name: "Styled Components", icon: <StyledIcon width={32} /> },
@@ -42,7 +43,8 @@ export const TECHNOLOGIES = [
 			{ name: "Java", icon: <i className="devicon-java-plain text-2xl"/> },
 			{ name: "SQL", icon: <i className="devicon-mysql-plain text-2xl" /> },
 			{ name: "Node.js", icon: <i className="devicon-nodejs-plain text-2xl" /> },
-
+			{ name: "Express.js", icon: <i className="devicon-express-original text-2xl" /> },
+			{ name: "Posgresql", icon: <i className="devicon-postgresql-plain text-2xl" /> },
 		]
 	},
 	{
@@ -65,6 +67,8 @@ export const TECHNOLOGIES = [
 			{ name: "Github", icon: <AiFillGithub size={32} /> },
 			{ name: "Gitlab", icon: <AiFillGitlab size={32} /> },
 			{ name: "VsCode", icon: <DiVisualstudio size={32} /> },
+			{ name: "Microsoft SQL Server", icon: <i className="devicon-microsoftsqlserver-plain text-2xl" /> },
+			{ name: "Bitbucket", icon: <i className="devicon-bitbucket-original text-2xl" /> },
 		]
 	}
 ];
