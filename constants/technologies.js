@@ -33,7 +33,8 @@ export const TECHNOLOGIES = [
 			{ name: "Tailwind CSS", icon: <TbBrandTailwind size={32} /> },
 			{ name: "Bootstrap", icon: <BsBootstrap size={32} /> },
 			{ name: "Styled Components", icon: <StyledIcon width={32} /> },
-			{ name: "GraphQL", icon: <i className="devicon-graphql-plain text-2xl" /> }
+			{ name: "GraphQL", icon: <i className="devicon-graphql-plain text-2xl" /> },
+			{name: "Docker", icon: <i className="devicon-docker-plain text-2xl"></i>}
 		]
 	},
 	{

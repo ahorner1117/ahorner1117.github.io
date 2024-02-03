@@ -86,7 +86,7 @@ export const ProjectCard = ({ project }) => {
 				isOpen={isModalOpen}
 				onRequestClose={closeModal}
 				contentLabel="Project Details"
-				className="Modal bg-gray-300 text-black p-8 rounded-md w-full md:w-1/2 shadow-lg mt-10"
+				className="Modal bg-gray-300 text-black p-8 rounded-md w-full md:w-3/4 shadow-lg mt-10"
 				overlayClassName="Overlay fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50"
 				shouldCloseOnOverlayClick={true}
 				ariaHideApp={false}
