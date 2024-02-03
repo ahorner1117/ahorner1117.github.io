@@ -21,7 +21,7 @@ export const ecommerce = [
 		title: "FIFA Store",
 		link: "https://store.fifa.com/",
 		description:
-			"As a developer on the US Soccer store, my responsibilities included converting Figma files into Shopify webpages. I designed pages with a focus on empowering Shopify admins to easily update content without the need for code changes, utilizing the customizer for seamless modifications. Additionally, I engineered an employee discount app using React and leveraged checkout extensibility. For this application, I seamlessly integrated with Shopify's Admin API and Storefront API, ensuring efficient and effective functionality.",
+			"As a key developer for the FIFA store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's customizer for fluid content modifications. \n\nIn my toolkit, I employed Next.js to create a headless e-commerce solution, ensuring a robust and scalable framework. The integration of Contentful as a headless CMS was pivotal in managing and organizing content efficiently. For containerization, Docker was utilized, enhancing the development process and deployment consistency. The entire application was hosted on Azure, providing a reliable and secure cloud environment. \n\nFurthermore, I developed an innovative employee discount application using React. This application was seamlessly integrated with Shopify's Admin API and Storefront API, allowing for a streamlined and effective user experience. My role also involved leveraging checkout extensibility features, ensuring a smooth and integrated checkout process for users.",
 		imageUrl:
 			"https://th.bing.com/th/id/R.e062b1838b2bd59f7144d9df03afc237?rik=CmLRmQ1FKzk8Jg&pid=ImgRaw&r=0",
 		caseStudyUrl: "",
@@ -31,7 +31,8 @@ export const ecommerce = [
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
 			"devicon-github-original": "Github",
-			"devicon-tailwindcss-plain": "TailwindCSS"
+			"devicon-tailwindcss-plain": "TailwindCSS",
+			"devicon-docker-plain": "Docker"
 		}
 	},
 	{
@@ -68,6 +69,22 @@ export const ecommerce = [
 		}
 	},
 	{
+		title: "Real Madrid",
+		link: "https://shop.realmadrid.com/",
+		description:
+			"As a developer on the Real Madrid soccer store, my focus was converting photoshop design files to pixel perfect webpages. This included the homepage, product page, search page, collections page, account pages and order details pages. I was also in charge of localization on the real madrid store which I implemented using a custom currency picker managing localization with cookies and other useful tools.",
+		imageUrl: "https://www.logodesign.org/wp-content/uploads/2023/02/Real-Madrid-Emblem.png",
+		caseStudyUrl: "#",
+		tools: {
+			"devicon-javascript-plain": "Javascript",
+			"devicon-react-original": "React",
+			"devicon-tailwindcss-plain": "TailwindCSS",
+			"devicon-graphql-plain": "GraphQL",
+			FaShopify: "Shopify Plus",
+			"devicon-github-original": "Github"
+		}
+	},
+	{
 		title: "Century 21",
 		link: "https://www.c21stores.com/",
 		description:
@@ -81,7 +98,8 @@ export const ecommerce = [
 			"devicon-tailwindcss-plain": "TailwindCSS",
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
-			"devicon-github-original": "Github"
+			"devicon-github-original": "Github",
+			"devicon-docker-plain": "Docker"
 		}
 	},
 	{

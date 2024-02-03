@@ -1,5 +1,6 @@
 import { domAnimation, LazyMotion, useInView } from "framer-motion";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import { HeadingDivider } from "components";
 
 const experiences = [
 	{
@@ -110,21 +111,23 @@ const TimelineItem = ({ experience, side }) => {
 
 const VerticalTimeline = () => {
 	return (
-		<div className="h-auto text-white py-12 bg-transparent">
-			<h2 className="text-4xl font-bold mb-16 text-center">Work Experience</h2>
-			<div className="container mx-auto px-6">
-				<div className="relative w-full">
-					<div className="hidden md:block border-l-2 border-purple-600 border-purple-450 absolute md:left-1/2 transform -translate-x-1/2 h-full"></div>
-					{experiences.map((experience, index) => (
-						<TimelineItem
-							key={experience.id}
-							experience={experience}
-							side={index % 2 === 0 ? "left" : "right"}
-						/>
-					))}
+		<section id="work">
+			<div className="h-auto text-white py-12 bg-transparent">
+				<HeadingDivider title="Work Experience" />
+				<div className="container mx-auto px-6">
+					<div className="relative w-full">
+						<div className="hidden md:block border-l-2 border-purple-600 border-purple-450 absolute md:left-1/2 transform -translate-x-1/2 h-full"></div>
+						{experiences.map((experience, index) => (
+							<TimelineItem
+								key={experience.id}
+								experience={experience}
+								side={index % 2 === 0 ? "left" : "right"}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 
