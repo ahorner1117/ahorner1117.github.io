@@ -41,10 +41,8 @@ export const ProjectsSection = () => {
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 						}}
 					>
-						<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-							<h2 className="text-3xl font-extrabold tracking-tight text-center mb-10 mt-10">
-								Projects & Websites
-							</h2>
+						<div className="max-w-7xl mx-auto pt-10 px-4 sm:px-6 lg:px-8">
+							<HeadingDivider title="Projects & Websites"/>
 							<div className="mt-12 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
 								{projects.map((project) => (
 									<ProjectCard key={project.title} project={project} />

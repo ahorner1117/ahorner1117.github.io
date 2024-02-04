@@ -24,19 +24,19 @@ export function AboutSection() {
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 						}}
 					>
-						<p>
+						<p className="my-3.5">
 							My name is Anthony Horner. I am a seasoned software engineer with over 5 years of
 							experience, holding a Bachelors degree in computer science from Florida Atlantic
 							University.
 						</p>
-						<p>
+						<p className="my-3.5">
 							I specialize in a wide range of web technologies, including JavaScript, HTML, CSS,
 							React, Next.js, GraphQL, CMS, Shopify, and API development, among others.
 						</p>
 						<p className="my-3.5">
 							Throughout my career, I have undertaken various projects that showcase my expertise in
-							web development. For instance, I developed a customizable, headless Next.js and React
-							ECommerce store on the Shopify platform. Leveraging GraphQL for API calls, I utilized
+							web development. For instance, I developed multiple customizable, headless Next.js and React
+							ECommerce stores on the Shopify platform. Leveraging GraphQL for API calls, I utilized
 							Shopify Admin API and Storefront API. Additionally, I implemented custom hooks,
 							employed Redux for efficient state management, and integrated Contentful headless CMS
 							using GraphQL queries and mutations.
