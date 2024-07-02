@@ -10,7 +10,7 @@ export const SOCIAL_MEDIA = [
 	{
 		id: "phone",
 		icon: <BsTelephoneFill />,
-		title: "Visit Github profile",
+		title: "Give me a call!",
 		url: "tel:8457451198"
 	},
 	{
