@@ -1,5 +1,5 @@
 import { domAnimation, LazyMotion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { HeadingDivider } from "components";
 
 const experiences = [
@@ -110,10 +110,19 @@ const TimelineItem = ({ experience, side }) => {
 };
 
 const VerticalTimeline = () => {
+	const [isContentVisible, setIsContentVisible] = useState(false);
+
+	const toggleContent = () => {
+		setIsContentVisible(!isContentVisible);
+	};
+
+
 	return (
 		<section id="work">
 			<div className="h-auto text-white py-12 bg-transparent">
-				<HeadingDivider title="Work Experience" />
+				<HeadingDivider title="Work Experience"	isContentVisible={isContentVisible}
+				toggleContent={toggleContent} />
+				{isContentVisible && (
 				<div className="container mx-auto px-6">
 					<div className="relative w-full">
 						<div className="hidden md:block border-l-2 border-purple-600 border-purple-450 absolute md:left-1/2 transform -translate-x-1/2 h-full"></div>
@@ -126,6 +135,7 @@ const VerticalTimeline = () => {
 						))}
 					</div>
 				</div>
+				)}
 			</div>
 		</section>
 	);
