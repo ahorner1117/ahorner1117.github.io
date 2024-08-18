@@ -3,7 +3,7 @@ export const ecommerce = [
 		title: "UFL",
 		link: "https://shop.theufl.com/",
 		description:
-			"As a sole developer for the UFL store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's liquid language for fluid content modifications. Furthermore, I developed an innovative employee discount application using React. This application was seamlessly integrated with Shopify's Admin API and Storefront API, allowing for a streamlined and effective user experience. My role also involved leveraging checkout extensibility features, ensuring a smooth and integrated checkout process for users.",
+			"As a sole developer for the UFL store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's liquid language for fluid content modifications. Furthermore, I developed an innovative employee discount application using React. This application was seamlessly integrated with Shopify's Admin API and Storefront API, allowing for a streamlined and effective user experience.",
 		imageUrl:
 			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcontent.sportslogos.net%2Flogos%2F234%2F6893%2Ffull%2F_united_football_league_logo_primary_dark_2024_sportslogosnet-3804.png&f=1&nofb=1&ipt=f3f17528003a6106908529ae79cec8ab9bb7c95f6048d2f91af78818b9b040df&ipo=images",
 		caseStudyUrl: "#",
@@ -57,7 +57,7 @@ export const ecommerce = [
 		title: "FIFA Store",
 		link: "https://store.fifa.com/",
 		description:
-			"As a key developer for the FIFA store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's customizer for fluid content modifications. \n\nIn my toolkit, I employed Next.js to create a headless e-commerce solution, ensuring a robust and scalable framework. The integration of Contentful as a headless CMS was pivotal in managing and organizing content efficiently. For containerization, Docker was utilized, enhancing the development process and deployment consistency. The entire application was hosted on Azure, providing a reliable and secure cloud environment.",
+			"As a key developer for the FIFA store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's customizer for fluid content modifications. \n\nIn my toolkit, I employed Next.js to create a headless e-commerce solution, ensuring a robust and scalable framework. ",
 		imageUrl:
 			"https://th.bing.com/th/id/R.e062b1838b2bd59f7144d9df03afc237?rik=CmLRmQ1FKzk8Jg&pid=ImgRaw&r=0",
 		caseStudyUrl: "",
