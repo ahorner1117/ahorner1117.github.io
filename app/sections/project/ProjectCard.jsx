@@ -110,7 +110,7 @@ export const ProjectCard = ({ project }) => {
 							</button>
 
 							<button className="btn" onClick={closeModal}>
-								Close Modal
+								Close
 							</button>
 						</div>
 					</div>
