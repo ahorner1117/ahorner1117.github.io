@@ -100,7 +100,7 @@ export function WelcomeSection() {
 								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 							}}
 						>
-							Stick around to see some of my work.
+							Check out my latest projects!
 						</p>
 						<div
 							ref={ref}
