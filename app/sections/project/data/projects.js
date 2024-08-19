@@ -174,7 +174,7 @@ export const projects = [
 		title: "Simply Listed Marketing",
 		link: "https://simplylistedmarketing.com/",
 		description:
-			"In my role as a freelance developer for Simply Listed Marketing's website, I took on the responsibility of crafting captivating landing pages and revamping existing web content. Leveraging my skills in PHP, Elementor, CSS, and various WordPress plugins, I contributed to the creation of aesthetically pleasing web pages. Furthermore, I executed the migration of the WordPress website, seamlessly transferring it from one domain and hosting provider to another.",
+			"In my role as a  developer for Simply Listed Marketing's website, I took on the responsibility of crafting captivating landing pages and revamping existing web content. Leveraging my skills in PHP, Elementor, CSS, and various WordPress plugins, I contributed to the creation of aesthetically pleasing web pages. Furthermore, I executed the migration of the WordPress website, seamlessly transferring it from one domain and hosting provider to another.",
 		imageUrl: "https://simplylistedmarketing.com/wp-content/uploads/2023/10/Original-Logo-1.png",
 		caseStudyUrl: "#",
 		tools: {
@@ -182,5 +182,19 @@ export const projects = [
 			"devicon-php-plain": "PHP",
 			"devicon-github-original": "Github"
 		}
-	}
+	},
+	{
+		title: "Borowed Time Tattoo",
+		link: "https://tx9.4c1.myftpupload.com/",
+		description:
+			"The project for Borrowed time tatoo is still in progress. This project is a website redesign.",
+		imageUrl:
+			"https://borrowedtimetattoo.com/wp-content/uploads/2020/12/40513-Converted-Custom.png",
+		caseStudyUrl: "#",
+		tools: {
+			FaWordpress: "Wordpress",
+			"devicon-php-plain": "PHP",
+			"devicon-github-original": "Github"
+		}
+	},
 ];
