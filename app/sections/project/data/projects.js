@@ -3,7 +3,7 @@ export const ecommerce = [
 		title: "UFL",
 		link: "https://shop.theufl.com/",
 		description:
-			"As a sole developer for the UFL store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's liquid language for fluid content modifications. Furthermore, I developed an innovative employee discount application using React. This application was seamlessly integrated with Shopify's Admin API and Storefront API, allowing for a streamlined and effective user experience.",
+			"During my development of the UFL store, I coded the website from scratch using Liquid, JavaScript, jQuery, and CSS to transform Figma designs into dynamic Shopify webpages. My approach centered on empowering Shopify administrators to easily update content without needing to touch the code. Additionally, I created an innovative employee discount application using React, integrating it with Shopify's Admin API and Storefront API to deliver a streamlined and effective user experience.",
 		imageUrl:
 			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcontent.sportslogos.net%2Flogos%2F234%2F6893%2Ffull%2F_united_football_league_logo_primary_dark_2024_sportslogosnet-3804.png&f=1&nofb=1&ipt=f3f17528003a6106908529ae79cec8ab9bb7c95f6048d2f91af78818b9b040df&ipo=images",
 		caseStudyUrl: "#",
