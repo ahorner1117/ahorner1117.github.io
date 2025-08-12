@@ -10,7 +10,7 @@ export function AboutSection() {
 	const toggleRef = useRef(null);
 	const isInView = useInView(ref, { once: true });
 	const isToggleInView = useInView(toggleRef, { once: true });
-	const [isTechnical, setIsTechnical] = useState(true);
+	const [isTechnical, setIsTechnical] = useState(false);
 
 	const technicalContent = [
 		"My name is Anthony Horner, a seasoned full-stack software engineer with over 7 years of experience and a Bachelor’s degree in Computer Science from Florida Atlantic University.",
@@ -25,7 +25,7 @@ export function AboutSection() {
 	const nonTechnicalContent = [
 		"My name is Anthony Horner. I’m a passionate problem-solver and full-stack software engineer with over 7 years of experience helping businesses grow through innovative digital solutions, holding a Bachelor’s degree in Computer Science from Florida Atlantic University.",
 		"I create high-performance, visually stunning websites and digital platforms that engage customers and make it easier for businesses to manage their online presence.",
-		"One of my proudest accomplishments is Macro Exotics – a luxury and exotic car rental platform that connects renters with owners in a safe, trusted, and seamless way. I designed and built it from the ground up, handling everything from account creation and bookings to secure payments and professional vehicle delivery.",
+		"One of my biggest projects is Macro Exotics – a luxury and exotic car rental platform that connects renters with owners in a safe, trusted, and seamless way. I designed and built it from the ground up, handling everything from account creation and bookings to secure payments and professional vehicle delivery.",
 		"I’ve helped major brands launch e-commerce stores that are fast, secure, and easy to maintain. For store owners, I create admin-friendly tools that eliminate the need for coding while keeping designs pixel-perfect and on brand.",
 		"I’ve also built systems that help organizations make smarter decisions by tracking and visualizing real-time data from different sources — including integrations that connect directly to devices and cloud systems.",
 		"My work includes creating user-friendly features like interactive elements, custom integrations, and content management systems so that non-technical teams can update their websites quickly and effortlessly.",
@@ -57,7 +57,7 @@ export function AboutSection() {
 									: "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
 							}`}
 						>
-							For Recruiters
+							Technical Details
 						</button>
 						<button
 							onClick={() => setIsTechnical(false)}
@@ -67,7 +67,7 @@ export function AboutSection() {
 									: "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
 							}`}
 						>
-							For Everyone
+							Simple Overview
 						</button>
 					</div>
 				</div>
