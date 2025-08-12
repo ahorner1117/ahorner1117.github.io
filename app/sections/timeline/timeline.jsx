@@ -96,14 +96,12 @@ const TimelineItem = ({ experience, side }) => {
 				}}
 				className={`relative text-sm w-full my-6 ${
 					side === "right" ? "md:ml-auto" : "md:mr-auto"
-				} md:w-5/12 ${
-					side === "right" ? "bg-black" : "bg-black"
-				} border border-gray-600 rounded-lg p-6 text-white`}
+				} md:w-5/12 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg p-6 text-gray-900 dark:text-white shadow-md`}
 			>
-				<h3 className="text-xl font-semibold mb-2">{experience.role}</h3>
-				<h4 className="text-purple-300 mb-4">{experience.company}</h4>
-				<p className="text-gray-400 mb-2">{experience.date}</p>
-				<ul className="list-disc text-gray-300 pl-6">{descriptionList}</ul>
+				<h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{experience.role}</h3>
+				<h4 className="text-purple-600 dark:text-purple-300 mb-4">{experience.company}</h4>
+				<p className="text-gray-600 dark:text-gray-400 mb-2">{experience.date}</p>
+				<ul className="list-disc text-gray-700 dark:text-gray-300 pl-6">{descriptionList}</ul>
 			</div>
 		</LazyMotion>
 	);
