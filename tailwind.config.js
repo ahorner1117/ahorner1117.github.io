@@ -8,6 +8,9 @@ module.exports = {
 	darkMode: "class",
 	theme: {
 		extend: {
+			mw500: {
+				'500': '500px'
+			},
 			colors: {
 				brand: {
 					light: "#FBF8F3",
