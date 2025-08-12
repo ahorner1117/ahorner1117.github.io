@@ -16,10 +16,14 @@ export function WelcomeSection() {
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
+		"optimize business visibility",
+		"create engaging user experiences",
 		"develop headless Shopify apps",
 		"convert design into modern UI",
 		"build interactive UI using React",
-		"develop websites using Next.js"
+		"develop websites using Next.js",
+		"provide google presence",
+		"drive digital growth strategies"
 	]);
 
 	const onClick = (e) => scrollToEl(e);
@@ -28,9 +32,9 @@ export function WelcomeSection() {
 		let interval = setInterval(() => {
 			setCount(count + 1);
 
-			if (count === 3) {
-				setCount(0);
-			}
+					if (count === 7) {
+			setCount(0);
+		}
 		}, 2000);
 
 		return () => clearInterval(interval);
@@ -79,6 +83,14 @@ export function WelcomeSection() {
 												? "-200%"
 												: count === 3
 												? "-300%"
+												: count === 4
+												? "-400%"
+												: count === 5
+												? "-500%"
+												: count === 6
+												? "-600%"
+												: count === 7
+												? "-700%"
 												: "0",
 										left: "13px"
 									}}
