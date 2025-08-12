@@ -10,6 +10,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Prevent search engine crawling and indexing */}
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
+        <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+        
         {/* Theme initialization script - prevents flash of light theme */}
         <script
           dangerouslySetInnerHTML={{
