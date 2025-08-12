@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useInView } from "framer-motion";
 import { useTheme } from "next-themes";
 
@@ -6,8 +6,16 @@ export function WelcomeAnimation() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
 	const { theme, systemTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+	
+	// Ensure component is mounted before using theme
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+	
+	// Default to dark theme during SSR and before hydration
 	const colorMode = theme === "system" ? systemTheme : theme;
-	const darkThemeColor = colorMode === "dark";
+	const darkThemeColor = !mounted || colorMode === undefined ? true : colorMode === "dark";
 
 	return (
 		<div
