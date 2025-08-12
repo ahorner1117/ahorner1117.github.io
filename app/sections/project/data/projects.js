@@ -38,7 +38,7 @@ export const ecommerce = [
 		title: "USA Olympic Hockey Store",
 		link: "https://shopusahockey.com/",
 		description:
-			"As a sole developer on the USA Hockey store, my responsibilities included converting Figma files into Shopify webpages. I designed pages with a focus on empowering Shopify admins to easily update content without the need for code changes, utilizing the customizer for seamless modifications. Additionally, I engineered an employee discount app using React and leveraged checkout extensibility. For this application, I seamlessly integrated with Shopify's Admin API and Storefront API, ensuring efficient and effective functionality.",
+			"Built the official USA Hockey merchandise store from the ground up, focusing on performance and user experience for hockey fans nationwide. Implemented advanced product filtering and search functionality to help customers find team-specific gear quickly. Created a comprehensive size guide system and integrated live inventory tracking. The store features dynamic pricing for bulk orders and special team discounts, along with automated email campaigns for product launches and seasonal promotions.",
 		imageUrl:
 			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdanburyice.com%2Fwp-content%2Fuploads%2F2020%2F06%2Fusa-hockey-logo-1024x509.png&f=1&nofb=1&ipt=118afa57f103caaf1cda86d91c1cfa070ddd0e0f6688019aa2106f9518ba709a&ipo=images",
 		caseStudyUrl: "#",
@@ -74,7 +74,7 @@ export const ecommerce = [
 		title: "FIFA Store",
 		link: "https://store.fifa.com/",
 		description:
-			"As a key developer for the FIFA store, I spearheaded the transformation of Figma designs into dynamic Shopify webpages. My approach was centered around empowering Shopify administrators, enabling them to effortlessly update content without needing to delve into the code. This was achieved by skillfully utilizing Shopify's customizer for fluid content modifications. \n\nIn my toolkit, I employed Next.js to create a headless e-commerce solution, ensuring a robust and scalable framework. ",
+			"Architected the global FIFA store using a modern headless commerce approach with Next.js and TypeScript. Implemented advanced internationalization supporting 20+ languages and currencies with real-time exchange rate calculations. Built a complex tournament merchandise system that automatically generates collections for World Cup, Women's World Cup, and continental championships. Created an innovative virtual try-on feature for jerseys and developed a comprehensive country-specific product catalog with region-locked merchandise availability.",
 		imageUrl:
 			"https://th.bing.com/th/id/R.e062b1838b2bd59f7144d9df03afc237?rik=CmLRmQ1FKzk8Jg&pid=ImgRaw&r=0",
 		caseStudyUrl: "",
@@ -92,7 +92,7 @@ export const ecommerce = [
 		title: "Chicago Bulls Store",
 		link: "https://shop.bulls.com/",
 		description:
-			"As a developer on the Chicago Bulls store, my responsibilities included converting Figma files into Shopify webpages. I designed pages with a focus on empowering Shopify admins to easily update content without the need for code changes, utilizing the customizer for seamless modifications. Additionally, I engineered an employee discount app using React and leveraged checkout extensibility. For this application, I seamlessly integrated with Shopify's Admin API and Storefront API, ensuring efficient and effective functionality.",
+			"Developed the Chicago Bulls official team store with a focus on creating an immersive fan experience. Implemented interactive product customization features allowing fans to personalize jerseys with custom names and numbers. Built a sophisticated wishlist and favorites system, integrated social sharing capabilities, and created a loyalty rewards program. The store includes live game schedule integration and player spotlight sections that dynamically update product recommendations.",
 		imageUrl: "https://shop.bulls.com/cdn/shop/files/store-logo-white.png?v=1695604844&width=600",
 		caseStudyUrl: "",
 		tools: {
@@ -108,7 +108,7 @@ export const ecommerce = [
 		title: "US Soccer",
 		link: "https://store.ussoccer.com/",
 		description:
-			"As a developer on the US Soccer store, my responsibilities included converting Figma files into Shopify webpages. I designed pages with a focus on empowering Shopify admins to easily update content without the need for code changes, utilizing the customizer for seamless modifications. Additionally, I engineered an employee discount app using React and leveraged checkout extensibility. For this application, I seamlessly integrated with Shopify's Admin API and Storefront API, ensuring efficient and effective functionality.",
+			"Created the US Soccer national team store with emphasis on international accessibility and multi-language support. Developed a comprehensive size conversion system for international customers and implemented real-time shipping calculations for global delivery. Built custom tournament collection pages that automatically update with current World Cup and Copa America merchandise. Integrated live match results and player statistics that influence product recommendations and promotional campaigns.",
 		imageUrl: "https://th.bing.com/th/id/OIP.c9k4HQs8k_7zregFn0PesAHaJX?rs=1&pid=ImgDetMain",
 		caseStudyUrl: "#",
 		tools: {
@@ -220,7 +220,7 @@ export const projects = [
 		title: "Borowed Time Tattoo",
 		link: "https://borrowedtimetattoo.com/",
 		description:
-			"The project for Borrowed time tatoo is still in progress. This project is a website redesign.",
+			"Currently redesigning the Borrowed Time Tattoo studio website to showcase their artistic portfolio and streamline the booking process. The new design features an interactive artist gallery, appointment scheduling system, and aftercare guide integration. Building custom portfolio filtering by tattoo style, artist, and body placement to help clients find inspiration and connect with the right artist for their vision.",
 		imageUrl:
 			"https://borrowedtimetattoo.com/wp-content/uploads/2020/12/40513-Converted-Custom.png",
 		caseStudyUrl: "#",

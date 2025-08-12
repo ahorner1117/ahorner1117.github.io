@@ -1,4 +1,4 @@
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, domAnimation, motion } from "framer-motion";
 import { useState } from "react";
 import { FaShopify, FaGit, FaWordpress } from "react-icons/fa";
 import Modal from "react-modal";
@@ -22,36 +22,53 @@ export const ProjectCard = ({ project }) => {
 
 	const Tools = () => {
 		return (
-			<div className="flex items-center flex-col justify-center mt-2 mt-auto">
-				<p className="text-xs align pr-2">Tools: </p>
-				<div className="flex items-center pb-6">
-					{project?.tools &&
-						Object.keys(project.tools).map((tool, index) => {
-							switch (tool) {
-								case "FaShopify":
-									return (
-										<div className="mr-2 mt-2" key={index}>
-											<FaShopify alt="Shopify" width={32} />
-										</div>
-									);
-								case "FaGit":
-									return (
-										<div className="mr-2 mt-2" key={index}>
-											<FaGit width={32} />
-										</div>
-									);
-								case "FaWordpress":
-									return (
-										<div className="mr-2 mt-2" key={index}>
-											<FaWordpress width={32} />
-										</div>
-									);
-								default:
-									return (
-										<i key={index} className={`mr-2 mt-2 ${tool}`} title={project.tools[tool]} />
-									);
-							}
-						})}
+			<div className="px-6 pb-6 pt-2">
+				<div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+					<p className="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wide uppercase mb-3 text-center">Technologies</p>
+					<div className="flex flex-wrap items-center justify-center gap-2">
+						{project?.tools &&
+							Object.keys(project.tools).map((tool, index) => {
+								switch (tool) {
+									case "FaShopify":
+										return (
+											<div 
+												className="p-2 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-lg" 
+												key={index}
+											>
+												<FaShopify className="w-4 h-4 text-emerald-700 dark:text-emerald-300" />
+											</div>
+										);
+									case "FaGit":
+										return (
+											<div 
+												className="p-2 bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-700 rounded-lg" 
+												key={index}
+											>
+												<FaGit className="w-4 h-4 text-orange-700 dark:text-orange-300" />
+											</div>
+										);
+									case "FaWordpress":
+										return (
+											<div 
+												className="p-2 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg" 
+												key={index}
+											>
+												<FaWordpress className="w-4 h-4 text-blue-700 dark:text-blue-300" />
+											</div>
+										);
+									default:
+										return (
+											<div 
+												className="p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg" 
+												key={index}
+												title={project.tools[tool]}
+											>
+												<i className={`${tool} text-sm text-gray-700 dark:text-gray-300`} />
+											</div>
+										);
+								}
+							})}
+					</div>
 				</div>
 			</div>
 		);
@@ -59,121 +76,162 @@ export const ProjectCard = ({ project }) => {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<div
+			<motion.div
 				onClick={openModal}
-				className="flex flex-col rounded-lg shadow-lg overflow-hidden bg-[#0a0a0a] border border-gray-600 cursor-pointer hover:border-gray-400 transition-all duration-300 hover:shadow-xl"
+				className="flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300"
+				whileHover={{ scale: 1.02 }}
+				transition={{ duration: 0.2 }}
 			>
-				<img className="px-6 py-4 w-full h-48 object-contain" src={project.imageUrl} alt={project.title} />
-				<div className="bg-transparent p-6 flex flex-col pw-bg">
+				{/* Image container with better contrast handling */}
+				<div className="bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+					<img 
+						className="w-full h-48 object-contain p-6" 
+						src={project.imageUrl} 
+						alt={project.title} 
+					/>
+				</div>
+				
+				<div className="p-6 flex flex-col flex-1">
 					<div className="flex-1">
-						<div className="block mt-2">
-							<p className="text-xl font-semibold text-gray-300">{project.title}</p>
-							<p className="mt-3 text-sm text-gray-300">
+						<div className="mb-4">
+							<h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+								{project.title}
+							</h3>
+							<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
 								{truncatedDescription}
 								{project.description.length > maxDescriptionLength && (
-									<span className="italics hover:underline" onClick={openModal}>
-										{" "}
-										read more
+									<span 
+										className="inline-block ml-1 text-blue-600 dark:text-blue-400 font-semibold cursor-pointer" 
+										onClick={openModal}
+									>
+										read more →
 									</span>
 								)}
 							</p>
+							<a 
+								href={project.link} 
+								target="_blank" 
+								rel="noopener noreferrer"
+								className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-200"
+								onClick={(e) => e.stopPropagation()}
+							>
+								<span>Visit Site</span>
+								<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+								</svg>
+							</a>
 						</div>
 					</div>
 				</div>
 				<Tools />
-			</div>
+			</motion.div>
+
 			<Modal
 				isOpen={isModalOpen}
 				onRequestClose={closeModal}
 				contentLabel="Project Details"
-				className="Modal bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 md:p-8 rounded-xl w-[95%] max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200 dark:border-gray-600"
-				overlayClassName="Overlay fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-60 backdrop-blur-sm z-50"
+				className="Modal bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-8 rounded-3xl w-[95%] max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-xl"
+				overlayClassName="Overlay fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black/70 backdrop-blur-md z-50"
 				shouldCloseOnOverlayClick={true}
 				ariaHideApp={false}
 			>
 				{isModalOpen && (
-					<div className="modal-content">
+					<motion.div 
+						className="modal-content"
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.3 }}
+					>
 						{/* Header with close button */}
-						<div className="flex justify-between items-start mb-6">
-							<h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 pr-4">
+						<div className="flex justify-between items-start mb-8">
+							<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 pr-4">
 								{project.title}
 							</h2>
-							<button 
+							<motion.button 
 								onClick={closeModal}
-								className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
+								className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-200 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+								whileHover={{ scale: 1.1, rotate: 90 }}
+								transition={{ duration: 0.2 }}
 							>
 								<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
 								</svg>
-							</button>
+							</motion.button>
 						</div>
 
 						{/* Project Image */}
-						<div className="mb-6">
-							<img
-								className="w-full  md:h-64 object-cover rounded-lg shadow-md"
-								src={project.imageUrl}
-								alt={project.title}
-							/>
+						<div className="mb-8">
+							<div className="rounded-2xl overflow-hidden shadow-lg bg-slate-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-600">
+								<motion.img
+									className="w-full h-80 object-contain p-6"
+									src={project.imageUrl}
+									alt={project.title}
+									initial={{ opacity: 0, scale: 0.95 }}
+									animate={{ opacity: 1, scale: 1 }}
+									transition={{ duration: 0.5, delay: 0.1 }}
+								/>
+							</div>
 						</div>
 
 						{/* Description */}
-						<div className="mb-6">
-							<h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
+						<div className="mb-8">
+							<h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+								<span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-3"></span>
 								About this project
 							</h3>
-							<p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+							<p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
 								{project.description}
 							</p>
 						</div>
 
 						{/* Tools Section */}
-						<div className="mb-8">
-							<h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
+						<div className="mb-10">
+							<h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+								<span className="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 mr-3"></span>
 								Technologies & Tools
 							</h3>
-							<div className="flex flex-wrap gap-3">
+							<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 								{project?.tools &&
 									Object.keys(project.tools).map((tool, index) => {
 										switch (tool) {
 											case "FaShopify":
 												return (
 													<div 
-														className="flex items-center gap-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg border border-blue-200 dark:border-blue-800" 
+														className="flex items-center gap-3 p-4 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl border border-emerald-200 dark:border-emerald-700" 
 														key={index}
 													>
-														<FaShopify className="w-4 h-4" />
-														<span className="text-sm font-medium">Shopify</span>
+														<FaShopify className="w-5 h-5" />
+														<span className="text-sm font-semibold">Shopify</span>
 													</div>
 												);
 											case "FaGit":
 												return (
 													<div 
-														className="flex items-center gap-2 px-3 py-2 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 rounded-lg border border-orange-200 dark:border-orange-800" 
+														className="flex items-center gap-3 p-4 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-xl border border-orange-200 dark:border-orange-700" 
 														key={index}
 													>
-														<FaGit className="w-4 h-4" />
-														<span className="text-sm font-medium">Git</span>
+														<FaGit className="w-5 h-5" />
+														<span className="text-sm font-semibold">Git</span>
 													</div>
 												);
 											case "FaWordpress":
 												return (
 													<div 
-														className="flex items-center gap-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg border border-blue-200 dark:border-blue-800" 
+														className="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl border border-blue-200 dark:border-blue-700" 
 														key={index}
 													>
-														<FaWordpress className="w-4 h-4" />
-														<span className="text-sm font-medium">WordPress</span>
+														<FaWordpress className="w-5 h-5" />
+														<span className="text-sm font-semibold">WordPress</span>
 													</div>
 												);
 											default:
 												return (
 													<div 
-														className="flex items-center gap-2 px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-gray-600" 
+														className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl border border-gray-200 dark:border-gray-600" 
 														key={index}
 													>
-														<i className={`${tool} text-sm`} title={project.tools[tool]} />
-														<span className="text-sm font-medium">{project.tools[tool]}</span>
+														<i className={`${tool} text-lg`} title={project.tools[tool]} />
+														<span className="text-sm font-semibold">{project.tools[tool]}</span>
 													</div>
 												);
 										}
@@ -182,26 +240,26 @@ export const ProjectCard = ({ project }) => {
 						</div>
 
 						{/* Action Buttons */}
-						<div className="flex flex-col sm:flex-row gap-3">
+						<div className="flex flex-col sm:flex-row gap-4">
 							<a 
 								href={project.link} 
 								target="_blank" 
 								rel="noopener noreferrer"
-								className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-center flex items-center justify-center gap-2"
+								className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-colors duration-300 text-center flex items-center justify-center gap-3"
 							>
 								<span>View Project</span>
-								<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
 								</svg>
 							</a>
 							<button 
 								onClick={closeModal}
-								className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+								className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold py-4 px-8 rounded-xl transition-colors duration-300 border border-gray-200 dark:border-gray-600"
 							>
 								Close
 							</button>
 						</div>
-					</div>
+					</motion.div>
 				)}
 			</Modal>
 		</LazyMotion>
