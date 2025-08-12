@@ -41,7 +41,7 @@ export function AboutSection() {
 				{/* Toggle Button */}
 				<div 
 					ref={toggleRef}
-					className="flex justify-center mb-6"
+					className="flex justify-center mt-2"
 					style={{
 						transform: isToggleInView ? "none" : "translateY(-50px)",
 						opacity: isToggleInView ? 1 : 0,
