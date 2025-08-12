@@ -1,5 +1,22 @@
 export const ecommerce = [
 	{
+		title: "Michigan State - M Den Shop",
+		link: "https://mdenshop.com",
+		description:
+			"Redesigned the M Den Shop website, the official University of Michigan merchandise store. My role involved creating a modern, user-friendly e-commerce experience that showcases Michigan Wolverines apparel, jerseys, and accessories. The redesign focused on improving navigation, product presentation, and overall user experience while maintaining the brand's strong connection to University of Michigan athletics.",
+		imageUrl:
+			"https://mdenshop.com/cdn/shop/files/ecomm_logo-01.svg",
+		caseStudyUrl: "#",
+		tools: {
+			"devicon-javascript-plain": "Javascript",
+			"devicon-react-original": "React",
+			"devicon-css3-plain-wordmark": "CSS",
+			"devicon-graphql-plain": "GraphQL",
+			FaShopify: "Shopify Plus",
+			"devicon-github-original": "Github"
+		}
+	},
+	{
 		title: "UFL",
 		link: "https://shop.theufl.com/",
 		description:
@@ -157,6 +174,22 @@ export const ecommerce = [
 ];
 export const projects = [
 	{
+		title: "Macro Exotics",
+		link: "https://macroexotics.com/",
+		description:
+			"Macro Exotics is a premium web and iOS platform that connects renters with exotic and luxury car owners, offering a smooth and secure experience for both parties. Users can join as renters, who must have a valid driver’s license and credit card with payments processed via Stripe, or as hosts, who provide proof of vehicle insurance and required documentation. All members undergo background checks to ensure safety and trust. Renters can search for cars, view detailed listings, and book instantly, while hosts can list vehicles, manage availability, and track bookings. Once a rental is confirmed, a professional driver delivers the vehicle to the renter’s preferred location. Built using Svelte, SvelteKit, Capacitor, TailwindCSS, and TypeScript, the platform delivers fast, responsive performance across devices, ensuring an experience as refined as the cars themselves.",
+		imageUrl:
+			"https://www.macroexotics.com/_app/immutable/assets/macro-exotics-dark-logo.BKbJ8eoC.png",
+		caseStudyUrl: "#",
+		tools: {
+			"devicon-svelte-plain": "Svelte",
+			"devicon-tailwindcss-plain": "TailwindCSS",
+			"devicon-typescript-plain": "TypeScript",
+			"devicon-firebase-plain": "Firebase",
+			"devicon-github-plain": "Github"
+		}
+	},
+	{
 		title: "Moving Mountains Recovery",
 		link: "https://movingmountainsrecovery.com/",
 		description:
@@ -185,7 +218,7 @@ export const projects = [
 	},
 	{
 		title: "Borowed Time Tattoo",
-		link: "https://tx9.4c1.myftpupload.com/",
+		link: "https://borrowedtimetattoo.com/",
 		description:
 			"The project for Borrowed time tatoo is still in progress. This project is a website redesign.",
 		imageUrl:
@@ -197,4 +230,5 @@ export const projects = [
 			"devicon-github-original": "Github"
 		}
 	},
+
 ];
