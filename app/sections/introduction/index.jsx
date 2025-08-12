@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { WelcomeAnimation } from "./IntroAnimation";
 import { useScrollTo } from "hooks";
@@ -10,7 +11,9 @@ import { useMediaQuery } from "utils";
 export function WelcomeSection() {
 	const ref = useRef(null);
 	const introRef = useRef(null);
+	const headshotRef = useRef(null);
 	const isInView = useInView(ref, { once: true });
+	const isHeadshotInView = useInView(headshotRef, { once: true });
 	const { scrollToEl } = useScrollTo();
 	const isTabletUp = useMediaQuery("min-width: 768px");
 
@@ -134,7 +137,48 @@ export function WelcomeSection() {
 						</div>
 					</div>
 
-					{isTabletUp && <WelcomeAnimation />}
+					{/* Headshot section - visible on all screen sizes */}
+					<div 
+						ref={headshotRef}
+						className="flex justify-center items-center mt-8 md:mt-0 relative"
+						style={{
+							transform: isHeadshotInView ? "none" : "translateY(50px) scale(0.9)",
+							opacity: isHeadshotInView ? 1 : 0,
+							transition: "all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s"
+						}}
+					>
+						{/* Background animation */}
+						<div className="absolute inset-0 flex justify-center items-center">
+							<div className="translate-y-[-80px] w-full h-full max-w-[500px] max-h-[500px] opacity-30">
+								<WelcomeAnimation />
+							</div>
+						</div>
+						
+						<div className="relative z-10">
+							{/* Decorative background circle */}
+							<div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-xl scale-110"></div>
+							
+							{/* Main headshot container */}
+							<div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm">
+								<Image
+									src="/headshot.jpg"
+									alt="Anthony - Software Developer"
+									width={320}
+									height={320}
+									className="w-full h-full object-cover object-center"
+									priority
+								/>
+								
+								{/* Subtle overlay for depth */}
+								<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+							</div>
+							
+							{/* Floating accent elements */}
+							<div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
+							<div className="absolute -bottom-2 -left-2 w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-1000"></div>
+							<div className="absolute top-1/2 -right-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-500"></div>
+						</div>
+					</div>
 				</div>
 			</section>
 		</LazyMotion>
