@@ -2,7 +2,12 @@
 
 @layer components {
 	.section {
-		@apply py-12 md:py-16;
+		@apply pt-6 pb-12 md:py-16;
+	}
+	@media (max-width: 500px) {
+		.section {
+			@apply pt-4 pb-12;
+		}
 	}
 	.container-md {
 		@apply max-w-7xl mx-auto px-4;
