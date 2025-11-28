@@ -1,4 +1,4 @@
-import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin,  BsTelephoneFill } from "react-icons/bs";
+import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin } from "react-icons/bs";
 
 export const SOCIAL_MEDIA = [
 /* 	{
@@ -7,12 +7,12 @@ export const SOCIAL_MEDIA = [
 		title: "Visit LinkedIn profile",
 		url: "https://www.linkedin.com/in/anthonyhorner4727/"
 	}, */
-	{
+/* 	{
 		id: "phone",
 		icon: <BsTelephoneFill />,
 		title: "Give me a call!",
 		url: "tel:8457451198"
-	},
+	}, */
 	{
 		id: "github",
 		icon: <BsGithub />,
