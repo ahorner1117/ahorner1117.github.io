@@ -65,3 +65,7 @@ logs/
 *.swp
 *.swo
 *~
+
+# project-specific config files
+context7.json
+CLAUDE.md
