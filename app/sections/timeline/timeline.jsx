@@ -69,14 +69,15 @@ const experiences = [
 	}
 ];
 
-const TimelineItem = ({ experience, side }) => {
+const TimelineItem = ({ experience, side, index }) => {
 	const ref = useRef(null);
 
 	const isItemInView = useInView(ref, { once: true });
 
-	const descriptionList = experience.description.map((point, index) => (
-		<li key={index} className="mb-1">
-			{point}
+	const descriptionList = experience.description.map((point, idx) => (
+		<li key={idx} className="mb-2 flex items-start">
+			<span className="mr-2 mt-1.5 text-gray-900 dark:text-white">▹</span>
+			<span className="leading-relaxed">{point}</span>
 		</li>
 	));
 
@@ -85,23 +86,31 @@ const TimelineItem = ({ experience, side }) => {
 			<div
 				ref={ref}
 				style={{
-					transform:
-						side === "right" && isItemInView
-							? "md:translateX(-50px)"
-							: side === "left" && isItemInView
-							? "md:translateX(50px)"
-							: "none",
+					transform: isItemInView ? "none" : side === "right" ? "translateX(50px)" : "translateX(-50px)",
 					opacity: isItemInView ? 1 : 0,
-					transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+					transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${0.2 + index * 0.15}s`
 				}}
-				className={`relative text-sm w-full my-6 ${
+				className={`relative text-sm w-full my-8 ${
 					side === "right" ? "md:ml-auto" : "md:mr-auto"
-				} md:w-5/12 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg p-6 text-gray-900 dark:text-white shadow-md`}
+				} md:w-5/12`}
 			>
-				<h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{experience.role}</h3>
-				<h4 className="text-purple-600 dark:text-purple-300 mb-4">{experience.company}</h4>
-				<p className="text-gray-600 dark:text-gray-400 mb-2">{experience.date}</p>
-				<ul className="list-disc text-gray-700 dark:text-gray-300 pl-6">{descriptionList}</ul>
+				{/* Card */}
+				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-300">
+					<div className="mb-3">
+						<span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+							{experience.date}
+						</span>
+					</div>
+
+					<h3 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">
+						{experience.role}
+					</h3>
+					<h4 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+						{experience.company}
+					</h4>
+
+					<ul className="space-y-2 text-gray-700 dark:text-gray-300">{descriptionList}</ul>
+				</div>
 			</div>
 		</LazyMotion>
 	);
@@ -109,16 +118,19 @@ const TimelineItem = ({ experience, side }) => {
 
 const VerticalTimeline = () => {
 	return (
-		<section id="work">
-			<div className="h-auto text-white py-12 bg-transparent">
+		<section id="timeline" className="section">
+			<div className="container mx-auto">
 				<HeadingDivider title="Work Experience" />
-				<div className="container mx-auto px-6">
+				<div className="pt-8 pb-16">
 					<div className="relative w-full">
-						<div className="hidden md:block border-l-2 border-purple-600 border-purple-450 absolute md:left-1/2 transform -translate-x-1/2 h-full"></div>
+						{/* Simple timeline line */}
+						<div className="hidden md:block absolute md:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300 dark:bg-gray-700"></div>
+
 						{experiences.map((experience, index) => (
 							<TimelineItem
 								key={experience.id}
 								experience={experience}
+								index={index}
 								side={index % 2 === 0 ? "left" : "right"}
 							/>
 						))}
