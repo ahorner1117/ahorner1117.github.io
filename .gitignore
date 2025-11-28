@@ -19,6 +19,7 @@ sanity/node_modules/
 # misc
 .DS_Store
 *.pem
+context7.json 
 
 # debug
 npm-debug.log*
