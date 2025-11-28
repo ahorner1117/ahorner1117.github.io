@@ -14,7 +14,7 @@ export function AboutSection() {
 
 	const technicalContent = [
 		"My name is Anthony Horner, a seasoned full-stack software engineer with over 7 years of experience and a Bachelor’s degree in Computer Science from Florida Atlantic University.",
-		"I specialize in a broad spectrum of web technologies including JavaScript, TypeScript, React, Next.js, Svelte, TailwindCSS, GraphQL, Shopify, API development, and cloud platforms such as Firebase and Vercel.",
+		"I specialize in a broad spectrum of web technologies including Svelte, React, Next.js, Node.js, JavaScript, TypeScript, TailwindCSS, GraphQL,  Shopify, API development, Custom Shopify Apps, and cloud platforms such as Firebase and Vercel.",
 		"One of my signature achievements is Macro Exotics, a premium vehicle rental platform similar to Airbnb but specializing in exotic and luxury cars. Built with Svelte, SvelteKit, TailwindCSS, and Firebase, it includes secure authentication, instant booking, availability management, Stripe payments, and professional driver delivery.",
 		"My e-commerce portfolio includes high-profile Shopify Plus projects for FIFA, Madison Square Garden, Real Madrid, the Chicago Bulls, USA Olympic Hockey, and Century 21. In these projects I transformed Figma designs into responsive, dynamic storefronts, implemented headless architecture with Next.js, created custom checkout apps, and built employee discount systems leveraging the Shopify Admin API and Storefront API.",
 		"I have also developed microservices and IoT integrations on Node.js frameworks, creating systems for real-time data collection, health dashboards, and multi-device communication.",

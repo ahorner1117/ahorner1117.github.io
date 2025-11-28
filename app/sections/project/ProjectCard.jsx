@@ -85,7 +85,7 @@ export const ProjectCard = ({ project }) => {
 				{/* Image container with better contrast handling */}
 				<div className="bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
 					<img 
-						className="w-full h-48 object-contain p-6" 
+						className={`w-full h-48 object-contain p-6 ${project.title === "Cricket Australia" ? "my-0 mx-auto !w-[300px]" : ""}`}
 						src={project.imageUrl} 
 						alt={project.title} 
 					/>
@@ -163,7 +163,7 @@ export const ProjectCard = ({ project }) => {
 						<div className="mb-8">
 							<div className="rounded-2xl overflow-hidden shadow-lg bg-slate-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-600">
 								<motion.img
-									className="w-full h-80 object-contain p-6"
+									className={`w-full h-80 object-contain p-6 ${project.title === "Cricket Australia" ? "my-0 mx-auto !w-[300px]" : ""}`}
 									src={project.imageUrl}
 									alt={project.title}
 									initial={{ opacity: 0, scale: 0.95 }}
@@ -176,7 +176,7 @@ export const ProjectCard = ({ project }) => {
 						{/* Description */}
 						<div className="mb-8">
 							<h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
-								<span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-3"></span>
+								<span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-blue-800mr-3"></span>
 								About this project
 							</h3>
 							<p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
@@ -187,7 +187,7 @@ export const ProjectCard = ({ project }) => {
 						{/* Tools Section */}
 						<div className="mb-10">
 							<h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
-								<span className="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 mr-3"></span>
+								<span className="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-800 mr-3"></span>
 								Technologies & Tools
 							</h3>
 							<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

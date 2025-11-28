@@ -1,6 +1,6 @@
 "use client";
 
-import { WelcomeSection, AboutSection, TechnologiesSection, ProjectsSection } from "app/sections";
+import { WelcomeSection, AboutSection, TechnologiesSection, ProjectsSection, AISection } from "app/sections";
 import VerticalTimeline from "app/sections/timeline/timeline";
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
 			<AboutSection />
 			<ProjectsSection />
 			<VerticalTimeline />
-
+			<AISection />
 			<TechnologiesSection />
 		</div>
 	);

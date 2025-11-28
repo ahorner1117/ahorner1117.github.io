@@ -14,7 +14,24 @@ export const ecommerce = [
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
 			"devicon-github-original": "Github"
-		}
+		},
+	},
+	{
+		title: "Cricket Australia",
+		link: "https://shop.cricket.com.au/",
+		description:
+			"Redesigned the Cricket Australia merchandise store, the official Cricket Australia merchandise store. My role involved creating a modern, user-friendly e-commerce experience that showcases Cricket Australia apparel, jerseys, and accessories. The redesign focused on improving navigation, product presentation, and overall user experience while maintaining the brand's strong connection to Cricket Australia athletics.",
+		imageUrl:
+			"https://shop.cricket.com.au/cdn/shop/files/CA-Shop-logo.webp",
+		caseStudyUrl: "#",
+		tools: {
+			"devicon-javascript-plain": "Javascript",
+			"devicon-react-original": "React",
+			"devicon-css3-plain-wordmark": "CSS",
+			"devicon-graphql-plain": "GraphQL",
+			FaShopify: "Shopify Plus",
+			"devicon-github-original": "Github"
+		},
 	},
 	{
 		title: "UFL",

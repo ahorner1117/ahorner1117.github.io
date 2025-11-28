@@ -3,12 +3,15 @@ import { useRef } from "react";
 import { HeadingDivider } from "components";
 
 const experiences = [
+
 	{
 		company: "Legends",
 		id: 1,
-		role: "Ecommerce Developer",
+		role: "Ecommerce Developer & Shopify App Developer",
 		date: "11.2022 - Present",
 		description: [
+			"Design, develop, and maintain 50+ Shopify sites combining more than $100m annual revenue",
+			"Specialized in Shopify App developement,  utilized Shopify's updated API to implement customizable customer accounts / checkout, employee discounts, upsell apps,  ",
 			"Spearheaded upgrades for multiple Shopify stores, introducing checkout extensibility for enhanced functionality.",
 			"Developed versatile Shopify checkout extensibility apps, including one leveraging React for universal employee discounts and another displaying pickup times and locations in checkout, streamlining the selection process for users.",
 			"Continued to enhance the customizable, headless Next.js and React E-commerce store on the Shopify platform, ensuring adaptability to emerging technologies and evolving business needs.",
@@ -21,7 +24,7 @@ const experiences = [
 	{
 		company: "Preddio Technologies",
 		role: "Application Engineer",
-		id: "2",
+		id: 2,
 
 		date: "06.2022 - 11.2022",
 		description: [
