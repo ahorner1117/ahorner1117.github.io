@@ -1,5 +1,23 @@
 export const ecommerce = [
 	{
+		title: "Activision Blizzard",
+		link: "https://gear.blizzard.com/",
+		description:
+			"Developed and maintained the Blizzard Gear Store, the official merchandise platform for Activision Blizzard's iconic gaming franchises including World of Warcraft, Overwatch, Diablo, and Call of Duty. Implemented custom Shopify apps using React, Express.js, and Next.js to enhance the e-commerce experience. Built sophisticated integrations with GraphQL APIs to manage complex product catalogs, game-specific merchandise collections, and dynamic content delivery across multiple gaming communities.",
+		imageUrl:
+			"https://gear.blizzard.com/cdn/shop/files/2025_BGS_LOGO.png?v=1758124919&width=240",
+		caseStudyUrl: "#",
+		tools: {
+			"devicon-javascript-plain": "Javascript",
+			"devicon-react-original": "React",
+			"devicon-nextjs-original": "Next.js",
+			"devicon-express-original": "Express.js",
+			"devicon-graphql-plain": "GraphQL",
+			FaShopify: "Shopify Plus",
+			"devicon-github-original": "Github"
+		}
+	},
+	{
 		title: "Michigan State - M Den Shop",
 		link: "https://mdenshop.com",
 		description:
