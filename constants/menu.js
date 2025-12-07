@@ -4,5 +4,5 @@ export const MENU_OPTIONS = [
 	{ id: "2", name: "Projects", url: "#projects" },
 	{ id: "4", name: "AI", url: "#ai" },
 	{ id: "5", name: "Tech", url: "#tech" },
-	{ id: "6", name: "Clients Portal", url: "/clients" }
+	{ id: "6", name: "Clients Portal", url: "https://ahorner1117-github-io.vercel.app/clients" }
 ];
