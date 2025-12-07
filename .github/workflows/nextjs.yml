@@ -73,6 +73,10 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Remove API routes and clients page (hosted on Vercel)
+        run: |
+          rm -rf app/api
+          rm -rf app/clients
       - name: Build with Next.js
         env:
           GITHUB_PAGES: 'true'
