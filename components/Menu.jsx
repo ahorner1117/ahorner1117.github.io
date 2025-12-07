@@ -22,19 +22,26 @@ export function Menu({ onClick = () => {} }) {
 
 	mainMenu = (
 		<m.nav initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
-			<ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
-				{MENU_OPTIONS.sort(sortAscending).map((menuItem) => (
-					<li key={menuItem.id}>
-						<a
-							href={menuItem.url}
-							title={menuItem.name}
-							onClick={handleOnClick}
-							className="relative text-xl hover:no-underline after:absolute after:left-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
-						>
-							{menuItem.name}
-						</a>
-					</li>
-				))}
+			<ul className="flex justify-center gap-5 lg:gap-10 flex-col md:flex-row items-start md:items-center">
+				{MENU_OPTIONS.sort(sortAscending).map((menuItem) => {
+					// If we're not on home page and the menu item is a hash link, prepend "/"
+					const isHashLink = menuItem.url.startsWith("#");
+					const isOnHomePage = pathname === SITE_ROUTES.home;
+					const href = isHashLink && !isOnHomePage ? `/${menuItem.url}` : menuItem.url;
+
+					return (
+						<li key={menuItem.id}>
+							<a
+								href={href}
+								title={menuItem.name}
+								onClick={handleOnClick}
+								className="relative text-xl hover:no-underline after:absolute after:left-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
+							>
+								{menuItem.name}
+							</a>
+						</li>
+					);
+				})}
 			</ul>
 		</m.nav>
 	);

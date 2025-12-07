@@ -18,14 +18,31 @@ export function useScrollTo() {
 	}, []);
 
 	const scrollToEl = (e) => {
-		e.preventDefault();
 		const hash = e.target.hash;
-		const offsetTop = document?.querySelector(hash)?.offsetTop - height;
+		const targetPathname = e.target.pathname;
+		const currentPathname = window.location.pathname;
 
-		scroll({
-			top: offsetTop,
-			behavior: "smooth"
-		});
+		// If no hash (regular page link like /clients), let default navigation happen
+		if (!hash) {
+			return;
+		}
+
+		// If navigating to a different page (e.g., /#intro from /clients), let default navigation happen
+		if (targetPathname !== currentPathname) {
+			return;
+		}
+
+		// For hash links on the same page (section anchors), prevent default and smooth scroll
+		e.preventDefault();
+		const element = document?.querySelector(hash);
+
+		if (element) {
+			const offsetTop = element.offsetTop - height;
+			scroll({
+				top: offsetTop,
+				behavior: "smooth"
+			});
+		}
 	};
 
 	return { scrollToEl };

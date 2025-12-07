@@ -3,5 +3,6 @@ export const MENU_OPTIONS = [
 	{ id: "1", name: "About", url: "#about" },
 	{ id: "2", name: "Projects", url: "#projects" },
 	{ id: "4", name: "AI", url: "#ai" },
-	{ id: "5", name: "Tech", url: "#tech" }
+	{ id: "5", name: "Tech", url: "#tech" },
+	{ id: "6", name: "Clients Portal", url: "/clients" }
 ];
