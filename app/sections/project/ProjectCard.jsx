@@ -2,9 +2,11 @@ import { LazyMotion, domAnimation, motion } from "framer-motion";
 import { useState } from "react";
 import { FaShopify, FaGit, FaWordpress } from "react-icons/fa";
 import Modal from "react-modal";
+import { trackEvent } from "utils";
 
 export const ProjectCard = ({ project }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [modalOpenTime, setModalOpenTime] = useState(null);
 	const maxDescriptionLength = 250;
 
 	const truncatedDescription =
@@ -14,10 +16,19 @@ export const ProjectCard = ({ project }) => {
 
 	const openModal = () => {
 		setIsModalOpen(true);
+		setModalOpenTime(Date.now());
+		trackEvent.projectModalOpen(project.title);
 	};
 
 	const closeModal = () => {
 		setIsModalOpen(false);
+
+		// Calculate and track time spent if modal was opened
+		if (modalOpenTime) {
+			const timeSpent = Math.round((Date.now() - modalOpenTime) / 1000);
+			trackEvent.projectModalClose(project.title, timeSpent);
+			setModalOpenTime(null);
+		}
 	};
 
 	const Tools = () => {
@@ -74,20 +85,27 @@ export const ProjectCard = ({ project }) => {
 		);
 	};
 
+	const handleCardClick = () => {
+		trackEvent.projectCardClick(project.title, project.type || 'general');
+		openModal();
+	};
+
 	return (
 		<LazyMotion features={domAnimation}>
 			<motion.div
-				onClick={openModal}
+				onClick={handleCardClick}
 				className="flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300"
 				whileHover={{ scale: 1.02 }}
 				transition={{ duration: 0.2 }}
 			>
 				{/* Image container with better contrast handling */}
 				<div className="bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-					<img 
-						className="w-full h-48 object-contain p-6" 
-						src={project.imageUrl} 
-						alt={project.title} 
+					<img
+						className="w-full h-48 object-contain p-6"
+						src={project.imageUrl}
+						alt={project.title}
+						loading="lazy"
+						decoding="async"
 					/>
 				</div>
 				
@@ -108,12 +126,15 @@ export const ProjectCard = ({ project }) => {
 									</span>
 								)}
 							</p>
-							<a 
-								href={project.link} 
-								target="_blank" 
+							<a
+								href={project.link}
+								target="_blank"
 								rel="noopener noreferrer"
 								className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-200"
-								onClick={(e) => e.stopPropagation()}
+								onClick={(e) => {
+									e.stopPropagation();
+									trackEvent.projectExternalLink(project.title, project.link);
+								}}
 							>
 								<span>Visit Site</span>
 								<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,6 +187,8 @@ export const ProjectCard = ({ project }) => {
 									className="w-full h-80 object-contain p-6"
 									src={project.imageUrl}
 									alt={project.title}
+									loading="lazy"
+									decoding="async"
 									initial={{ opacity: 0, scale: 0.95 }}
 									animate={{ opacity: 1, scale: 1 }}
 									transition={{ duration: 0.5, delay: 0.1 }}
@@ -241,11 +264,12 @@ export const ProjectCard = ({ project }) => {
 
 						{/* Action Buttons */}
 						<div className="flex flex-col sm:flex-row gap-4">
-							<a 
-								href={project.link} 
-								target="_blank" 
+							<a
+								href={project.link}
+								target="_blank"
 								rel="noopener noreferrer"
 								className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-colors duration-300 text-center flex items-center justify-center gap-3"
+								onClick={() => trackEvent.projectExternalLink(project.title, project.link)}
 							>
 								<span>View Project</span>
 								<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

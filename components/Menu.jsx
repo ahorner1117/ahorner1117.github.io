@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useScrollTo } from "hooks";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import { initial, animate, exit, transition } from "utils";
+import { initial, animate, exit, transition, trackEvent } from "utils";
 import { MENU_OPTIONS, SITE_ROUTES, SITE_STRINGS } from "../constants";
 
 export function Menu({ onClick = () => {} }) {
@@ -15,15 +15,37 @@ export function Menu({ onClick = () => {} }) {
 
 	const sortAscending = (a, b) => a.id - b.id;
 
+	// Filter menu items based on hostname
+	// Only show "Clients Portal" on Vercel URL, not on GitHub Pages
+	const getFilteredMenuItems = () => {
+		if (typeof window === 'undefined') return MENU_OPTIONS;
+
+		const isGitHubPages = window.location.hostname === 'ahorner1117.github.io';
+
+		if (isGitHubPages) {
+			// Filter out "Clients Portal" on GitHub Pages
+			return MENU_OPTIONS.filter(item => item.name !== "Clients Portal");
+		}
+
+		return MENU_OPTIONS;
+	};
+
 	const handleOnClick = (e) => {
+		// Track navigation click
+		const href = e.currentTarget.getAttribute('href');
+		const label = e.currentTarget.getAttribute('title');
+		trackEvent.navigationClick(label, href);
+
 		scrollToEl(e);
 		window.setTimeout(() => onClick(), 350);
 	};
 
+	const filteredMenuItems = getFilteredMenuItems();
+
 	mainMenu = (
 		<m.nav initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
 			<ul className="flex justify-center gap-5 lg:gap-10 flex-col md:flex-row items-start md:items-center">
-				{MENU_OPTIONS.sort(sortAscending).map((menuItem) => {
+				{filteredMenuItems.sort(sortAscending).map((menuItem) => {
 					// If we're not on home page and the menu item is a hash link, prepend "/"
 					const isHashLink = menuItem.url.startsWith("#");
 					const isOnHomePage = pathname === SITE_ROUTES.home;
@@ -63,7 +85,7 @@ export function Menu({ onClick = () => {} }) {
 
 	content = pathname === SITE_ROUTES.projects ? backMenu : mainMenu;
 
-	if (MENU_OPTIONS.length === 0) {
+	if (filteredMenuItems.length === 0) {
 		return null;
 	}
 

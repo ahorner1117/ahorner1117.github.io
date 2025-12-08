@@ -5,6 +5,7 @@ import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { HeadingDivider } from "components";
 import { BsCreditCard2Front } from "react-icons/bs";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { trackEvent } from "utils";
 
 export function ClientsSection() {
 	const ref = useRef(null);
@@ -21,19 +22,27 @@ export function ClientsSection() {
 	// Success/cancel message handling
 	const [paymentStatus, setPaymentStatus] = useState(null);
 
+	// Analytics tracking state
+	const [hasStartedForm, setHasStartedForm] = useState(false);
+
 	useEffect(() => {
 		// Check URL for payment status
 		const params = new URLSearchParams(window.location.search);
 		const status = params.get('payment');
+		const sessionId = params.get('session_id');
 
 		if (status === 'success') {
 			setPaymentStatus('success');
+			// Track successful payment
+			trackEvent.paymentSuccess(sessionId || 'unknown');
 			// Clear URL params after showing message
 			setTimeout(() => {
 				window.history.replaceState({}, '', window.location.pathname);
 			}, 100);
 		} else if (status === 'cancelled') {
 			setPaymentStatus('cancelled');
+			// Track cancelled payment
+			trackEvent.paymentCancel();
 			setTimeout(() => {
 				window.history.replaceState({}, '', window.location.pathname);
 			}, 100);
@@ -53,6 +62,12 @@ export function ClientsSection() {
 
 		setAmount(value);
 		setError(""); // Clear error on input change
+
+		// Track form start on first interaction with amount field
+		if (!hasStartedForm && value) {
+			setHasStartedForm(true);
+			trackEvent.paymentFormStart(parseFloat(value) || 0);
+		}
 	};
 
 	const getDate = () => {
@@ -70,13 +85,17 @@ export function ClientsSection() {
 		const numAmount = parseFloat(amount);
 
 		if (!amount || isNaN(numAmount) || numAmount < 1) {
-			setError("Please enter an amount of at least $1.00");
+			const errorMsg = "Please enter an amount of at least $1.00";
+			setError(errorMsg);
+			trackEvent.paymentError('Amount validation failed: minimum $1.00');
 			setLoading(false);
 			return;
 		}
 
 		if (numAmount > 999999) {
-			setError("Amount cannot exceed $999,999.00");
+			const errorMsg = "Amount cannot exceed $999,999.00";
+			setError(errorMsg);
+			trackEvent.paymentError('Amount validation failed: exceeds maximum $999,999.00');
 			setLoading(false);
 			return;
 		}
@@ -84,10 +103,20 @@ export function ClientsSection() {
 		// Email validation
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!email || !emailRegex.test(email)) {
-			setError("Please enter a valid email address");
+			const errorMsg = "Please enter a valid email address";
+			setError(errorMsg);
+			trackEvent.paymentError('Email validation failed');
 			setLoading(false);
 			return;
 		}
+
+		// Track form submission (after validation passes)
+		trackEvent.paymentFormSubmit(
+			numAmount,
+			email,
+			!!invoiceNumber,
+			!!description
+		);
 
 		try {
 			// Call API to create Stripe Checkout session
@@ -118,7 +147,9 @@ export function ClientsSection() {
 			}
 		} catch (err) {
 			console.error('Payment error:', err);
-			setError(err.message || 'An error occurred. Please try again.');
+			const errorMsg = err.message || 'An error occurred. Please try again.';
+			trackEvent.paymentError(`API error: ${errorMsg}`);
+			setError(errorMsg);
 			setLoading(false);
 		}
 	};

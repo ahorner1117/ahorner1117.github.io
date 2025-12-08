@@ -10,15 +10,14 @@ export const AppMetadata = {
 	},
 	description: description,
 	robots: {
-		index: false,
-		follow: false,
-		nocache: true,
+		index: true,
+		follow: true,
+		nocache: false,
 		googleBot: {
-			index: false,
-			follow: false,
-			noimageindex: true,
+			index: true,
+			follow: true,
 			'max-video-preview': -1,
-			'max-image-preview': 'none',
+			'max-image-preview': 'large',
 			'max-snippet': -1,
 		},
 	},
@@ -57,5 +56,22 @@ export const AppMetadata = {
 		],
 		locale: "en-US",
 		type: "website"
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: `${author} | Software Developer Portfolio`,
+		description: description,
+		creator: '@ahorner1117',
+		images: ['https://ahorner1117.github.io/headshot.jpg'],
+	},
+	alternates: {
+		canonical: url,
+	},
+	other: {
+		'theme-color': '#7928CA',
+		'mobile-web-app-capable': 'yes',
+		'apple-mobile-web-app-capable': 'yes',
+		'apple-mobile-web-app-status-bar-style': 'black-translucent',
+		'format-detection': 'telephone=no',
 	}
 };

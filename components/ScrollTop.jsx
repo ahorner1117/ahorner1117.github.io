@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { useScrollTo } from "hooks";
 import { IoIosArrowDropup } from "react-icons/io";
+import { trackEvent } from "utils";
 
 export function ScrollTop() {
 	const { scrollToEl } = useScrollTo();
 
 	const onClick = (e) => {
+		trackEvent.scrollToTop();
 		scrollToEl(e);
 	};
 

@@ -2,6 +2,7 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { initial, animate, exit, transition } from "utils/motions";
+import { trackEvent } from "utils";
 import { SOCIAL_MEDIA } from "../constants";
 
 export function ConnectMedia() {
@@ -17,6 +18,7 @@ export function ConnectMedia() {
 								aria-label={item.title}
 								title={item.title}
 								className="text-2xl"
+								onClick={() => trackEvent.socialMediaClick(item.id, item.url)}
 							>
 								{item.icon}
 							</a>

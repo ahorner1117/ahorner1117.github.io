@@ -1,41 +1,6 @@
+# Allow all search engines to crawl the entire site
 User-agent: *
-Disallow: /
+Allow: /
 
-User-agent: Googlebot
-Disallow: /
-
-User-agent: Bingbot
-Disallow: /
-
-User-agent: Slurp
-Disallow: /
-
-User-agent: DuckDuckBot
-Disallow: /
-
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-User-agent: facebookexternalhit
-Disallow: /
-
-User-agent: Twitterbot
-Disallow: /
-
-User-agent: LinkedInBot
-Disallow: /
-
-# Specifically block common web scrapers
-User-agent: wget
-Disallow: /
-
-User-agent: curl
-Disallow: /
-
-User-agent: scrapy
-Disallow: /
-
-# No sitemap provided to prevent discovery
+# Sitemap location
+Sitemap: https://ahorner1117.github.io/sitemap.xml

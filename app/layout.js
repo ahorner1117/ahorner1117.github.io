@@ -10,10 +10,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Prevent search engine crawling and indexing */}
-        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
-        <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-        
         {/* Theme initialization script - prevents flash of light theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -32,7 +28,22 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        
+
+        {/* Resource Hints for Performance */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+        {/* Preload critical CSS */}
+        <link
+          rel="preload"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+          as="style"
+        />
+
         {/* Existing stylesheets */}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
 
@@ -62,6 +73,97 @@ export default function RootLayout({ children }) {
         }}></script>
         {/* End Google Tag Manager */}
 
+        {/* Structured Data - Person Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Anthony Horner",
+              "url": "https://ahorner1117.github.io",
+              "image": "https://ahorner1117.github.io/headshot.jpg",
+              "sameAs": [
+                "https://github.com/ahorner1117"
+              ],
+              "jobTitle": "Software Developer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Freelance"
+              },
+              "description": "Highly skilled software developer with a passion for coding, proficient in Next.js and React.js. Experienced in CMS and implementing CI/CD practices.",
+              "knowsAbout": [
+                "Next.js",
+                "React.js",
+                "Shopify Plus",
+                "E-commerce Development",
+                "Frontend Development",
+                "Full Stack Development"
+              ],
+              "email": "ahsoftware1997@gmail.com",
+              "alumniOf": {
+                "@type": "EducationalOrganization",
+                "name": "Computer Science Program"
+              }
+            })
+          }}
+        />
+
+        {/* Structured Data - Website Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Anthony Horner Portfolio",
+              "url": "https://ahorner1117.github.io",
+              "description": "Portfolio website showcasing software development projects, e-commerce solutions, and technical expertise in Next.js, React.js, and Shopify Plus development.",
+              "author": {
+                "@type": "Person",
+                "name": "Anthony Horner"
+              },
+              "inLanguage": "en-US"
+            })
+          }}
+        />
+
+        {/* Structured Data - BreadcrumbList for navigation */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://ahorner1117.github.io"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "About",
+                  "item": "https://ahorner1117.github.io#about"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Projects",
+                  "item": "https://ahorner1117.github.io#projects"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "Technologies",
+                  "item": "https://ahorner1117.github.io#tech"
+                }
+              ]
+            })
+          }}
+        />
 
       </head>
       <body>
