@@ -10,7 +10,8 @@ import {
 	exitMobile,
 	initial,
 	initialMobile,
-	transition
+	transition,
+	trackEvent
 } from "utils";
 import { m, AnimatePresence, domAnimation, LazyMotion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
@@ -18,8 +19,15 @@ import { IoMdClose } from "react-icons/io";
 export function MobileMenu() {
 	let [isOpen, setIsOpen] = useState(false);
 
-	const onClose = () => setIsOpen(false);
-	const onOpen = () => setIsOpen(true);
+	const onClose = () => {
+		trackEvent.mobileMenuToggle('close');
+		setIsOpen(false);
+	};
+
+	const onOpen = () => {
+		trackEvent.mobileMenuToggle('open');
+		setIsOpen(true);
+	};
 
 	useEffect(() => {
 		document.body.style.overflow = isOpen ? "hidden" : "auto";
