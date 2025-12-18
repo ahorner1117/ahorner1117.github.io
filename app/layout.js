@@ -2,13 +2,13 @@ import { Suspense } from "react";
 import { AppHeader, AppFooter, AppMetadata } from "components";
 import Loading from "./loading";
 import "styles/globals.css";
-import { ThemeContext } from "context";
+import { ThemeContext, AuthProvider } from "context";
 
 export const metadata = { ...AppMetadata };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Theme initialization script - prevents flash of light theme */}
         <script
@@ -176,9 +176,11 @@ export default function RootLayout({ children }) {
       {/*  End Google Tag Manager (noscript) */} 
 
         <ThemeContext>
-          <AppHeader />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-          <AppFooter />
+          <AuthProvider>
+            <AppHeader />
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+            <AppFooter />
+          </AuthProvider>
         </ThemeContext>
       </body>
     </html>

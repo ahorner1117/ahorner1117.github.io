@@ -213,7 +213,7 @@ export const projects = [
 		description:
 			"As a freelance developer collaborating with Moving Mountains Recovery, I specialize in crafting customized landing pages. My work involves utilizing PHP and CSS to ensure seamless integration and customization through the WordPress admin interface.",
 		imageUrl:
-			"https://movingmountainsrecovery.com/wp-content/uploads/2021/05/Logo-for-Website-01.png",
+			"https://movingmountainsrecovery.com/wp-content/uploads/2025/10/Logo-for-Website.png",
 		caseStudyUrl: "#",
 		tools: {
 			FaWordpress: "Wordpress",
