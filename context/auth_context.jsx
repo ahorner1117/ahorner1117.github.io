@@ -1,14 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import {
-	onAuthStateChanged,
-	signInWithEmailAndPassword,
-	createUserWithEmailAndPassword,
-	signOut
-} from 'firebase/auth';
-import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from 'utils/firebase-config';
+import { getAuthInstance, getFirestoreInstance } from 'utils/firebase-config';
 
 const AuthContext = createContext({});
 
@@ -18,45 +11,73 @@ export function AuthProvider({ children }) {
 	const [user, setUser] = useState(null);
 	const [userProfile, setUserProfile] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [authReady, setAuthReady] = useState(false);
 
 	useEffect(() => {
-		// Skip Firebase initialization if auth is not available (GitHub Pages build)
-		if (!auth) {
-			setLoading(false);
-			return;
-		}
+		let unsubscribe = () => {};
 
-		const unsubscribe = onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				setUser(user);
-				try {
-					// Fetch user profile from Firestore
-					const userDoc = await getDoc(doc(db, 'users', user.uid));
-					if (userDoc.exists()) {
-						setUserProfile(userDoc.data());
-						// Update last login timestamp
-						await updateDoc(doc(db, 'users', user.uid), {
-							lastLogin: serverTimestamp()
-						});
-					}
-				} catch (error) {
-					console.error('[Auth Context] Error fetching user profile:', error);
+		// Lazy load Firebase Auth
+		const initAuth = async () => {
+			try {
+				const auth = await getAuthInstance();
+				const db = await getFirestoreInstance();
+
+				if (!auth || !db) {
+					setLoading(false);
+					setAuthReady(false);
+					return;
 				}
-			} else {
-				setUser(null);
-				setUserProfile(null);
-			}
-			setLoading(false);
-		});
 
-		return unsubscribe;
+				setAuthReady(true);
+
+				// Dynamically import auth functions
+				const { onAuthStateChanged } = await import('firebase/auth');
+				const { doc, getDoc, updateDoc, serverTimestamp } = await import('firebase/firestore');
+
+				unsubscribe = onAuthStateChanged(auth, async (user) => {
+					if (user) {
+						setUser(user);
+						try {
+							// Fetch user profile from Firestore
+							const userDoc = await getDoc(doc(db, 'users', user.uid));
+							if (userDoc.exists()) {
+								setUserProfile(userDoc.data());
+								// Update last login timestamp
+								await updateDoc(doc(db, 'users', user.uid), {
+									lastLogin: serverTimestamp()
+								});
+							}
+						} catch (error) {
+							console.error('[Auth Context] Error fetching user profile:', error);
+						}
+					} else {
+						setUser(null);
+						setUserProfile(null);
+					}
+					setLoading(false);
+				});
+			} catch (error) {
+				console.error('[Auth Context] Failed to initialize auth:', error);
+				setLoading(false);
+				setAuthReady(false);
+			}
+		};
+
+		initAuth();
+
+		return () => unsubscribe();
 	}, []);
 
 	const register = async (email, password, companyName, phoneNumber) => {
-		if (!auth || !db) {
+		if (!authReady) {
 			throw new Error('Firebase not initialized');
 		}
 		try {
+			const auth = await getAuthInstance();
+			const db = await getFirestoreInstance();
+			const { createUserWithEmailAndPassword } = await import('firebase/auth');
+			const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
+
 			// Create Firebase Auth account
 			const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 			const uid = userCredential.user.uid;
@@ -102,10 +123,12 @@ export function AuthProvider({ children }) {
 	};
 
 	const login = async (email, password) => {
-		if (!auth) {
+		if (!authReady) {
 			throw new Error('Firebase not initialized');
 		}
 		try {
+			const auth = await getAuthInstance();
+			const { signInWithEmailAndPassword } = await import('firebase/auth');
 			return await signInWithEmailAndPassword(auth, email, password);
 		} catch (error) {
 			console.error('[Auth Context] Login error:', error);
@@ -114,10 +137,12 @@ export function AuthProvider({ children }) {
 	};
 
 	const logout = async () => {
-		if (!auth) {
+		if (!authReady) {
 			throw new Error('Firebase not initialized');
 		}
 		try {
+			const auth = await getAuthInstance();
+			const { signOut } = await import('firebase/auth');
 			return await signOut(auth);
 		} catch (error) {
 			console.error('[Auth Context] Logout error:', error);

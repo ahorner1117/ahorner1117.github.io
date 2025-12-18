@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from 'context';
+import { AuthProvider, useAuth } from 'context';
 import Link from 'next/link';
 import { AiOutlineLoading3Quarters, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 
-export default function LoginPage() {
+function LoginPageContent() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
@@ -187,5 +187,13 @@ export default function LoginPage() {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export default function LoginPage() {
+	return (
+		<AuthProvider>
+			<LoginPageContent />
+		</AuthProvider>
 	);
 }

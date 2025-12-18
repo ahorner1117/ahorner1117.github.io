@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from 'context';
+import { AuthProvider, useAuth } from 'context';
 import Link from 'next/link';
 import {
 	AiOutlineLoading3Quarters,
@@ -12,7 +12,7 @@ import {
 	AiOutlinePhone
 } from 'react-icons/ai';
 
-export default function RegisterPage() {
+function RegisterPageContent() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
@@ -295,5 +295,13 @@ export default function RegisterPage() {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export default function RegisterPage() {
+	return (
+		<AuthProvider>
+			<RegisterPageContent />
+		</AuthProvider>
 	);
 }
