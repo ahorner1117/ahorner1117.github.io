@@ -2,16 +2,17 @@
  * Clients Page
  * Shows ClientLanding for non-authenticated users
  * Shows ClientPortal for authenticated users
+ * AuthProvider is wrapped here to avoid loading Firebase on other pages
  */
 
 "use client";
 
 import { useEffect } from 'react';
 import { ClientsSection } from 'app/sections';
-import { useAuth } from 'context';
+import { AuthProvider, useAuth } from 'context';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
-export default function ClientsPage() {
+function ClientsPageContent() {
 	const { user, userProfile, loading } = useAuth();
 
 	// Domain restriction - redirect from GitHub Pages to Vercel
@@ -39,5 +40,13 @@ export default function ClientsPage() {
 		<div className="container-md">
 			<ClientsSection isLoggedIn={!!user} userProfile={userProfile} />
 		</div>
+	);
+}
+
+export default function ClientsPage() {
+	return (
+		<AuthProvider>
+			<ClientsPageContent />
+		</AuthProvider>
 	);
 }

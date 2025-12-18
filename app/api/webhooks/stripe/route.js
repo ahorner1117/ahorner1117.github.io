@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { stripeConfig } from 'utils/stripe-config';
 import { emailConfig } from 'utils/email-config';
-import { db } from 'utils/firebase-config';
+import { getFirestoreInstance } from 'utils/firebase-config';
 import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 
 // Initialize Stripe with secret key
@@ -65,6 +65,12 @@ async function handleCheckoutCompleted(session) {
 	console.log(`[Stripe Webhook] Processing checkout.session.completed: ${session.id}`);
 
 	try {
+		// Lazy load Firestore
+		const db = await getFirestoreInstance();
+		if (!db) {
+			throw new Error('Firestore not initialized');
+		}
+
 		// Extract payment details
 		const email = session.customer_email;
 		const amountTotal = session.amount_total / 100; // Convert cents to dollars
@@ -185,6 +191,12 @@ async function handleAsyncPaymentSucceeded(session) {
 	console.log(`[Stripe Webhook] Processing async_payment_succeeded: ${session.id}`);
 
 	try {
+		// Lazy load Firestore
+		const db = await getFirestoreInstance();
+		if (!db) {
+			throw new Error('Firestore not initialized');
+		}
+
 		// Update payment status in Firestore
 		const paymentsQuery = query(
 			collection(db, 'payments'),
@@ -237,6 +249,12 @@ async function handleAsyncPaymentFailed(session) {
 	console.log(`[Stripe Webhook] Processing async_payment_failed: ${session.id}`);
 
 	try {
+		// Lazy load Firestore
+		const db = await getFirestoreInstance();
+		if (!db) {
+			throw new Error('Firestore not initialized');
+		}
+
 		// Update payment status in Firestore
 		const paymentsQuery = query(
 			collection(db, 'payments'),

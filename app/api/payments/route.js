@@ -4,7 +4,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { db } from 'utils/firebase-config';
+import { getFirestoreInstance } from 'utils/firebase-config';
 import { collection, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 
 /**
@@ -13,6 +13,18 @@ import { collection, query, where, getDocs, orderBy, limit } from 'firebase/fire
  */
 export async function GET(request) {
 	try {
+		// Lazy load Firestore
+		const db = await getFirestoreInstance();
+		if (!db) {
+			return NextResponse.json(
+				{
+					error: 'Database unavailable',
+					details: 'Firestore is not initialized'
+				},
+				{ status: 503 }
+			);
+		}
+
 		// Get email from query parameters
 		const { searchParams } = new URL(request.url);
 		const email = searchParams.get('email');
