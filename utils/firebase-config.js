@@ -34,18 +34,26 @@ export const auth = app ? getAuth(app) : null;
 export const db = app ? getFirestore(app) : null;
 
 // Initialize Analytics (only in browser, if supported, and Firebase is initialized)
+// Note: Analytics initialization is deferred to avoid blocking page load
 export let analytics = null;
 if (typeof window !== 'undefined' && app) {
-	isSupported().then((supported) => {
-		if (supported) {
-			analytics = getAnalytics(app);
-		}
-	});
+	// Defer analytics initialization to not block initial render
+	setTimeout(() => {
+		isSupported().then((supported) => {
+			if (supported) {
+				analytics = getAnalytics(app);
+			}
+		}).catch((err) => {
+			console.error('[Firebase Config] Analytics initialization failed:', err);
+		});
+	}, 0);
 }
 
 // Log initialization status (helpful for debugging)
-if (typeof window !== 'undefined' && app) {
-	console.log(`[Firebase Config] Initialized for project: ${firebaseConfig.projectId}`);
-} else if (typeof window !== 'undefined' && isGitHubPages) {
-	console.log('[Firebase Config] Skipped initialization (GitHub Pages build)');
+if (typeof window !== 'undefined') {
+	if (app) {
+		console.log(`[Firebase Config] Initialized for project: ${firebaseConfig.projectId}`);
+	} else if (isGitHubPages) {
+		console.log('[Firebase Config] Skipped initialization (GitHub Pages build)');
+	}
 }
