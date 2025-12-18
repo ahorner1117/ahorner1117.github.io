@@ -29,7 +29,7 @@ function RegisterPageContent() {
 		if (typeof window !== 'undefined') {
 			const isGitHubPages = window.location.hostname === 'ahorner1117.github.io';
 			if (isGitHubPages) {
-				window.location.href = 'https://ahorner1117-github-io.vercel.app/register';
+				window.location.href = 'https://anthonyhorner.com/register';
 			}
 		}
 	}, []);
