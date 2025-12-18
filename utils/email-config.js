@@ -24,7 +24,7 @@ export const emailConfig = {
 
 	// Base URL for links in emails
 	baseUrl:
-		process.env.NEXT_PUBLIC_BASE_URL_PROD || 'https://ahorner1117-github-io.vercel.app'
+		process.env.NEXT_PUBLIC_BASE_URL_PROD || 'https://anthonyhorner.com'
 };
 
 // Validation helper

@@ -14,7 +14,7 @@ export function ProtectedRoute({ children }) {
 		if (typeof window !== 'undefined') {
 			const isGitHubPages = window.location.hostname === 'ahorner1117.github.io';
 			if (isGitHubPages) {
-				window.location.href = 'https://ahorner1117-github-io.vercel.app/clients';
+				window.location.href = 'https://anthonyhorner.com/clients';
 				return;
 			}
 			setDomainChecked(true);
