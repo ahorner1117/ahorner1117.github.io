@@ -20,6 +20,12 @@ export function AuthProvider({ children }) {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		// Skip Firebase initialization if auth is not available (GitHub Pages build)
+		if (!auth) {
+			setLoading(false);
+			return;
+		}
+
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
 			if (user) {
 				setUser(user);
@@ -47,6 +53,9 @@ export function AuthProvider({ children }) {
 	}, []);
 
 	const register = async (email, password, companyName, phoneNumber) => {
+		if (!auth || !db) {
+			throw new Error('Firebase not initialized');
+		}
 		try {
 			// Create Firebase Auth account
 			const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -93,6 +102,9 @@ export function AuthProvider({ children }) {
 	};
 
 	const login = async (email, password) => {
+		if (!auth) {
+			throw new Error('Firebase not initialized');
+		}
 		try {
 			return await signInWithEmailAndPassword(auth, email, password);
 		} catch (error) {
@@ -102,6 +114,9 @@ export function AuthProvider({ children }) {
 	};
 
 	const logout = async () => {
+		if (!auth) {
+			throw new Error('Firebase not initialized');
+		}
 		try {
 			return await signOut(auth);
 		} catch (error) {

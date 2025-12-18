@@ -9,6 +9,9 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 
+// Check if we're building for GitHub Pages (Firebase disabled)
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
 // Firebase configuration from environment variables
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -20,16 +23,19 @@ const firebaseConfig = {
 	measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase (singleton pattern - prevents multiple initializations)
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Initialize Firebase only if not building for GitHub Pages and config is available
+let app = null;
+if (!isGitHubPages && firebaseConfig.apiKey) {
+	app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+}
 
-// Export auth and firestore instances
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+// Export auth and firestore instances (null if GitHub Pages build)
+export const auth = app ? getAuth(app) : null;
+export const db = app ? getFirestore(app) : null;
 
-// Initialize Analytics (only in browser and if supported)
+// Initialize Analytics (only in browser, if supported, and Firebase is initialized)
 export let analytics = null;
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && app) {
 	isSupported().then((supported) => {
 		if (supported) {
 			analytics = getAnalytics(app);
@@ -38,6 +44,8 @@ if (typeof window !== 'undefined') {
 }
 
 // Log initialization status (helpful for debugging)
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && app) {
 	console.log(`[Firebase Config] Initialized for project: ${firebaseConfig.projectId}`);
+} else if (typeof window !== 'undefined' && isGitHubPages) {
+	console.log('[Firebase Config] Skipped initialization (GitHub Pages build)');
 }
