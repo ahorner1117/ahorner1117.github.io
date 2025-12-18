@@ -7,6 +7,8 @@ import { ConnectMedia, ScrollTop } from "components";
 export function AppFooter() {
 	const footerRef = useRef(null);
 	const isInView = useInView(footerRef, { once: true });
+	const today = new Date;
+	const thisYear = today.getFullYear();
 
 	return (
 		<LazyMotion features={domAnimation}>
@@ -21,6 +23,7 @@ export function AppFooter() {
 			>
 				<div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5">
 					<ScrollTop />
+					<span class={`text-xs text-gray-400 `}>@ Anthony Horner { thisYear } </span>
 					<ConnectMedia />
 				</div>
 			</footer>
