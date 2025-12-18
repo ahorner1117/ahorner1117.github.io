@@ -1,11 +1,43 @@
+/**
+ * Clients Page
+ * Shows ClientLanding for non-authenticated users
+ * Shows ClientPortal for authenticated users
+ */
+
 "use client";
 
-import { ClientsSection } from "app/sections";
+import { useEffect } from 'react';
+import { ClientsSection } from 'app/sections';
+import { useAuth } from 'context';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export default function ClientsPage() {
+	const { user, userProfile, loading } = useAuth();
+
+	// Domain restriction - redirect from GitHub Pages to Vercel
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const isGitHubPages = window.location.hostname === 'ahorner1117.github.io';
+			if (isGitHubPages) {
+				window.location.href = 'https://ahorner1117-github-io.vercel.app/clients';
+			}
+		}
+	}, []);
+
+	// Show loading state while checking authentication
+	if (loading) {
+		return (
+			<div className="container-md">
+				<div className="min-h-screen flex items-center justify-center">
+					<AiOutlineLoading3Quarters className="text-5xl text-brand-purple animate-spin" />
+				</div>
+			</div>
+		);
+	}
+
 	return (
 		<div className="container-md">
-			<ClientsSection />
+			<ClientsSection isLoggedIn={!!user} userProfile={userProfile} />
 		</div>
 	);
 }

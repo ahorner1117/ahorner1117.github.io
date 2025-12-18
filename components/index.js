@@ -9,3 +9,5 @@ export { Menu } from "./Menu";
 export { MobileMenu } from "./MobileMenu";
 export { ScrollTop } from "./ScrollTop";
 export { ThemeSwitcher } from "./ThemeSwitcher";
+export { ProtectedRoute } from "./ProtectedRoute";
+export { LogoutButton } from "./LogoutButton";

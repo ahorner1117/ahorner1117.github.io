@@ -10,6 +10,7 @@
 		"sitemap": "node scripts/generate-sitemap.js"
 	},
 	"dependencies": {
+		"firebase": "^10.14.1",
 		"framer-motion": "^8.5.5",
 		"next": "^14.0.4",
 		"next-themes": "^0.2.1",
@@ -19,6 +20,7 @@
 		"react-icons": "^4.11.0",
 		"react-image-gallery": "^1.3.0",
 		"react-modal": "^3.16.1",
+		"resend": "^6.6.0",
 		"stripe": "^20.0.0",
 		"swr": "^2.2.2"
 	},
