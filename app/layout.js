@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { AppHeader, AppFooter, AppMetadata } from "components";
+import { AppHeader, AppFooter, AppMetadata, AnalyticsProvider } from "components";
 import Loading from "./loading";
 import "styles/globals.css";
 import { ThemeContext } from "context";
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
         <meta name="msvalidate.01" content="A42ECAC3F769590CD40EEBAF251A1943" />
-        
+
         {/* Preload critical CSS */}
         <link
           rel="preload"
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
         ></script>
 
         {/* Google Tag Manager */}
-       <script dangerouslySetInnerHTML={{
+        <script dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -55,6 +55,17 @@ export default function RootLayout({ children }) {
           })(window,document,'script','dataLayer','GTM-5V27ML56');`,
         }}></script>
         {/* End Google Tag Manager */}
+
+        {/* Microsoft Clarity - Heatmaps & Session Recording */}
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(c,l,a,r,i,t,y){
+            var projectId = window.location.hostname === 'anthonyhorner.com' ? 'uznz8343te' : 'uzo0cdlibx';
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+projectId;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script");`,
+        }}></script>
+        {/* End Microsoft Clarity */}
 
         {/* Structured Data - Person Schema */}
         <script
@@ -156,12 +167,14 @@ export default function RootLayout({ children }) {
             height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}>
           </iframe>
         </noscript>
-      {/*  End Google Tag Manager (noscript) */}
+        {/*  End Google Tag Manager (noscript) */}
 
         <ThemeContext>
-          <AppHeader />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-          <AppFooter />
+          <AnalyticsProvider>
+            <AppHeader />
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+            <AppFooter />
+          </AnalyticsProvider>
         </ThemeContext>
       </body>
     </html>

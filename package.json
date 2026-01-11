@@ -10,6 +10,7 @@
 		"sitemap": "node scripts/generate-sitemap.js"
 	},
 	"dependencies": {
+		"@microsoft/clarity": "^1.0.2",
 		"firebase": "^10.14.1",
 		"framer-motion": "^11.16.0",
 		"next": "^14.2.35",

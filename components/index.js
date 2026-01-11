@@ -11,3 +11,4 @@ export { ScrollTop } from "./ScrollTop";
 export { ThemeSwitcher } from "./ThemeSwitcher";
 export { ProtectedRoute } from "./ProtectedRoute";
 export { LogoutButton } from "./LogoutButton";
+export { default as AnalyticsProvider } from "./AnalyticsProvider";
