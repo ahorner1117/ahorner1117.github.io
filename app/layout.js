@@ -18,6 +18,8 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
+        <meta name="msvalidate.01" content="A42ECAC3F769590CD40EEBAF251A1943" />
+        
         {/* Preload critical CSS */}
         <link
           rel="preload"
