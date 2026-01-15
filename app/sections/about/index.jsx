@@ -13,13 +13,19 @@ export function AboutSection() {
 	const [isTechnical, setIsTechnical] = useState(false);
 
 	const technicalContent = [
-		"My name is Anthony Horner, a seasoned full-stack software engineer with over 7 years of experience and a Bachelor’s degree in Computer Science from Florida Atlantic University.",
-		"I specialize in a broad spectrum of web technologies including JavaScript, TypeScript, React, Next.js, Svelte, TailwindCSS, GraphQL, Shopify, API development, and cloud platforms such as Firebase and Vercel.",
-		"One of my signature achievements is Macro Exotics, a premium vehicle rental platform similar to Airbnb but specializing in exotic and luxury cars. Built with Svelte, SvelteKit, TailwindCSS, and Firebase, it includes secure authentication, instant booking, availability management, Stripe payments, and professional driver delivery.",
-		"My e-commerce portfolio includes high-profile Shopify Plus projects for FIFA, Madison Square Garden, Real Madrid, the Chicago Bulls, USA Olympic Hockey, and Century 21. In these projects I transformed Figma designs into responsive, dynamic storefronts, implemented headless architecture with Next.js, created custom checkout apps, and built employee discount systems leveraging the Shopify Admin API and Storefront API.",
-		"I have also developed microservices and IoT integrations on Node.js frameworks, creating systems for real-time data collection, health dashboards, and multi-device communication.",
-		"My diverse experience covers custom WordPress plugin development in PHP, augmented reality QR code generators in JavaScript, and cross-domain Shopify cart sync systems with JavaScript and jQuery. I’ve also created Theme 2.0 Shopify landing pages with drag-and-drop editing for easy admin customization.",
-		"Additionally, I engineered a Java/Maven/Selenium automation that processes CSV-based phone records, calls a CRM via REST APIs to update deal stages, and I designed HTML/CSS email signatures for company-wide branding consistency."
+		"My name is Anthony Horner, a full-stack software engineer with over 7 years of experience in web development and e-commerce platforms. I hold a Bachelor's degree in Computer Science from Florida Atlantic University and have recently embraced AI-assisted development as a force multiplier for my engineering work.",
+
+		"My stack spans JavaScript, TypeScript, React, Next.js, Svelte, SvelteKit, TailwindCSS, GraphQL, Node.js, Express, and cloud platforms including Firebase, Vercel, and Azure. I specialize in Shopify/Shopify Plus development, headless commerce architecture, API design, IoT integration, and CI/CD workflows with Docker.",
+
+		"In 2024-2025, I evolved my development practice to leverage cutting-edge AI tooling including Cursor IDE with Claude AI, GitHub Copilot for CI/CD workflows, and specialized MCP servers for Figma, Stripe, Context7, Hugging Face, Shopify, Next.js, Svelte, and Tailwind. I apply advanced prompt engineering frameworks (RACE, CARE, TAG) while maintaining full control over architecture decisions and critically reviewing all AI-generated code to ensure production standards.",
+
+		"At Macro Exotics, I built a peer-to-peer exotic vehicle rental platform using AI-accelerated development techniques. Built with Svelte 5, SvelteKit, Firebase, and Stripe, the platform features secure authentication, real-time availability tracking, instant booking, payment processing, and professional driver delivery. I leveraged Claude AI for architecture validation and planning, Firebase MCP for streamlined database operations, integrated Google Gemini AI for automated listing descriptions and image analysis (damage detection, quality assurance), and connected multiple specialized LLMs for fraud detection, pricing recommendations, and content moderation—creating a cost-efficient multi-model AI ecosystem.",
+
+		"Over the past 3+ years, I've engineered multiple Next.js and React e-commerce stores on Shopify Plus for FIFA, Madison Square Garden, Real Madrid, the Chicago Bulls, USA Olympic Hockey, and Century 21. My current workflow connects Figma MCP to Cursor AI, enabling direct conversion of design files into pixel-perfect, production-ready interfaces. I've implemented headless architecture with Contentful CMS using GraphQL, built custom Shopify apps leveraging Admin API and Storefront API (subscription management, dynamic discount systems), and streamlined deployment with Docker, Bitbucket, and Azure DevOps.",
+
+		"My background includes Node.js microservices and IoT integrations for manufacturing and industrial sectors (real-time data collection systems, health dashboards), custom WordPress plugin development (PHP), augmented reality QR code generators (JavaScript), cross-domain Shopify cart sync systems (JavaScript/jQuery), and Shopify Theme 2.0 landing pages with drag-and-drop editing.",
+
+		"I've also built Java/Maven/Selenium automation tools that process CSV phone records and update CRM systems via REST APIs, designed company-wide HTML/CSS email signature systems, and automated affiliate reimbursement programs that saved over $70,000 annually."
 	];
 	
 	const nonTechnicalContent = [
