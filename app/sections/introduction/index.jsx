@@ -1,12 +1,124 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { WelcomeAnimation } from "./IntroAnimation";
-import { useScrollTo } from "hooks";
 import { useMediaQuery } from "utils";
+
+function FallingButton() {
+	const buttonRef = useRef(null);
+	const messageRef = useRef(null);
+	const [isAnimating, setIsAnimating] = useState(false);
+	const [message, setMessage] = useState("");
+	const animationRef = useRef(null);
+
+	const handleClick = useCallback((e) => {
+		e.preventDefault();
+
+		if (isAnimating) {
+			return;
+		}
+
+		// Start the falling animation
+		setIsAnimating(true);
+		const button = buttonRef.current;
+
+		if (!button) return;
+
+		button.style.transformOrigin = "0% 0%";
+
+		const anim = button.animate(
+			[
+				{ transform: "translateY(10px) rotate(0deg)" },
+				{ transform: "translateY(20px) rotate(5deg)" },
+				{ transform: "translateY(40px) rotate(20deg)" },
+				{ transform: "translateY(140px) rotate(50deg)" },
+				{ transform: "translateY(100vh) rotate(95deg)" }
+			],
+			{
+				duration: 900,
+				easing: "cubic-bezier(.25,.9,.4,1)",
+				fill: "forwards"
+			}
+		);
+
+		animationRef.current = anim;
+
+		const msgChars = "Ohhhh no it broke again".split("");
+		anim.addEventListener("finish", () => {
+			let i = 0;
+
+			// TYPE
+			const typeInterval = setInterval(() => {
+				if (i > msgChars.length) {
+					clearInterval(typeInterval);
+
+					// wait 4s then erase
+					setTimeout(() => {
+						const eraseInterval = setInterval(() => {
+							setMessage(prev => {
+								const chars = prev.split("");
+								chars.pop();
+								if (chars.length === 0) {
+									clearInterval(eraseInterval);
+									// Reverse animation
+									anim.playbackRate = -1;
+									anim.play();
+
+									anim.addEventListener("finish", () => {
+										// Small delay before showing button again
+										setTimeout(() => {
+											setIsAnimating(false);
+											setMessage("");
+											button.style.transform = "";
+										}, 400);
+									}, { once: true });
+								}
+								return chars.join("");
+							});
+						}, 40);
+					}, 6000);
+				} else {
+					setMessage(prev => {
+						const chars = prev.split("");
+						chars.push(msgChars[i]);
+						return chars.join("");
+					});
+					i++;
+				}
+			}, 40);
+		}, { once: true });
+	}, [isAnimating]);
+
+	return (
+		<div className="relative inline-block">
+			<Link
+				ref={buttonRef}
+				href="#projects"
+				onClick={handleClick}
+				tabIndex="0"
+				className="btn relative"
+				aria-label="Latest projects"
+				style={{
+					transformOrigin: "top left",
+					cursor: "pointer"
+				}}
+			>
+				See my latest projects
+			</Link>
+			{isAnimating && (
+				<div
+					ref={messageRef}
+					className="absolute top-0 left-0 text-white text-2xl select-none whitespace-nowrap"
+				>
+					{message}
+				</div>
+			)}
+		</div>
+	);
+}
 
 export function WelcomeSection() {
 	const ref = useRef(null);
@@ -14,7 +126,6 @@ export function WelcomeSection() {
 	const headshotRef = useRef(null);
 	const isInView = useInView(ref, { once: true });
 	const isHeadshotInView = useInView(headshotRef, { once: true });
-	const { scrollToEl } = useScrollTo();
 	const isTabletUp = useMediaQuery("min-width: 768px");
 
 	let [count, setCount] = useState(0);
@@ -29,15 +140,13 @@ export function WelcomeSection() {
 		"drive digital growth strategies"
 	]);
 
-	const onClick = (e) => scrollToEl(e);
-
 	useEffect(() => {
 		let interval = setInterval(() => {
 			setCount(count + 1);
 
-					if (count === 7) {
-			setCount(0);
-		}
+			if (count === 7) {
+				setCount(0);
+			}
 		}, 2000);
 
 		return () => clearInterval(interval);
@@ -81,20 +190,20 @@ export function WelcomeSection() {
 											count === 0
 												? "0"
 												: count === 1
-												? "-100%"
-												: count === 2
-												? "-200%"
-												: count === 3
-												? "-300%"
-												: count === 4
-												? "-400%"
-												: count === 5
-												? "-500%"
-												: count === 6
-												? "-600%"
-												: count === 7
-												? "-700%"
-												: "0",
+													? "-100%"
+													: count === 2
+														? "-200%"
+														: count === 3
+															? "-300%"
+															: count === 4
+																? "-400%"
+																: count === 5
+																	? "-500%"
+																	: count === 6
+																		? "-600%"
+																		: count === 7
+																			? "-700%"
+																			: "0",
 										left: "13px"
 									}}
 								>
@@ -125,20 +234,12 @@ export function WelcomeSection() {
 								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 							}}
 						>
-							<Link
-								href="#projects"
-								onClick={onClick}
-								tabIndex="0"
-								className="btn"
-								aria-label="Latest projects"
-							>
-								See my latest projects
-							</Link>
+							<FallingButton />
 						</div>
 					</div>
 
 					{/* Headshot section - visible on all screen sizes */}
-					<div 
+					<div
 						ref={headshotRef}
 						className="flex justify-center items-center mt-8 md:mt-0 relative"
 						style={{
@@ -153,11 +254,11 @@ export function WelcomeSection() {
 								<WelcomeAnimation />
 							</div>
 						</div>
-						
+
 						<div className="relative z-10">
 							{/* Decorative background circle */}
 							<div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-xl scale-110"></div>
-							
+
 							{/* Main headshot container */}
 							<div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm">
 								<Image
@@ -168,11 +269,11 @@ export function WelcomeSection() {
 									className="w-full h-full object-cover object-center"
 									priority
 								/>
-								
+
 								{/* Subtle overlay for depth */}
 								<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
 							</div>
-							
+
 							{/* Floating accent elements */}
 							<div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
 							<div className="absolute -bottom-2 -left-2 w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-1000"></div>
