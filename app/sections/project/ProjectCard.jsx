@@ -91,13 +91,14 @@ export const ProjectCard = ({ project }) => {
 	};
 
 	return (
-		<LazyMotion features={domAnimation}>
-			<motion.div
-				onClick={handleCardClick}
-				className="flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300"
-				whileHover={{ scale: 1.02 }}
-				transition={{ duration: 0.2 }}
-			>
+		<>
+			<LazyMotion features={domAnimation}>
+				<motion.div
+					onClick={handleCardClick}
+					className="flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300"
+					whileHover={{ scale: 1.02 }}
+					transition={{ duration: 0.2 }}
+				>
 				{/* Image container with better contrast handling */}
 				<div className="bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
 					<img
@@ -144,8 +145,9 @@ export const ProjectCard = ({ project }) => {
 						</div>
 					</div>
 				</div>
-				<Tools />
-			</motion.div>
+					<Tools />
+				</motion.div>
+			</LazyMotion>
 
 			<Modal
 				isOpen={isModalOpen}
@@ -157,49 +159,43 @@ export const ProjectCard = ({ project }) => {
 				ariaHideApp={false}
 			>
 				{isModalOpen && (
-					<motion.div 
+					<motion.div
 						className="modal-content"
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ opacity: 0, y: 10 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.3 }}
+						transition={{ duration: 0.15, ease: "easeOut" }}
 					>
 						{/* Header with close button */}
 						<div className="flex justify-between items-start mb-8">
 							<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 pr-4">
 								{project.title}
 							</h2>
-							<motion.button 
+							<button
 								onClick={closeModal}
-								className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-200 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
-								whileHover={{ scale: 1.1, rotate: 90 }}
-								transition={{ duration: 0.2 }}
+								className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
 							>
 								<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
 								</svg>
-							</motion.button>
+							</button>
 						</div>
 
 						{/* Project Image */}
-						<div className="mb-8">
-							<div className="rounded-2xl overflow-hidden shadow-lg bg-slate-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-600">
-								<motion.img
-									className="w-full h-80 object-contain p-6"
+						<div className="mb-8 flex justify-center">
+							<div className="rounded-2xl overflow-hidden shadow-lg bg-slate-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 max-w-sm">
+								<img
+									className="w-full h-auto object-contain p-4"
 									src={project.imageUrl}
 									alt={project.title}
 									loading="lazy"
 									decoding="async"
-									initial={{ opacity: 0, scale: 0.95 }}
-									animate={{ opacity: 1, scale: 1 }}
-									transition={{ duration: 0.5, delay: 0.1 }}
 								/>
 							</div>
 						</div>
 
 						{/* Description */}
 						<div className="mb-8">
-							<h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center">
-								<span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mr-3"></span>
+							<h3 className="text-sm font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">
 								About this project
 							</h3>
 							<p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
@@ -209,8 +205,7 @@ export const ProjectCard = ({ project }) => {
 
 						{/* Tools Section */}
 						<div className="mb-10">
-							<h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
-								<span className="w-8 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 mr-3"></span>
+							<h3 className="text-sm font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
 								Technologies & Tools
 							</h3>
 							<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -268,7 +263,7 @@ export const ProjectCard = ({ project }) => {
 								href={project.link}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-colors duration-300 text-center flex items-center justify-center gap-3"
+								className="flex-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold py-4 px-8 rounded-xl text-center flex items-center justify-center gap-3 shadow-md hover:shadow-xl hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-200 border-2 border-gray-900 dark:border-white hover:border-gray-700 dark:hover:border-gray-200"
 								onClick={() => trackEvent.projectExternalLink(project.title, project.link)}
 							>
 								<span>View Project</span>
@@ -276,7 +271,7 @@ export const ProjectCard = ({ project }) => {
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
 								</svg>
 							</a>
-							<button 
+							<button
 								onClick={closeModal}
 								className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold py-4 px-8 rounded-xl transition-colors duration-300 border border-gray-200 dark:border-gray-600"
 							>
@@ -286,6 +281,6 @@ export const ProjectCard = ({ project }) => {
 					</motion.div>
 				)}
 			</Modal>
-		</LazyMotion>
+		</>
 	);
 };
