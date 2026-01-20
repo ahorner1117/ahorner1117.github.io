@@ -5,11 +5,12 @@ import { LazyMotion, domAnimation, useInView } from "framer-motion";
 
 const TimeLineData = [
 	{ year: 2019, text: "Software Development internship as a database specialist" },
-	{ year: 2020, text: "Began work as software developer specializing in Java" },
-	{ year: 2021, text: "Front End Developer, specializing in Next.js an React" },
+	{ year: 2020, text: "Java developer, customizing backend CRM solutions" },
+	{ year: 2021, text: "Front End Developer, specializing in Next.js and React" },
 	{ year: 2022, text: "Application Engineer / Cloud Developer - Node.js in the IOT industry" },
-	{ year: 2023, text: "Front End Developer, utilizing Next.js, React, and GraphQL " },
-
+	{ year: 2023, text: "Front End Developer, specializing in Next.js, React, and GraphQL" },
+	{ year: 2024, text: "Full Stack Developer, Next.js, Node.js, Shopify, and React" },
+	{ year: 2025, text: "Full Stack Developer, AI adaption with Svelte, Firebase, Node.js" },
 ];
 
 export function TimeLine() {
@@ -40,7 +41,7 @@ export function TimeLine() {
 		if (carouselRef.current) {
 			const index = Math.round(
 				(carouselRef.current.scrollLeft / (carouselRef.current.scrollWidth * 0.7)) *
-					TimeLineData.length
+				TimeLineData.length
 			);
 
 			setActiveItem(index);
@@ -79,9 +80,8 @@ export function TimeLine() {
 										? "none"
 										: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
 									opacity: isInView ? 1 : 0,
-									transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-										index === 0 ? 0.1 : 0.1 + (index * 0.15)
-									}s`
+									transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${index === 0 ? 0.1 : 0.1 + (index * 0.15)
+										}s`
 								}}
 							>
 								<h3
