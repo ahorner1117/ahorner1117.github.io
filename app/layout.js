@@ -23,12 +23,12 @@ export default function RootLayout({ children }) {
         {/* Preload critical CSS */}
         <link
           rel="preload"
-          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css"
           as="style"
         />
 
         {/* Existing stylesheets */}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css" />
 
         {/* Google Tag (gtag.js) */}
         <script
