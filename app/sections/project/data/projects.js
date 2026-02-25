@@ -173,6 +173,21 @@ export const ecommerce = [
 		}
 	},
 	{
+		title: "Ryder Cup European Shop",
+		link: "https://euroshop.rydercup.com/",
+		description:
+			"Developed the official Ryder Cup European Shop, translating Figma designs into a fully functional Shopify storefront. Built custom Liquid templates, JavaScript interactions, and CSS styling to deliver a polished e-commerce experience for one of golf's most prestigious events. The store features merchandise collections for the biennial competition between Europe and the United States.",
+		imageUrl:
+			"https://euroshop.rydercup.com/cdn/shop/files/Frame_39943_73271586-56ec-4be2-a4f3-af46ab5e6fef.png?v=1749137667&width=2000",
+		caseStudyUrl: "#",
+		tools: {
+			"devicon-javascript-plain": "Javascript",
+			"devicon-css3-plain-wordmark": "CSS",
+			FaShopify: "Shopify Plus",
+			"devicon-github-original": "Github"
+		}
+	},
+	{
 		title: "Redcon1",
 		link: "https://redcon1.com/",
 		description:
@@ -233,7 +248,7 @@ export const projects = [
 			"devicon-php-plain": "PHP",
 			"devicon-github-original": "Github"
 		}
-	},
+	}/* ,
 	{
 		title: "Borowed Time Tattoo",
 		link: "https://borrowedtimetattoo.com/",
@@ -247,6 +262,6 @@ export const projects = [
 			"devicon-php-plain": "PHP",
 			"devicon-github-original": "Github"
 		}
-	},
+	}, */
 
 ];
