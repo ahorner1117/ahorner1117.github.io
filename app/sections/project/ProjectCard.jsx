@@ -100,7 +100,7 @@ export const ProjectCard = ({ project }) => {
 					transition={{ duration: 0.2 }}
 				>
 				{/* Image container with better contrast handling */}
-				<div className="bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+				<div className="relative bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
 					<img
 						className="w-full h-48 object-contain p-6"
 						src={project.imageUrl}
@@ -108,6 +108,11 @@ export const ProjectCard = ({ project }) => {
 						loading="lazy"
 						decoding="async"
 					/>
+					{project.badge && (
+						<span className="absolute top-3 right-3 px-2.5 py-1 text-xs font-semibold rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-sm">
+							{project.badge}
+						</span>
+					)}
 				</div>
 				
 				<div className="p-6 flex flex-col flex-1">
@@ -167,9 +172,16 @@ export const ProjectCard = ({ project }) => {
 					>
 						{/* Header with close button */}
 						<div className="flex justify-between items-start mb-8">
-							<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 pr-4">
-								{project.title}
-							</h2>
+							<div className="flex items-center gap-3 pr-4">
+								<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
+									{project.title}
+								</h2>
+								{project.badge && (
+									<span className="px-3 py-1 text-xs font-semibold rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 whitespace-nowrap">
+										{project.badge}
+									</span>
+								)}
+							</div>
 							<button
 								onClick={closeModal}
 								className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
