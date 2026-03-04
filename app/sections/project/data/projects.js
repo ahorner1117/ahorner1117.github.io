@@ -210,7 +210,7 @@ export const projects = [
 		title: "FastTrack",
 		link: "https://fasttrackapp.biz/",
 		description:
-			"FastTrack is an iOS app for timing vehicle acceleration with millisecond precision. It measures 0-60 mph, 0-100 mph, quarter-mile, and half-mile runs using GPS and accelerometer-based launch detection. The app also features a full social platform with a community feed, direct messaging, friend system, leaderboards, and detailed user profiles. Users can manage their garage with vehicle make/model/year, VIN lookup, and modification tracking. Leaderboards rank performance and can be filtered by vehicle, distance, and time period. Built with React Native and Expo, powered by Supabase for real-time backend services.",
+			"FastTrack is an iOS app for timing vehicle acceleration with millisecond precision. It measures 0-60 mph, 0-100 mph, quarter-mile, and half-mile runs using GPS and accelerometer-based launch detection. The app also features a full social platform with a community feed, direct messaging, friend system, leaderboards, and detailed user profiles. Users can manage their garage with vehicle make/model/year, VIN lookup, and modification tracking. Leaderboards rank performance and can be filtered by vehicle, distance, and time period. Built with React Native and Expo, powered by Supabase for real-time backend services and cron jobs for automated account deletion.",
 		imageUrl:
 			"https://fasttrackapp.biz/images/Fasttrack-horizontal-logo-dquare-ratio.png",
 		caseStudyUrl: "#",

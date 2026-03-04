@@ -91,6 +91,8 @@ export const TECHNOLOGIES = [
 			{ name: "Bitbucket", icon: <i className="devicon-bitbucket-original text-2xl" /> },
 
 			/* Build / Package Managers */
+			{ name: "Expo / EAS", icon: <i className="devicon-expo-original text-2xl" /> },
+			{ name: "Babel", icon: <i className="devicon-babel-plain text-2xl" /> },
 			{ name: "Vite", icon: <i className="devicon-vitejs-plain text-2xl" /> },
 			{ name: "NPM", icon: <i className="devicon-npm-original-wordmark text-2xl" /> },
 			{ name: "PNPM", icon: <i className="devicon-pnpm-plain text-2xl" /> },
