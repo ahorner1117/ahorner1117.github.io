@@ -9,6 +9,10 @@ const AboutSection = dynamic(() => import("app/sections").then(mod => ({ default
 	loading: () => <SectionLoader />,
 });
 
+const NotableProjectsSection = dynamic(() => import("./sections/notable").then(mod => ({ default: mod.NotableProjectsSection })), {
+	loading: () => <SectionLoader />,
+});
+
 const ProjectsSection = dynamic(() => import("app/sections").then(mod => ({ default: mod.ProjectsSection })), {
 	loading: () => <SectionLoader />,
 });
@@ -39,6 +43,7 @@ export default function Page() {
 		<div className="container-md">
 			<WelcomeSection />
 			<AboutSection />
+			<NotableProjectsSection />
 			<ProjectsSection />
 			<VerticalTimeline />
 			<AISection />

@@ -10,6 +10,7 @@ import { initAnalytics, trackEvent } from "utils/analytics";
 const TRACKED_SECTIONS = [
   { id: "intro", name: "Welcome/Intro" },
   { id: "about", name: "About Me" },
+  { id: "notable", name: "Notable Projects" },
   { id: "projects", name: "Projects" },
   { id: "timeline", name: "Timeline/Experience" },
   { id: "ai", name: "AI Section" },

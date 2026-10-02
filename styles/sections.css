@@ -297,3 +297,82 @@
 .panel .xp-points {
 	margin-top: 14px;
 }
+
+/* ─── Technologies ─── */
+.tech-list {
+	margin-top: 2.5rem;
+	border-top: 1px solid var(--pc-line);
+}
+.tech-row {
+	display: grid;
+	grid-template-columns: 240px 1fr;
+	gap: 40px;
+	padding: 36px 0;
+	border-bottom: 1px solid var(--pc-line);
+}
+.tech-head {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+.tech-head > span {
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+}
+.tech-title {
+	font-size: 1.35rem;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	color: var(--pc-text);
+}
+.tech-chips {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 8px;
+}
+.tech-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 11px;
+	font-family: var(--pc-mono);
+	font-size: 12px;
+	letter-spacing: 0.02em;
+	color: var(--pc-text);
+	background: var(--pc-chip);
+	border: 1px solid var(--pc-line);
+	transition:
+		border-color 0.25s ease,
+		color 0.25s ease;
+}
+.tech-chip:hover {
+	border-color: var(--pc-accent);
+	color: var(--pc-accent);
+}
+.tech-chip svg {
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+}
+.tech-chip i {
+	font-size: 16px !important;
+	line-height: 1;
+}
+@media (max-width: 767px) {
+	.tech-row {
+		grid-template-columns: 1fr;
+		gap: 18px;
+		padding: 28px 0;
+	}
+	.tech-head {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px 14px;
+	}
+}

@@ -11,8 +11,65 @@ import {
 	FaSass
 } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
-import { TbBrandNextjs, TbBrandTailwind, TbPlugConnected } from "react-icons/tb";
-import { SiOpenai, SiAnthropic, SiGithubcopilot } from "react-icons/si";
+import {
+	TbBrandNextjs,
+	TbBrandTailwind,
+	TbPlugConnected,
+	TbDroplet,
+	TbCoin,
+	TbBroadcast,
+	TbStack2,
+	TbTestPipe,
+	TbChartLine
+} from "react-icons/tb";
+import {
+	SiOpenai,
+	SiAnthropic,
+	SiGithubcopilot,
+	SiSwift,
+	SiSvelte,
+	SiPython,
+	SiStripe,
+	SiExpo,
+	SiApple,
+	SiKotlin,
+	SiShopify,
+	SiRemix,
+	SiSanity,
+	SiPrisma,
+	SiDrizzle,
+	SiSqlite,
+	SiDeno,
+	SiFastapi,
+	SiPandas,
+	SiNumpy,
+	SiReactquery,
+	SiZod,
+	SiThreedotjs,
+	SiFramer,
+	SiRadixui,
+	SiShadcnui,
+	SiCanva,
+	SiVercel,
+	SiSentry,
+	SiXcode,
+	SiAppstore,
+	SiGoogleplay,
+	SiGithubactions,
+	SiJest,
+	SiVitest,
+	SiPytest,
+	SiSelenium,
+	SiHostinger,
+	SiResend,
+	SiTwilio,
+	SiCloudinary,
+	SiGoogleanalytics,
+	SiGoogletagmanager,
+	SiGooglesearchconsole,
+	SiGooglegemini,
+	SiPerplexity
+} from "react-icons/si";
 import AdobeXDIcon from "public/assets/svg/adobexd.svg";
 import ZeplinIcon from "public/assets/svg/zeplin.svg";
 import JiraIcon from "public/assets/svg/jira.svg";
@@ -50,6 +107,14 @@ export const TECHNOLOGIES = [
 			{ name: "Firebase", icon: <i className="devicon-firebase-plain text-2xl" /> },
 			{ name: "SQL", icon: <i className="devicon-azuresqldatabase-plain text-2xl" /> },
 			{ name: "Docker", icon: <i className="devicon-docker-plain text-2xl"></i> },
+
+			/* Added from recent work */
+			{ name: "Swift", icon: <SiSwift size={30} /> },
+			{ name: "SvelteKit", icon: <SiSvelte size={30} /> },
+			{ name: "Liquid", icon: <TbDroplet size={30} /> },
+			{ name: "Python", icon: <SiPython size={30} /> },
+			{ name: "Stripe", icon: <SiStripe size={30} /> },
+			{ name: "Expo Router", icon: <SiExpo size={30} /> },
 		]
 	},
 	{
@@ -66,6 +131,26 @@ export const TECHNOLOGIES = [
 			{ name: "Express.js", icon: <i className="devicon-express-original text-2xl" /> },
 			{ name: "SQL", icon: <i className="devicon-mysql-plain text-2xl" /> },
 			{ name: "Posgresql", icon: <i className="devicon-postgresql-plain text-2xl" /> },
+
+			/* Added from recent work */
+			{ name: "SwiftUI", icon: <SiApple size={30} /> },
+			{ name: "Kotlin", icon: <SiKotlin size={30} /> },
+			{ name: "Shopify Hydrogen", icon: <SiShopify size={30} /> },
+			{ name: "Shopify Functions & Extensions", icon: <SiShopify size={30} /> },
+			{ name: "Remix", icon: <SiRemix size={30} /> },
+			{ name: "Sanity", icon: <SiSanity size={30} /> },
+			{ name: "Supabase Edge Functions", icon: <SiDeno size={30} /> },
+			{ name: "Prisma", icon: <SiPrisma size={30} /> },
+			{ name: "Drizzle ORM", icon: <SiDrizzle size={30} /> },
+			{ name: "SQLite", icon: <SiSqlite size={30} /> },
+			{ name: "FastAPI", icon: <SiFastapi size={30} /> },
+			{ name: "Pandas", icon: <SiPandas size={30} /> },
+			{ name: "NumPy", icon: <SiNumpy size={30} /> },
+			{ name: "Zustand", icon: <TbStack2 size={30} /> },
+			{ name: "TanStack Query", icon: <SiReactquery size={30} /> },
+			{ name: "Zod", icon: <SiZod size={30} /> },
+			{ name: "RevenueCat", icon: <TbCoin size={30} /> },
+			{ name: "LiveKit", icon: <TbBroadcast size={30} /> },
 		]
 	},
 	{
@@ -74,7 +159,13 @@ export const TECHNOLOGIES = [
 			{ name: "Figma", icon: <FaFigma size={32} /> },
 			{ name: "Zeplin", icon: <ZeplinIcon width={36} /> },
 			{ name: "XD", icon: <AdobeXDIcon width={32} /> },
-			{ name: 'Gimp', icon: <i className="devicon-gimp-plain text-2xl" /> }
+			{ name: 'Gimp', icon: <i className="devicon-gimp-plain text-2xl" /> },
+			/* Added from recent work */
+			{ name: "Three.js / R3F", icon: <SiThreedotjs size={30} /> },
+			{ name: "Framer Motion", icon: <SiFramer size={30} /> },
+			{ name: "Radix UI", icon: <SiRadixui size={30} /> },
+			{ name: "shadcn/ui", icon: <SiShadcnui size={30} /> },
+			{ name: "Canva", icon: <SiCanva size={30} /> }
 		]
 	},
 	{
@@ -104,6 +195,35 @@ export const TECHNOLOGIES = [
 			/* IDEs / Databases */
 			{ name: "VsCode", icon: <DiVisualstudio size={32} /> },
 			{ name: "Microsoft SQL Server", icon: <i className="devicon-microsoftsqlserver-plain text-2xl" /> },
+
+			/* Added from recent work: deploy & mobile release */
+			{ name: "Vercel", icon: <SiVercel size={30} /> },
+			{ name: "Hostinger", icon: <SiHostinger size={30} /> },
+			{ name: "GitHub Actions", icon: <SiGithubactions size={30} /> },
+			{ name: "Shopify CLI", icon: <SiShopify size={30} /> },
+			{ name: "Xcode", icon: <SiXcode size={30} /> },
+			{ name: "App Store Connect", icon: <SiAppstore size={30} /> },
+			{ name: "Google Play Console", icon: <SiGoogleplay size={30} /> },
+
+			/* Testing & monitoring */
+			{ name: "Jest", icon: <SiJest size={30} /> },
+			{ name: "Detox", icon: <TbTestPipe size={30} /> },
+			{ name: "Playwright", icon: <i className="devicon-playwright-plain text-2xl" /> },
+			{ name: "Vitest", icon: <SiVitest size={30} /> },
+			{ name: "Pytest", icon: <SiPytest size={30} /> },
+			{ name: "Selenium", icon: <SiSelenium size={30} /> },
+			{ name: "Sentry", icon: <SiSentry size={30} /> },
+
+			/* Services */
+			{ name: "Resend", icon: <SiResend size={30} /> },
+			{ name: "Twilio", icon: <SiTwilio size={30} /> },
+			{ name: "Cloudinary", icon: <SiCloudinary size={30} /> },
+
+			/* Analytics & SEO */
+			{ name: "Google Analytics 4", icon: <SiGoogleanalytics size={30} /> },
+			{ name: "Google Tag Manager", icon: <SiGoogletagmanager size={30} /> },
+			{ name: "Search Console", icon: <SiGooglesearchconsole size={30} /> },
+			{ name: "Microsoft Clarity", icon: <TbChartLine size={30} /> },
 		]
 	},
 	{
@@ -121,6 +241,11 @@ export const TECHNOLOGIES = [
 
 			/* Protocols */
 			{ name: "MCP", icon: <TbPlugConnected size={32} /> },
+
+			/* Added from recent work */
+			{ name: "Gemini", icon: <SiGooglegemini size={30} /> },
+			{ name: "Perplexity", icon: <SiPerplexity size={30} /> },
+			{ name: "OpenAI Codex", icon: <SiOpenai size={30} /> },
 		]
 	}
 ];

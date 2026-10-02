@@ -8,6 +8,7 @@ const pages = [
   { url: '', changefreq: 'weekly', priority: 1.0 }, // Homepage
   { url: '#intro', changefreq: 'weekly', priority: 0.9 },
   { url: '#about', changefreq: 'monthly', priority: 0.8 },
+  { url: '#notable', changefreq: 'monthly', priority: 0.9 },
   { url: '#projects', changefreq: 'weekly', priority: 0.9 },
   { url: '#ai', changefreq: 'monthly', priority: 0.7 },
   { url: '#tech', changefreq: 'monthly', priority: 0.7 },

@@ -1,0 +1,518 @@
+/* Notable Projects: FastTrack spotlight. Stage is always night; the rest follows the theme with FastTrack's green */
+
+:root {
+	--ft-accent: #0f9f55;
+	--ft-red: #e11d2e;
+}
+.dark {
+	--ft-accent: #39f58f;
+	--ft-red: #ff2a3c;
+}
+
+/* ─── Stage ─── */
+.np-stage {
+	--ft-hud: #e8fff1;
+	position: relative;
+	width: 100vw;
+	margin: 2.5rem 0 0 calc(50% - 50vw);
+	height: clamp(460px, 78vh, 780px);
+	overflow: hidden;
+	background: #030504;
+	color: var(--ft-hud);
+	isolation: isolate;
+}
+.np-stage canvas {
+	display: block;
+}
+.np-vignette {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background:
+		linear-gradient(to bottom, #030504 0%, transparent 18%, transparent 70%, #030504 100%),
+		radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.65) 100%);
+}
+.np-fallback {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	font-size: clamp(3rem, 12vw, 10rem);
+	font-weight: 900;
+	font-style: italic;
+	letter-spacing: -0.04em;
+	color: #eef2f7;
+	background: radial-gradient(80% 60% at 50% 70%, rgba(57, 245, 143, 0.18), transparent 70%), #030504;
+}
+
+.np-hud {
+	position: absolute;
+	z-index: 1;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	line-height: 1.7;
+	color: rgba(232, 255, 241, 0.7);
+}
+.np-hud--tl {
+	top: 28px;
+	left: max(24px, calc(50vw - 640px + 16px));
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.np-hud--tr {
+	top: 28px;
+	right: max(24px, calc(50vw - 640px + 16px));
+	text-align: right;
+}
+.np-hud--bl {
+	bottom: 32px;
+	left: max(24px, calc(50vw - 640px + 16px));
+}
+.np-hud--br {
+	bottom: 32px;
+	right: max(24px, calc(50vw - 640px + 16px));
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	text-align: left;
+	color: #fff;
+}
+.np-hud--br img {
+	border-radius: 11px;
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 8px 30px rgba(57, 245, 143, 0.25);
+}
+.np-hud--br em {
+	font-style: normal;
+	color: rgba(232, 255, 241, 0.55);
+}
+
+.np-rec {
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: #ff2a3c;
+	box-shadow: 0 0 12px #ff2a3c;
+	animation: np-blink 1.4s steps(2, jump-none) infinite;
+}
+@keyframes np-blink {
+	50% {
+		opacity: 0.2;
+	}
+}
+
+/* Live 0–60 readout */
+.np-timer {
+	display: grid;
+	gap: 6px;
+	min-width: 230px;
+}
+.np-timer-label {
+	color: rgba(232, 255, 241, 0.6);
+}
+.np-timer-value {
+	font-size: clamp(2.6rem, 5vw, 4rem);
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: #fff;
+	font-variant-numeric: tabular-nums;
+	transition:
+		color 0.3s ease,
+		text-shadow 0.3s ease;
+}
+.np-timer-value small {
+	margin-left: 4px;
+	font-size: 0.4em;
+	color: rgba(232, 255, 241, 0.6);
+}
+.np-timer.is-done .np-timer-value {
+	color: #39f58f;
+	text-shadow: 0 0 24px rgba(57, 245, 143, 0.55);
+}
+.np-timer-bar {
+	position: relative;
+	height: 2px;
+	background: rgba(255, 255, 255, 0.12);
+	overflow: hidden;
+}
+.np-timer-bar span {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, #39f58f, #b6ffd6);
+	transform-origin: left;
+}
+.np-timer-speed {
+	color: rgba(232, 255, 241, 0.55);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ─── Intro ─── */
+.np-intro {
+	display: grid;
+	grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+	gap: 64px;
+	align-items: end;
+	padding: 72px 0 24px;
+}
+.np-kicker {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+}
+.np-kicker span {
+	color: var(--ft-accent);
+}
+.np-headline {
+	margin-top: 16px;
+	font-size: clamp(3.2rem, 8vw, 7.5rem);
+	font-weight: 900;
+	line-height: 0.92;
+	letter-spacing: -0.05em;
+	font-style: italic;
+}
+.np-headline em {
+	display: inline-block;
+	padding-right: 0.08em;
+	color: transparent;
+	background: linear-gradient(100deg, var(--ft-accent) 10%, var(--pc-text) 140%);
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+.np-lede {
+	margin-top: 26px;
+	max-width: 58ch;
+	font-size: 1.05rem;
+	line-height: 1.7;
+	color: var(--pc-dim);
+}
+.np-ctas {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 32px;
+}
+.np-btn::before {
+	background: var(--ft-accent);
+}
+
+.np-stats {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1px;
+	padding: 1px;
+}
+.np-stat {
+	padding: 22px 20px;
+	outline: 1px solid var(--pc-line);
+	background: var(--pc-bg);
+}
+.np-stat dt {
+	font-family: var(--pc-mono);
+	font-size: 10.5px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+	line-height: 1.5;
+}
+.np-stat dd {
+	margin-top: 14px;
+	font-size: clamp(1.8rem, 3vw, 2.5rem);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 1;
+	color: var(--pc-text);
+}
+.np-stat:first-child dd {
+	color: var(--ft-accent);
+}
+
+/* ─── Showcase ─── */
+.np-showcase {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 48px;
+	align-items: center;
+	padding: 72px 0;
+}
+.np-features {
+	border-top: 1px solid var(--pc-line);
+}
+.np-feature {
+	position: relative;
+	display: grid;
+	grid-template-columns: 44px 1fr;
+	gap: 8px;
+	width: 100%;
+	padding: 22px 8px 22px 0;
+	text-align: left;
+	color: var(--pc-text);
+	border-bottom: 1px solid var(--pc-line);
+	overflow: hidden;
+}
+.np-feature-num {
+	padding-top: 4px;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	color: var(--pc-dim);
+	transition: color 0.3s ease;
+}
+.np-feature-title {
+	display: block;
+	font-size: 1.35rem;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	color: var(--pc-dim);
+	transition: color 0.3s ease;
+}
+.np-feature-text {
+	display: grid;
+	grid-template-rows: 0fr;
+	opacity: 0;
+	font-size: 0.925rem;
+	line-height: 1.65;
+	color: var(--pc-dim);
+	transition:
+		grid-template-rows 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+		opacity 0.35s ease,
+		margin 0.45s ease;
+}
+.np-feature-text > span {
+	min-height: 0;
+	overflow: hidden;
+}
+.np-feature.is-active .np-feature-num {
+	color: var(--ft-accent);
+}
+.np-feature.is-active .np-feature-title {
+	color: var(--pc-text);
+}
+.np-feature.is-active .np-feature-text {
+	grid-template-rows: 1fr;
+	opacity: 1;
+	margin-top: 8px;
+}
+.np-feature-progress {
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	height: 2px;
+	width: 100%;
+	background: var(--ft-accent);
+	transform-origin: left;
+	animation: np-progress linear forwards;
+}
+@keyframes np-progress {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+/* Phone stack */
+.np-device-wrap {
+	position: relative;
+	display: grid;
+	place-items: center;
+	min-height: 640px;
+	perspective: 1400px;
+}
+.np-device-glow {
+	position: absolute;
+	width: 70%;
+	aspect-ratio: 1;
+	border-radius: 999px;
+	background: radial-gradient(circle, color-mix(in srgb, var(--ft-accent) 32%, transparent), transparent 65%);
+	filter: blur(30px);
+}
+.np-phone {
+	--rx: 4deg;
+	--ry: -14deg;
+	position: relative;
+	width: clamp(220px, 22vw, 290px);
+	aspect-ratio: 640 / 1391;
+	padding: 10px;
+	border-radius: 46px;
+	background: linear-gradient(145deg, #2a2d2b, #0b0c0b 45%, #1c1f1d);
+	box-shadow:
+		inset 0 0 0 1.5px rgba(255, 255, 255, 0.12),
+		0 40px 80px -20px rgba(0, 0, 0, 0.55),
+		0 0 0 1px rgba(0, 0, 0, 0.6);
+}
+.np-phone img {
+	position: absolute;
+	inset: 10px;
+	width: calc(100% - 20px);
+	height: calc(100% - 20px);
+	object-fit: cover;
+	object-position: top;
+	border-radius: 36px;
+	background: #000;
+}
+.np-phone--main {
+	z-index: 2;
+	transform: rotateX(var(--rx)) rotateY(var(--ry));
+	transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+	transform-style: preserve-3d;
+}
+.np-phone--main img {
+	opacity: 0;
+	transform: scale(1.03);
+	transition:
+		opacity 0.55s ease,
+		transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.np-phone--main img.is-active {
+	opacity: 1;
+	transform: scale(1);
+}
+.np-island {
+	position: absolute;
+	z-index: 3;
+	top: 20px;
+	left: 50%;
+	width: 30%;
+	height: 22px;
+	border-radius: 999px;
+	background: #000;
+	transform: translateX(-50%);
+}
+.np-phone--ghost {
+	position: absolute;
+	z-index: 1;
+	opacity: 0.45;
+	filter: saturate(0.6) brightness(0.7);
+	transition: opacity 0.4s ease;
+}
+.np-phone--ghost img {
+	opacity: 1;
+}
+.np-phone--left {
+	transform: translateX(-46%) rotateY(28deg) scale(0.82);
+}
+.np-phone--right {
+	transform: translateX(46%) rotateY(-28deg) scale(0.82);
+}
+.np-device-wrap:hover .np-phone--ghost {
+	opacity: 0.65;
+}
+
+/* ─── Stack marquee ─── */
+.np-marquee {
+	display: flex;
+	align-items: center;
+	border-top: 1px solid var(--pc-line);
+	border-bottom: 1px solid var(--pc-line);
+	overflow: hidden;
+}
+.np-marquee-label {
+	flex-shrink: 0;
+	padding: 18px 20px 18px 0;
+	margin-right: 20px;
+	border-right: 1px solid var(--pc-line);
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--ft-accent);
+}
+.np-marquee-viewport {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.np-marquee-track {
+	display: flex;
+	width: max-content;
+	animation: np-marquee 48s linear infinite;
+}
+.np-marquee:hover .np-marquee-track {
+	animation-play-state: paused;
+}
+.np-marquee-track ul {
+	display: flex;
+	flex-shrink: 0;
+}
+.np-marquee-track li {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	padding-right: 28px;
+	font-size: 1.05rem;
+	font-weight: 700;
+	white-space: nowrap;
+	color: var(--pc-text);
+}
+.np-marquee-track li::after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	background: var(--ft-accent);
+	transform: rotate(45deg);
+}
+@keyframes np-marquee {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1023px) {
+	.np-intro,
+	.np-showcase {
+		grid-template-columns: 1fr;
+		gap: 40px;
+	}
+	.np-device-wrap {
+		min-height: 560px;
+	}
+}
+@media (max-width: 640px) {
+	.np-stage {
+		height: 520px;
+	}
+	.np-hud--tr {
+		display: none;
+	}
+	.np-hud--bl {
+		bottom: 22px;
+	}
+	.np-hud--br {
+		display: none;
+	}
+	.np-timer {
+		min-width: 0;
+	}
+	.np-intro {
+		padding-top: 48px;
+	}
+	.np-showcase {
+		padding: 48px 0;
+	}
+	.np-device-wrap {
+		min-height: 500px;
+	}
+	.np-phone--ghost {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.np-rec,
+	.np-marquee-track {
+		animation: none;
+	}
+	.np-phone--main {
+		transition: none;
+	}
+}
