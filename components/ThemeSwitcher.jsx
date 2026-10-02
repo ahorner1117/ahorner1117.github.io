@@ -21,6 +21,8 @@ export const ThemeSwitcher = () => {
 	return (
 		<LazyMotion features={domAnimation}>
 			<m.button
+				className="nav-icon"
+				aria-label={currentTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
 				onClick={() => {
 					const newTheme = currentTheme === "dark" ? "light" : "dark";
 					trackEvent.themeToggle(newTheme);

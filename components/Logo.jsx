@@ -8,11 +8,18 @@ import { SITE_ROUTES, SITE_STRINGS } from "../constants";
 
 export function Logo() {
 	const pathname = usePathname();
+	const name = SITE_STRINGS.textLogo.replace(/^@/, "");
+	const logoText = (
+		<>
+			<span>@</span>
+			{name}
+		</>
+	);
 
 	return (
 		<LazyMotion features={domAnimation}>
 			<m.h3
-				className="text-xl md:text-2xl font-bold"
+				className="site-logo"
 				initial={initial}
 				animate={animate}
 				exit={exit}
@@ -20,10 +27,10 @@ export function Logo() {
 			>
 				{pathname === SITE_ROUTES.clients ? (
 					<Link href={SITE_ROUTES.home} aria-label="Go to home page" role="link">
-						{SITE_STRINGS.textLogo}
+						{logoText}
 					</Link>
 				) : (
-					<>{SITE_STRINGS.textLogo}</>
+					logoText
 				)}
 			</m.h3>
 		</LazyMotion>

@@ -1,0 +1,360 @@
+/* Project cards: hairline grid, mono meta labels, cursor-tracked glow, viewfinder corners */
+
+:root {
+	--pc-bg: #fffdf9;
+	--pc-bg-hover: #ffffff;
+	--pc-stage-a: #dde1e7;
+	--pc-stage-b: #c9ced7;
+	--pc-line: rgba(35, 35, 50, 0.12);
+	--pc-text: #232332;
+	--pc-dim: #6b6878;
+	--pc-accent: #3182ce;
+	--pc-glow: rgba(49, 130, 206, 0.12);
+	--pc-chip: rgba(35, 35, 50, 0.05);
+	--pc-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.dark {
+	--pc-bg: #1c1c29;
+	--pc-bg-hover: #20202f;
+	--pc-stage-a: #2a2a3b;
+	--pc-stage-b: #161621;
+	--pc-line: rgba(255, 255, 255, 0.08);
+	--pc-text: #f0ede6;
+	--pc-dim: #8d8b9b;
+	--pc-accent: #71c5ee;
+	--pc-glow: rgba(113, 197, 238, 0.11);
+	--pc-chip: rgba(255, 255, 255, 0.05);
+}
+
+/* Section eyebrow under each heading */
+.pcard-eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 10px;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+}
+.pcard-eyebrow::before {
+	content: "";
+	width: 24px;
+	height: 1px;
+	background: var(--pc-accent);
+}
+.pcard-eyebrow b {
+	font-weight: 500;
+	color: var(--pc-accent);
+}
+
+/* Grid: 1px gaps filled by each card's outline = single hairlines, no filler on ragged rows */
+.pcard-grid {
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 1px;
+	padding: 1px;
+	margin-top: 2.5rem;
+}
+@media (min-width: 640px) {
+	.pcard-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+@media (min-width: 1024px) {
+	.pcard-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.pcard {
+	--mx: 50%;
+	--my: 0%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background: var(--pc-bg);
+	color: var(--pc-text);
+	outline: 1px solid var(--pc-line);
+	cursor: pointer;
+	isolation: isolate;
+	transition: background 0.4s ease;
+}
+.pcard:hover,
+.pcard:focus-visible {
+	background: var(--pc-bg-hover);
+	z-index: 1;
+}
+.pcard:focus-visible {
+	outline: 1px solid var(--pc-accent);
+}
+
+/* Cursor-tracked glow */
+.pcard-glow {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background: radial-gradient(420px circle at var(--mx) var(--my), var(--pc-glow), transparent 65%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+}
+.pcard:hover .pcard-glow {
+	opacity: 1;
+}
+
+/* Viewfinder corners */
+.pcard-corner {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border-color: var(--pc-accent);
+	border-style: solid;
+	border-width: 0;
+	opacity: 0;
+	pointer-events: none;
+	transition:
+		opacity 0.3s ease,
+		transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pcard-corner.tl {
+	top: 8px;
+	left: 8px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	transform: translate(6px, 6px);
+}
+.pcard-corner.tr {
+	top: 8px;
+	right: 8px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	transform: translate(-6px, 6px);
+}
+.pcard-corner.bl {
+	bottom: 8px;
+	left: 8px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	transform: translate(6px, -6px);
+}
+.pcard-corner.br {
+	bottom: 8px;
+	right: 8px;
+	border-bottom-width: 1px;
+	border-right-width: 1px;
+	transform: translate(-6px, -6px);
+}
+.pcard:hover .pcard-corner,
+.pcard:focus-visible .pcard-corner {
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+/* Meta row */
+.pcard-meta {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 22px 26px 18px;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+}
+.pcard-num b {
+	font-weight: 500;
+	color: var(--pc-text);
+}
+.pcard-cat {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.pcard-cat::before {
+	content: "";
+	width: 14px;
+	height: 1px;
+	background: var(--pc-line);
+}
+.pcard-arrow {
+	margin-left: auto;
+	display: grid;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	border: 1px solid var(--pc-line);
+	border-radius: 999px;
+	color: var(--pc-text);
+	transition:
+		border-color 0.3s ease,
+		color 0.3s ease,
+		transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pcard:hover .pcard-arrow {
+	border-color: var(--pc-accent);
+	color: var(--pc-accent);
+	transform: translate(2px, -2px) rotate(-45deg);
+}
+
+/* Logo stage */
+.pcard-stage {
+	position: relative;
+	margin: 0 26px;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	background: radial-gradient(120% 90% at 50% 0%, var(--pc-stage-a), var(--pc-stage-b));
+	border: 1px solid var(--pc-line);
+}
+/* Per-project override for logos that only read on one background */
+.pcard-stage[data-stage="light"] {
+	--pc-stage-a: #f4f2ee;
+	--pc-stage-b: #dcdfe5;
+}
+.pcard-stage[data-stage="dark"] {
+	--pc-stage-a: #2a2a3b;
+	--pc-stage-b: #161621;
+}
+.pcard-stage::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	opacity: 0.35;
+	mix-blend-mode: overlay;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+.pcard-stage img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	padding: 12% 16%;
+	transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pcard:hover .pcard-stage img {
+	transform: scale(1.06);
+}
+.pcard-badge {
+	position: absolute;
+	left: 12px;
+	bottom: 12px;
+	z-index: 1;
+	padding: 4px 10px;
+	font-family: var(--pc-mono);
+	font-size: 10px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--pc-accent);
+	background: var(--pc-bg);
+	border: 1px solid var(--pc-line);
+}
+
+/* Body */
+.pcard-body {
+	flex: 1;
+	padding: 22px 26px 0;
+}
+.pcard-title {
+	font-size: 1.3rem;
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+}
+.pcard-desc {
+	margin-top: 10px;
+	font-size: 0.875rem;
+	line-height: 1.65;
+	color: var(--pc-dim);
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Tool chips */
+.pcard-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	padding: 18px 26px 0;
+}
+.pcard-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 8px;
+	font-family: var(--pc-mono);
+	font-size: 10.5px;
+	letter-spacing: 0.04em;
+	color: var(--pc-dim);
+	background: var(--pc-chip);
+	border: 1px solid var(--pc-line);
+	white-space: nowrap;
+}
+.pcard-chip i,
+.pcard-chip svg {
+	font-size: 12px;
+	width: 12px;
+	height: 12px;
+	color: var(--pc-text);
+}
+
+/* Footer actions */
+.pcard-foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 22px;
+	padding: 14px 26px;
+	border-top: 1px solid var(--pc-line);
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+.pcard-foot .pcard-details {
+	color: var(--pc-dim);
+	transition: color 0.3s ease;
+}
+.pcard:hover .pcard-foot .pcard-details {
+	color: var(--pc-text);
+}
+.pcard-visit {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--pc-accent);
+	text-underline-offset: 4px;
+}
+.pcard-visit:hover {
+	text-decoration: underline;
+}
+
+/* Modal: shares the card's vocabulary */
+.pmodal-label {
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+}
+.pmodal-stage {
+	margin: 0 0 2.5rem;
+	aspect-ratio: 21 / 9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.pcard *,
+	.pcard {
+		transition: none !important;
+	}
+	.pcard:hover .pcard-stage img,
+	.pcard:hover .pcard-arrow {
+		transform: none;
+	}
+}

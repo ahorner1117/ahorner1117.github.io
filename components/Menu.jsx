@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m } from "framer-motion";
@@ -8,27 +9,27 @@ import { BsArrowReturnLeft } from "react-icons/bs";
 import { initial, animate, exit, transition, trackEvent } from "utils";
 import { MENU_OPTIONS, SITE_ROUTES, SITE_STRINGS } from "../constants";
 
+const PORTAL_HOSTNAMES = ["anthonyhorner.com", "www.anthonyhorner.com"];
+
 export function Menu({ onClick = () => {} }) {
 	let content, mainMenu, backMenu;
 	const pathname = usePathname();
 	const { scrollToEl } = useScrollTo();
+	const activeId = useActiveSection();
 
 	const sortAscending = (a, b) => a.id - b.id;
 
-	// Filter menu items based on hostname
-	// Only show "Clients Portal" on Vercel URL, not on GitHub Pages
-	const getFilteredMenuItems = () => {
-		if (typeof window === 'undefined') return MENU_OPTIONS;
+	// "Clients Portal" only shows on the Vercel production domain. Resolved after mount
+	// so the server render and first client render match.
+	const [showClientsPortal, setShowClientsPortal] = useState(false);
+	useEffect(() => {
+		setShowClientsPortal(PORTAL_HOSTNAMES.includes(window.location.hostname));
+	}, []);
 
-		const isGitHubPages = window.location.hostname === 'ahorner1117.github.io';
-
-		if (isGitHubPages) {
-			// Filter out "Clients Portal" on GitHub Pages
-			return MENU_OPTIONS.filter(item => item.name !== "Clients Portal");
-		}
-
-		return MENU_OPTIONS;
-	};
+	const getFilteredMenuItems = () =>
+		showClientsPortal
+			? [...MENU_OPTIONS]
+			: MENU_OPTIONS.filter((item) => item.name !== "Clients Portal");
 
 	const handleOnClick = (e) => {
 		// Track navigation click
@@ -44,12 +45,13 @@ export function Menu({ onClick = () => {} }) {
 
 	mainMenu = (
 		<m.nav initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
-			<ul className="flex justify-center gap-5 lg:gap-10 flex-col md:flex-row items-start md:items-center">
-				{filteredMenuItems.sort(sortAscending).map((menuItem) => {
+			<ul className="flex justify-center gap-6 lg:gap-8 flex-col md:flex-row items-start md:items-center">
+				{filteredMenuItems.sort(sortAscending).map((menuItem, index) => {
 					// If we're not on home page and the menu item is a hash link, prepend "/"
 					const isHashLink = menuItem.url.startsWith("#");
 					const isOnHomePage = pathname === SITE_ROUTES.home;
 					const href = isHashLink && !isOnHomePage ? `/${menuItem.url}` : menuItem.url;
+					const isActive = isHashLink && isOnHomePage && activeId === menuItem.url.slice(1);
 
 					return (
 						<li key={menuItem.id}>
@@ -57,8 +59,12 @@ export function Menu({ onClick = () => {} }) {
 								href={href}
 								title={menuItem.name}
 								onClick={handleOnClick}
-								className="relative text-xl hover:no-underline after:absolute after:left-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
+								aria-current={isActive ? "location" : undefined}
+								className={`nav-link ${isHashLink ? "" : "nav-link--cta"} ${isActive ? "is-active" : ""}`}
 							>
+								{isHashLink && (
+									<span className="mobile-nav-index">{String(index + 1).padStart(2, "0")}</span>
+								)}
 								{menuItem.name}
 							</a>
 						</li>
@@ -90,4 +96,36 @@ export function Menu({ onClick = () => {} }) {
 	}
 
 	return <LazyMotion features={domAnimation}>{content}</LazyMotion>;
+}
+
+// Id of the last menu section whose top has scrolled past 40% of the viewport
+function useActiveSection() {
+	const [activeId, setActiveId] = useState("");
+
+	useEffect(() => {
+		const ids = MENU_OPTIONS.filter((item) => item.url.startsWith("#")).map((item) => item.url.slice(1));
+		let frame = null;
+
+		const update = () => {
+			frame = null;
+			let current = "";
+			for (const id of ids) {
+				const el = document.getElementById(id);
+				if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) current = id;
+			}
+			setActiveId(current);
+		};
+		const onScroll = () => {
+			if (frame === null) frame = window.requestAnimationFrame(update);
+		};
+
+		update();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => {
+			window.removeEventListener("scroll", onScroll);
+			if (frame !== null) window.cancelAnimationFrame(frame);
+		};
+	}, []);
+
+	return activeId;
 }

@@ -10,7 +10,7 @@ export const ecommerce = [
 		tools: {
 			"devicon-javascript-plain": "Javascript",
 			"devicon-react-original": "React",
-			"devicon-nextjs-original": "Next.js",
+			"devicon-nextjs-plain": "Next.js",
 			"devicon-express-original": "Express.js",
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
@@ -19,6 +19,7 @@ export const ecommerce = [
 	},
 	{
 		title: "Michigan State - M Den Shop",
+		stage: "light",
 		link: "https://mdenshop.com",
 		description:
 			"Redesigned the M Den Shop website, the official University of Michigan merchandise store. My role involved creating a modern, user-friendly e-commerce experience that showcases Michigan Wolverines apparel, jerseys, and accessories. The redesign focused on improving navigation, product presentation, and overall user experience while maintaining the brand's strong connection to University of Michigan athletics.",
@@ -94,10 +95,11 @@ export const ecommerce = [
 		description:
 			"Architected the global FIFA store using a modern headless commerce approach with Next.js and TypeScript. Implemented advanced internationalization supporting 20+ languages and currencies with real-time exchange rate calculations. Built a complex tournament merchandise system that automatically generates collections for World Cup, Women's World Cup, and continental championships. Created an innovative virtual try-on feature for jerseys and developed a comprehensive country-specific product catalog with region-locked merchandise availability.",
 		imageUrl:
-			"https://th.bing.com/th/id/R.e062b1838b2bd59f7144d9df03afc237?rik=CmLRmQ1FKzk8Jg&pid=ImgRaw&r=0",
+			"/Fifa-store-logo.svg",
+		invertOnDark: true,
 		caseStudyUrl: "",
 		tools: {
-			"devicon-nextjs-original": "Next.js",
+			"devicon-nextjs-plain": "Next.js",
 			"devicon-typescript-plain": "Typescript",
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
@@ -108,13 +110,14 @@ export const ecommerce = [
 	},
 	{
 		title: "Chicago Bulls Store",
+		stage: "dark",
 		link: "https://shop.bulls.com/",
 		description:
 			"Developed the Chicago Bulls official team store with a focus on creating an immersive fan experience. Implemented interactive product customization features allowing fans to personalize jerseys with custom names and numbers. Built a sophisticated wishlist and favorites system, integrated social sharing capabilities, and created a loyalty rewards program. The store includes live game schedule integration and player spotlight sections that dynamically update product recommendations.",
 		imageUrl: "https://shop.bulls.com/cdn/shop/files/store-logo-white.png?v=1695604844&width=600",
 		caseStudyUrl: "",
 		tools: {
-			"devicon-nextjs-original": "Next.js",
+			"devicon-nextjs-plain": "Next.js",
 			"devicon-typescript-plain": "Typescript",
 			"devicon-graphql-plain": "GraphQL",
 			FaShopify: "Shopify Plus",
@@ -143,7 +146,7 @@ export const ecommerce = [
 		link: "https://shop.realmadrid.com/",
 		description:
 			"As a developer on the Real Madrid soccer store, my focus was converting photoshop design files to pixel perfect webpages. This included the homepage, product page, search page, collections page, account pages and order details pages. I was also in charge of localization on the real madrid store which I implemented using a custom currency picker managing localization with cookies and other useful tools.",
-		imageUrl: "https://www.logodesign.org/wp-content/uploads/2023/02/Real-Madrid-Emblem.png",
+		imageUrl: "/real-madrid-logo.png",
 		caseStudyUrl: "#",
 		tools: {
 			"devicon-javascript-plain": "Javascript",
@@ -163,7 +166,7 @@ export const ecommerce = [
 			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKoHoVcPTVKSACUzq321fhqXyX_xAOvBFiLrB26hRifIsHjM4RIHfCnsVFvby_UE13WI0&usqp=CAU",
 		caseStudyUrl: "#",
 		tools: {
-			"devicon-nextjs-original": "Next.js",
+			"devicon-nextjs-plain": "Next.js",
 			"devicon-typescript-plain": "Typescript",
 			"devicon-tailwindcss-plain": "TailwindCSS",
 			"devicon-graphql-plain": "GraphQL",
@@ -174,11 +177,12 @@ export const ecommerce = [
 	},
 	{
 		title: "Ryder Cup European Shop",
+		stage: "light",
 		link: "https://euroshop.rydercup.com/",
 		description:
 			"Developed the official Ryder Cup European Shop, translating Figma designs into a fully functional Shopify storefront. Built custom Liquid templates, JavaScript interactions, and CSS styling to deliver a polished e-commerce experience for one of golf's most prestigious events. The store features merchandise collections for the biennial competition between Europe and the United States.",
 		imageUrl:
-			"https://euroshop.rydercup.com/cdn/shop/files/Frame_39943_73271586-56ec-4be2-a4f3-af46ab5e6fef.png?v=1749137667&width=2000",
+			"/rydercup-eu-shop.svg",
 		caseStudyUrl: "#",
 		tools: {
 			"devicon-javascript-plain": "Javascript",
@@ -192,10 +196,10 @@ export const ecommerce = [
 		link: "https://redcon1.com/",
 		description:
 			"In my capacity as a software developer with Redcon1, I played a key role in transforming a Shopify Plus store into a headless Shopify store built on Next.js. Facing the constraints of Shopify, the company opted for a headless architecture using Next.js, Contentful as a CMS, and leveraging Nacelle and Vercel. Collaborating with a team of three other developers, I contributed to the creation of the store by translating Figma designs into meticulously crafted web pages.",
-		imageUrl: "https://athletes.redcon1.com/wp-content/uploads/sites/2/2021/03/REDCON1.png",
+		imageUrl: "/redcon1.jpeg",
 		caseStudyUrl: "#",
 		tools: {
-			"devicon-nextjs-original": "Next.js",
+			"devicon-nextjs-plain": "Next.js",
 			"devicon-typescript-plain": "Typescript",
 			"devicon-graphql-plain": "GraphQL",
 			"devicon-sass-original": "SASS",

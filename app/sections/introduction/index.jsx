@@ -41,14 +41,14 @@ const scaleIn = {
 };
 
 const text = [
-	"optimize business visibility",
-	"create engaging user experiences",
-	"develop headless Shopify apps",
-	"convert design into modern UI",
-	"build interactive UI using React",
-	"develop websites using Next.js",
-	"provide google presence",
-	"drive digital growth strategies"
+	"architect headless storefronts",
+	"engineer custom Shopify solutions",
+	"build scalable Next.js applications",
+	"ship cross-platform mobile apps",
+	"turn designs into production code",
+	"build fast, accessible interfaces",
+	"improve SEO and site performance",
+	"deliver measurable business growth"
 ];
 
 export function WelcomeSection() {
@@ -61,7 +61,7 @@ export function WelcomeSection() {
 
 	useEffect(() => {
 		let interval = setInterval(() => {
-			setCount((prev) => (prev === 7 ? 0 : prev + 1));
+			setCount((prev) => (prev === text.length - 1 ? 0 : prev + 1));
 		}, 2000);
 
 		return () => clearInterval(interval);
@@ -119,10 +119,15 @@ export function WelcomeSection() {
 							href="#projects"
 							onClick={onClick}
 							tabIndex="0"
-							className="btn"
+							className="btn btn--split"
 							aria-label="Latest projects"
 						>
-							See my latest projects
+							<span className="btn-label">See my latest projects</span>
+							<span className="btn-icon btn-icon--down" aria-hidden="true">
+								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 5v14M6 13l6 6 6-6" />
+								</svg>
+							</span>
 						</Link>
 					</motion.div>
 				</div>
