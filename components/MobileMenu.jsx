@@ -36,7 +36,8 @@ export function MobileMenu() {
 	return (
 		<LazyMotion features={domAnimation}>
 			<m.button
-				className="p-2"
+				className="nav-icon"
+				aria-label="Open menu"
 				onClick={onOpen}
 				title="Open menu"
 				initial={initial}
@@ -50,18 +51,15 @@ export function MobileMenu() {
 			<AnimatePresence>
 				{isOpen && (
 					<m.div
-						className={`backdrop-blur-md fixed left-0 right-0 top-0 min-h-screen z-50`}
+						className="mobile-nav backdrop-blur-md fixed left-0 right-0 top-0 min-h-screen z-50"
 						initial={initialMobile}
 						animate={animateMobile}
 						exit={exitMobile}
 					>
-						<header className="p-6 flex items-center justify-between border-b border-b-brand-light z-10">
+						<header className="p-6 flex items-center justify-between border-b border-[var(--pc-line)] z-10">
 							<ConnectMedia />
-							<button
-								onClick={onClose}
-								className="w-10 h-10 inline-flex items-center justify-center"
-							>
-								<IoMdClose size="24" />
+							<button onClick={onClose} className="nav-icon" aria-label="Close menu">
+								<IoMdClose size="18" />
 							</button>
 						</header>
 						<div className="px-6 py-10">

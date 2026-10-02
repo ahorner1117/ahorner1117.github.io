@@ -1,18 +1,37 @@
-import { LazyMotion, domAnimation, motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useState } from "react";
 import { FaShopify, FaGit, FaWordpress } from "react-icons/fa";
 import Modal from "react-modal";
 import { trackEvent } from "utils";
+import { useCursorGlow } from "hooks";
 
-export const ProjectCard = ({ project }) => {
+const MAX_CARD_TOOLS = 3;
+
+// Tool keys are devicon class names, except for a few react-icons components
+const REACT_ICONS = { FaShopify, FaGit, FaWordpress };
+
+function ToolIcon({ tool, className = "" }) {
+	const Icon = REACT_ICONS[tool];
+	return Icon ? <Icon className={className} /> : <i className={`${tool} ${className}`} />;
+}
+
+function ExternalIcon({ className = "w-3.5 h-3.5" }) {
+	return (
+		<svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M9 7h8v8" />
+		</svg>
+	);
+}
+
+export const ProjectCard = ({ project, index = 0, total = 0, category = "" }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalOpenTime, setModalOpenTime] = useState(null);
-	const maxDescriptionLength = 250;
 
-	const truncatedDescription =
-		project.description.length > maxDescriptionLength
-			? `${project.description.slice(0, maxDescriptionLength)}...`
-			: project.description;
+	const tools = Object.keys(project.tools || {});
+	const hiddenToolCount = tools.length - MAX_CARD_TOOLS;
+	const num = String(index + 1).padStart(2, "0");
+	const totalNum = String(total).padStart(2, "0");
+	const logoClass = project.invertOnDark ? "dark:invert" : "";
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -31,266 +50,201 @@ export const ProjectCard = ({ project }) => {
 		}
 	};
 
-	const Tools = () => {
-		return (
-			<div className="px-6 pb-6 pt-2">
-				<div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-					<p className="text-xs text-gray-500 dark:text-gray-400 font-medium tracking-wide uppercase mb-3 text-center">Technologies</p>
-					<div className="flex flex-wrap items-center justify-center gap-2">
-						{project?.tools &&
-							Object.keys(project.tools).map((tool, index) => {
-								switch (tool) {
-									case "FaShopify":
-										return (
-											<div 
-												className="p-2 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-lg" 
-												key={index}
-											>
-												<FaShopify className="w-4 h-4 text-emerald-700 dark:text-emerald-300" />
-											</div>
-										);
-									case "FaGit":
-										return (
-											<div 
-												className="p-2 bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-700 rounded-lg" 
-												key={index}
-											>
-												<FaGit className="w-4 h-4 text-orange-700 dark:text-orange-300" />
-											</div>
-										);
-									case "FaWordpress":
-										return (
-											<div 
-												className="p-2 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg" 
-												key={index}
-											>
-												<FaWordpress className="w-4 h-4 text-blue-700 dark:text-blue-300" />
-											</div>
-										);
-									default:
-										return (
-											<div 
-												className="p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg" 
-												key={index}
-												title={project.tools[tool]}
-											>
-												<i className={`${tool} text-sm text-gray-700 dark:text-gray-300`} />
-											</div>
-										);
-								}
-							})}
-					</div>
-				</div>
-			</div>
-		);
+	const handleCardClick = () => {
+		trackEvent.projectCardClick(project.title, project.type || "general");
+		openModal();
 	};
 
-	const handleCardClick = () => {
-		trackEvent.projectCardClick(project.title, project.type || 'general');
-		openModal();
+	const handleKeyDown = (e) => {
+		if (e.target !== e.currentTarget) return;
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault();
+			handleCardClick();
+		}
+	};
+
+	const handleMouseMove = useCursorGlow();
+
+	const visitLinkProps = {
+		href: project.link,
+		target: "_blank",
+		rel: "noopener noreferrer"
 	};
 
 	return (
 		<>
 			<LazyMotion features={domAnimation}>
-				<motion.div
+				<m.article
+					className="pcard"
+					role="button"
+					tabIndex={0}
+					aria-label={`${project.title}: view project details`}
 					onClick={handleCardClick}
-					className="flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300"
-					whileHover={{ scale: 1.02 }}
-					transition={{ duration: 0.2 }}
+					onKeyDown={handleKeyDown}
+					onMouseMove={handleMouseMove}
+					initial={{ opacity: 0, y: 28 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, margin: "-60px" }}
+					transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1], delay: (index % 3) * 0.08 }}
 				>
-				{/* Image container with better contrast handling */}
-				<div className="relative bg-slate-300 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-					<img
-						className="w-full h-48 object-contain p-6"
-						src={project.imageUrl}
-						alt={project.title}
-						loading="lazy"
-						decoding="async"
-					/>
-					{project.badge && (
-						<span className="absolute top-3 right-3 px-2.5 py-1 text-xs font-semibold rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-sm">
-							{project.badge}
+					<span className="pcard-glow" aria-hidden="true" />
+					<span className="pcard-corner tl" aria-hidden="true" />
+					<span className="pcard-corner tr" aria-hidden="true" />
+					<span className="pcard-corner bl" aria-hidden="true" />
+					<span className="pcard-corner br" aria-hidden="true" />
+
+					<header className="pcard-meta">
+						<span className="pcard-num">
+							<b>{num}</b>
+							{total > 0 && ` / ${totalNum}`}
 						</span>
-					)}
-				</div>
-				
-				<div className="p-6 flex flex-col flex-1">
-					<div className="flex-1">
-						<div className="mb-4">
-							<h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-								{project.title}
-							</h3>
-							<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-								{truncatedDescription}
-								{project.description.length > maxDescriptionLength && (
-									<span 
-										className="inline-block ml-1 text-blue-600 dark:text-blue-400 font-semibold cursor-pointer" 
-										onClick={openModal}
-									>
-										read more →
-									</span>
-								)}
-							</p>
-							<a
-								href={project.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-200"
-								onClick={(e) => {
-									e.stopPropagation();
-									trackEvent.projectExternalLink(project.title, project.link);
-								}}
-							>
-								<span>Visit Site</span>
-								<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-								</svg>
-							</a>
-						</div>
+						{category && <span className="pcard-cat">{category}</span>}
+						<span className="pcard-arrow" aria-hidden="true">
+							<svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M13 6l6 6-6 6" />
+							</svg>
+						</span>
+					</header>
+
+					<div className="pcard-stage" data-stage={project.stage}>
+						<img
+							className={logoClass}
+							src={project.imageUrl}
+							alt={project.title}
+							loading="lazy"
+							decoding="async"
+						/>
+						{project.badge && <span className="pcard-badge">{project.badge}</span>}
 					</div>
-				</div>
-					<Tools />
-				</motion.div>
+
+					<div className="pcard-body">
+						<h3 className="pcard-title">{project.title}</h3>
+						<p className="pcard-desc">{project.description}</p>
+					</div>
+
+					{tools.length > 0 && (
+						<ul className="pcard-tools">
+							{tools.slice(0, MAX_CARD_TOOLS).map((tool) => (
+								<li key={tool} className="pcard-chip">
+									<ToolIcon tool={tool} />
+									{project.tools[tool]}
+								</li>
+							))}
+							{hiddenToolCount > 0 && <li className="pcard-chip">+{hiddenToolCount}</li>}
+						</ul>
+					)}
+
+					<footer className="pcard-foot">
+						<span className="pcard-details">Details</span>
+						<a
+							{...visitLinkProps}
+							className="pcard-visit"
+							onClick={(e) => {
+								e.stopPropagation();
+								trackEvent.projectExternalLink(project.title, project.link);
+							}}
+						>
+							Visit site
+							<ExternalIcon />
+						</a>
+					</footer>
+				</m.article>
 			</LazyMotion>
 
 			<Modal
 				isOpen={isModalOpen}
 				onRequestClose={closeModal}
 				contentLabel="Project Details"
-				className="Modal bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-8 rounded-3xl w-[95%] max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-xl"
+				className="Modal outline-none bg-[var(--pc-bg)] text-[var(--pc-text)] p-6 md:p-10 w-[95%] max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl border border-[var(--pc-line)]"
 				overlayClassName="Overlay fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black/70 backdrop-blur-md z-50"
 				shouldCloseOnOverlayClick={true}
 				ariaHideApp={false}
 			>
 				{isModalOpen && (
-					<motion.div
-						className="modal-content"
-						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.15, ease: "easeOut" }}
-					>
-						{/* Header with close button */}
-						<div className="flex justify-between items-start mb-8">
-							<div className="flex items-center gap-3 pr-4">
-								<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
-									{project.title}
-								</h2>
-								{project.badge && (
-									<span className="px-3 py-1 text-xs font-semibold rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 whitespace-nowrap">
-										{project.badge}
-									</span>
-								)}
+					<LazyMotion features={domAnimation}>
+						<m.div
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.2, ease: "easeOut" }}
+						>
+							{/* Header with close button */}
+							<div className="flex justify-between items-start gap-4 mb-8">
+								<div>
+									<p className="pmodal-label mb-3">
+										<span className="text-[var(--pc-accent)]">{num}</span>
+										{category && ` — ${category}`}
+										{project.badge && ` · ${project.badge}`}
+									</p>
+									<h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+										{project.title}
+									</h2>
+								</div>
+								<button
+									onClick={closeModal}
+									aria-label="Close"
+									className="shrink-0 p-3 rounded-full border border-[var(--pc-line)] text-[var(--pc-dim)] hover:text-[var(--pc-accent)] hover:border-[var(--pc-accent)] transition-colors"
+								>
+									<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+									</svg>
+								</button>
 							</div>
-							<button
-								onClick={closeModal}
-								className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 p-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
-							>
-								<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-								</svg>
-							</button>
-						</div>
 
-						{/* Project Image */}
-						<div className="mb-8 flex justify-center">
-							<div className="rounded-2xl overflow-hidden shadow-lg bg-slate-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 max-w-sm">
+							{/* Project Image */}
+							<div className="pcard-stage pmodal-stage" data-stage={project.stage}>
 								<img
-									className="w-full h-auto object-contain p-4"
+									className={logoClass}
 									src={project.imageUrl}
 									alt={project.title}
 									loading="lazy"
 									decoding="async"
 								/>
 							</div>
-						</div>
 
-						{/* Description */}
-						<div className="mb-8">
-							<h3 className="text-sm font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">
-								About this project
-							</h3>
-							<p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
-								{project.description}
-							</p>
-						</div>
-
-						{/* Tools Section */}
-						<div className="mb-10">
-							<h3 className="text-sm font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
-								Technologies & Tools
-							</h3>
-							<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-								{project?.tools &&
-									Object.keys(project.tools).map((tool, index) => {
-										switch (tool) {
-											case "FaShopify":
-												return (
-													<div 
-														className="flex items-center gap-3 p-4 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-xl border border-emerald-200 dark:border-emerald-700" 
-														key={index}
-													>
-														<FaShopify className="w-5 h-5" />
-														<span className="text-sm font-semibold">Shopify</span>
-													</div>
-												);
-											case "FaGit":
-												return (
-													<div 
-														className="flex items-center gap-3 p-4 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-xl border border-orange-200 dark:border-orange-700" 
-														key={index}
-													>
-														<FaGit className="w-5 h-5" />
-														<span className="text-sm font-semibold">Git</span>
-													</div>
-												);
-											case "FaWordpress":
-												return (
-													<div 
-														className="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl border border-blue-200 dark:border-blue-700" 
-														key={index}
-													>
-														<FaWordpress className="w-5 h-5" />
-														<span className="text-sm font-semibold">WordPress</span>
-													</div>
-												);
-											default:
-												return (
-													<div 
-														className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl border border-gray-200 dark:border-gray-600" 
-														key={index}
-													>
-														<i className={`${tool} text-lg`} title={project.tools[tool]} />
-														<span className="text-sm font-semibold">{project.tools[tool]}</span>
-													</div>
-												);
-										}
-									})}
+							{/* Description */}
+							<div className="mb-10">
+								<h3 className="pmodal-label mb-3">About this project</h3>
+								<p className="text-base md:text-lg leading-relaxed opacity-90">
+									{project.description}
+								</p>
 							</div>
-						</div>
 
-						{/* Action Buttons */}
-						<div className="flex flex-col sm:flex-row gap-4">
-							<a
-								href={project.link}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold py-4 px-8 rounded-xl text-center flex items-center justify-center gap-3 shadow-md hover:shadow-xl hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-200 border-2 border-gray-900 dark:border-white hover:border-gray-700 dark:hover:border-gray-200"
-								onClick={() => trackEvent.projectExternalLink(project.title, project.link)}
-							>
-								<span>View Project</span>
-								<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-								</svg>
-							</a>
-							<button
-								onClick={closeModal}
-								className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold py-4 px-8 rounded-xl transition-colors duration-300 border border-gray-200 dark:border-gray-600"
-							>
-								Close
-							</button>
-						</div>
-					</motion.div>
+							{/* Tools Section */}
+							{tools.length > 0 && (
+								<div className="mb-10">
+									<h3 className="pmodal-label mb-4">Technologies & Tools</h3>
+									<ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px p-px">
+										{tools.map((tool) => (
+											<li
+												key={tool}
+												className="flex items-center gap-3 p-4 bg-[var(--pc-chip)] outline outline-1 outline-[var(--pc-line)]"
+											>
+												<ToolIcon tool={tool} className="text-lg w-5 h-5" />
+												<span className="text-sm font-semibold">{project.tools[tool]}</span>
+											</li>
+										))}
+									</ul>
+								</div>
+							)}
+
+							{/* Action Buttons */}
+							<div className="flex flex-col sm:flex-row gap-3">
+								<a
+									{...visitLinkProps}
+									className="btn btn--split flex-1"
+									onClick={() => trackEvent.projectExternalLink(project.title, project.link)}
+								>
+									<span className="btn-label">View Project</span>
+									<span className="btn-icon btn-icon--external" aria-hidden="true">
+										<ExternalIcon className="w-4 h-4" />
+									</span>
+								</a>
+								<button onClick={closeModal} className="btn btn--ghost flex-1">
+									Close
+								</button>
+							</div>
+						</m.div>
+					</LazyMotion>
 				)}
 			</Modal>
 		</>

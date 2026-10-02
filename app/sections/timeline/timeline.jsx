@@ -1,6 +1,7 @@
-import { domAnimation, LazyMotion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { domAnimation, LazyMotion, m } from "framer-motion";
+import { useState } from "react";
 import { HeadingDivider } from "components";
+import { useCursorGlow } from "hooks";
 
 const experiences = [
 	{
@@ -69,74 +70,105 @@ const experiences = [
 	}
 ];
 
-const TimelineItem = ({ experience, side, index }) => {
-	const ref = useRef(null);
+const VISIBLE_POINTS = 3;
 
-	const isItemInView = useInView(ref, { once: true });
+// "MM.YYYY" -> months since year 0; "Present" -> now
+function toMonths(value) {
+	if (/present/i.test(value)) {
+		const now = new Date();
+		return now.getFullYear() * 12 + now.getMonth() + 1;
+	}
+	const [month, year] = value.split(".").map(Number);
+	return year * 12 + month;
+}
 
-	const descriptionList = experience.description.map((point, idx) => (
-		<li key={idx} className="mb-2 flex items-start">
-			<span className="mr-2 mt-1.5 text-gray-900 dark:text-white">▹</span>
-			<span className="leading-relaxed">{point}</span>
-		</li>
-	));
+function formatTenure(date) {
+	const [start, end] = date.split("-").map((part) => part.trim());
+	const months = Math.max(1, toMonths(end) - toMonths(start));
+	const years = Math.floor(months / 12);
+	const rest = months % 12;
+	return [years && `${years} yr${years > 1 ? "s" : ""}`, rest && `${rest} mo${rest > 1 ? "s" : ""}`]
+		.filter(Boolean)
+		.join(" ");
+}
+
+const TimelineItem = ({ experience, index, total }) => {
+	const [expanded, setExpanded] = useState(false);
+	const [start, end] = experience.date.split("-").map((part) => part.trim());
+	const isCurrent = /present/i.test(end);
+	const points = expanded ? experience.description : experience.description.slice(0, VISIBLE_POINTS);
+	const hiddenCount = experience.description.length - VISIBLE_POINTS;
+
+	const handleMouseMove = useCursorGlow();
 
 	return (
-		<LazyMotion features={domAnimation}>
-			<div
-				ref={ref}
-				style={{
-					transform: isItemInView ? "none" : side === "right" ? "translateX(50px)" : "translateX(-50px)",
-					opacity: isItemInView ? 1 : 0,
-					transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${0.2 + index * 0.15}s`
-				}}
-				className={`relative text-sm w-full my-8 ${
-					side === "right" ? "md:ml-auto" : "md:mr-auto"
-				} md:w-5/12`}
-			>
-				{/* Card */}
-				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-300">
-					<div className="mb-3">
-						<span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-							{experience.date}
-						</span>
-					</div>
+		<m.li
+			className="xp-row"
+			onMouseMove={handleMouseMove}
+			initial={{ opacity: 0, y: 24 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, margin: "-60px" }}
+			transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1], delay: 0.05 }}
+		>
+			<span className="pcard-glow" aria-hidden="true" />
 
-					<h3 className="text-xl font-bold mb-1 text-gray-900 dark:text-white">
-						{experience.role}
-					</h3>
-					<h4 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-						{experience.company}
-					</h4>
-
-					<ul className="space-y-2 text-gray-700 dark:text-gray-300">{descriptionList}</ul>
-				</div>
+			<div className="xp-when">
+				<span className="xp-num">
+					<b>{String(index + 1).padStart(2, "0")}</b> / {String(total).padStart(2, "0")}
+				</span>
+				<span className="xp-dates">
+					{start} — {isCurrent ? <em>Present</em> : end}
+				</span>
+				<span className="xp-tenure">{formatTenure(experience.date)}</span>
 			</div>
-		</LazyMotion>
+
+			<span className={`xp-node ${isCurrent ? "is-current" : ""}`} aria-hidden="true" />
+
+			<div className="xp-body">
+				<h3 className="xp-role">{experience.role}</h3>
+				<p className="xp-company">
+					<span>@</span> {experience.company}
+				</p>
+				<ul className="xp-points">
+					{points.map((point, idx) => (
+						<li key={idx}>{point}</li>
+					))}
+				</ul>
+				{hiddenCount > 0 && (
+					<button
+						type="button"
+						className="xp-toggle"
+						aria-expanded={expanded}
+						onClick={() => setExpanded((open) => !open)}
+					>
+						{expanded ? "Show less" : `Show all ${experience.description.length}`}
+						<span aria-hidden="true">{expanded ? "−" : "+"}</span>
+					</button>
+				)}
+			</div>
+		</m.li>
 	);
 };
 
 const VerticalTimeline = () => {
 	return (
 		<section id="timeline" className="section">
-			<div className="container mx-auto">
-				<HeadingDivider title="Work Experience" />
-				<div className="pt-8 pb-16">
-					<div className="relative w-full">
-						{/* Simple timeline line */}
-						<div className="hidden md:block absolute md:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-300 dark:bg-gray-700"></div>
-
-						{experiences.map((experience, index) => (
-							<TimelineItem
-								key={experience.id}
-								experience={experience}
-								index={index}
-								side={index % 2 === 0 ? "left" : "right"}
-							/>
-						))}
-					</div>
-				</div>
-			</div>
+			<HeadingDivider title="Work Experience" />
+			<p className="pcard-eyebrow">
+				Roles held <b>{String(experiences.length).padStart(2, "0")}</b>
+			</p>
+			<LazyMotion features={domAnimation}>
+				<ol className="xp-list">
+					{experiences.map((experience, index) => (
+						<TimelineItem
+							key={experience.id}
+							experience={experience}
+							index={index}
+							total={experiences.length}
+						/>
+					))}
+				</ol>
+			</LazyMotion>
 		</section>
 	);
 };

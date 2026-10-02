@@ -1,0 +1,216 @@
+/* Work experience ledger: date column, rail with nodes, role body. Uses --pc-* tokens from project-cards.css */
+
+.xp-list {
+	position: relative;
+	margin-top: 2.5rem;
+	border-top: 1px solid var(--pc-line);
+}
+
+.xp-row {
+	--mx: 50%;
+	--my: 0%;
+	--rail: 220px;
+	position: relative;
+	display: grid;
+	grid-template-columns: var(--rail) 1fr;
+	column-gap: 56px;
+	padding: 40px 28px;
+	color: var(--pc-text);
+	border-bottom: 1px solid var(--pc-line);
+	isolation: isolate;
+	transition: background 0.4s ease;
+}
+.xp-row:hover {
+	background: var(--pc-bg);
+}
+.xp-row:hover .pcard-glow {
+	opacity: 1;
+}
+
+/* Vertical rail running through every row */
+.xp-row::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: calc(28px + var(--rail) + 28px);
+	width: 1px;
+	background: var(--pc-line);
+}
+.xp-row:first-child::before {
+	top: 48px;
+}
+.xp-row:last-child::before {
+	bottom: auto;
+	height: 48px;
+}
+
+.xp-node {
+	position: absolute;
+	top: 44px;
+	left: calc(28px + var(--rail) + 28px);
+	width: 9px;
+	height: 9px;
+	border: 1px solid var(--pc-accent);
+	border-radius: 999px;
+	background: var(--pc-bg);
+	transform: translateX(-4px);
+	transition:
+		background 0.3s ease,
+		box-shadow 0.3s ease;
+}
+.xp-row:hover .xp-node,
+.xp-node.is-current {
+	background: var(--pc-accent);
+	box-shadow: 0 0 0 5px var(--pc-glow);
+}
+.xp-node.is-current::after {
+	content: "";
+	position: absolute;
+	inset: -1px;
+	border-radius: inherit;
+	border: 1px solid var(--pc-accent);
+	animation: xp-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes xp-ping {
+	0% {
+		transform: scale(1);
+		opacity: 0.8;
+	}
+	80%,
+	100% {
+		transform: scale(3.2);
+		opacity: 0;
+	}
+}
+
+/* Date column */
+.xp-when {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--pc-dim);
+}
+.xp-num b {
+	font-weight: 500;
+	color: var(--pc-text);
+}
+.xp-dates {
+	font-size: 13px;
+	letter-spacing: 0.08em;
+	color: var(--pc-text);
+}
+.xp-dates em {
+	font-style: normal;
+	color: var(--pc-accent);
+}
+.xp-tenure {
+	align-self: flex-start;
+	padding: 3px 8px;
+	background: var(--pc-chip);
+	border: 1px solid var(--pc-line);
+	letter-spacing: 0.08em;
+}
+
+/* Body */
+.xp-role {
+	font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+	font-weight: 800;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+.xp-company {
+	margin-top: 6px;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--pc-accent);
+}
+.xp-company span {
+	font-family: var(--pc-mono);
+	font-weight: 400;
+	opacity: 0.7;
+}
+.xp-points {
+	margin-top: 18px;
+	display: grid;
+	gap: 10px;
+	max-width: 72ch;
+}
+.xp-points li {
+	position: relative;
+	padding-left: 22px;
+	font-size: 0.925rem;
+	line-height: 1.65;
+	color: var(--pc-dim);
+}
+.xp-points li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.8em;
+	width: 10px;
+	height: 1px;
+	background: var(--pc-accent);
+}
+.xp-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 16px;
+	padding: 6px 12px;
+	font-family: var(--pc-mono);
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--pc-text);
+	border: 1px solid var(--pc-line);
+	transition:
+		border-color 0.3s ease,
+		color 0.3s ease;
+}
+.xp-toggle:hover,
+.xp-toggle:focus-visible {
+	color: var(--pc-accent);
+	border-color: var(--pc-accent);
+}
+.xp-toggle span {
+	font-size: 14px;
+}
+
+/* Mobile: rail moves to the far left, date stacks above the role */
+@media (max-width: 767px) {
+	.xp-row {
+		grid-template-columns: 1fr;
+		row-gap: 18px;
+		padding: 32px 8px 32px 36px;
+	}
+	.xp-row::before,
+	.xp-node {
+		left: 12px;
+	}
+	.xp-node {
+		top: 36px;
+	}
+	.xp-row:first-child::before {
+		top: 40px;
+	}
+	.xp-row:last-child::before {
+		height: 40px;
+	}
+	.xp-when {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 14px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.xp-node.is-current::after {
+		animation: none;
+	}
+}

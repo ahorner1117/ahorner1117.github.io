@@ -1,15 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { LazyMotion, domAnimation, useInView } from "framer-motion";
+import { useState } from "react";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { HeadingDivider } from "components";
 import { TimeLine } from "./TimeLine";
 
 export function AboutSection() {
-	const ref = useRef(null);
-	const toggleRef = useRef(null);
-	const isInView = useInView(ref, { once: true });
-	const isToggleInView = useInView(toggleRef, { once: true });
 	const [isTechnical, setIsTechnical] = useState(false);
 
 	const technicalContent = [
@@ -43,59 +39,32 @@ export function AboutSection() {
 		<LazyMotion features={domAnimation}>
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				
-				{/* Toggle Button */}
-				<div 
-					ref={toggleRef}
-					className="flex justify-center mt-2"
-					style={{
-						transform: isToggleInView ? "none" : "translateY(-50px)",
-						opacity: isToggleInView ? 1 : 0,
-						transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s"
-					}}
-				>
-					<div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-1 flex">
-						<button
-							onClick={() => setIsTechnical(true)}
-							className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-								isTechnical
-									? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm"
-									: "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-							}`}
-						>
-							Technical Details
-						</button>
-						<button
-							onClick={() => setIsTechnical(false)}
-							className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-								!isTechnical
-									? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm"
-									: "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-							}`}
-						>
+				<p className="pcard-eyebrow">
+					Years building <b>07+</b>
+				</p>
+				<div className="mt-8">
+					<div className="segmented" role="group" aria-label="About me detail level">
+						<button type="button" aria-pressed={!isTechnical} onClick={() => setIsTechnical(false)}>
 							Simple Overview
+						</button>
+						<button type="button" aria-pressed={isTechnical} onClick={() => setIsTechnical(true)}>
+							Technical Details
 						</button>
 					</div>
 				</div>
 
-				<div className="pt-4 pb-16 max-w-5xl flex flex-col gap-3">
-					<div
-						tabIndex="0"
-						ref={ref}
-						className="text-md font-light leading-relaxed"
-						style={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-						}}
-					>
-						{currentContent.map((paragraph, index) => (
-							<p key={index} className="my-3.5">
-								{paragraph}
-							</p>
-						))}
-					</div>
-				</div>
+				<m.div
+					key={isTechnical ? "technical" : "simple"}
+					className="about-copy pt-8 pb-16"
+					initial={{ opacity: 0, y: 16 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+				>
+					{currentContent.map((paragraph, index) => (
+						<p key={index}>{paragraph}</p>
+					))}
+				</m.div>
 
 				<TimeLine />
 			</section>

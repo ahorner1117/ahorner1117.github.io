@@ -9,7 +9,7 @@ export function ConnectMedia() {
 	return (
 		<LazyMotion features={domAnimation}>
 			<m.nav role="menu" initial={initial} animate={animate} exit={exit} transition={transition}>
-				<ul className="flex items-center gap-5">
+				<ul className="flex items-center gap-2">
 					{SOCIAL_MEDIA.map((item) => (
 						<li key={item.id}>
 							<a
@@ -17,7 +17,7 @@ export function ConnectMedia() {
 								target="_blank"
 								aria-label={item.title}
 								title={item.title}
-								className="text-2xl"
+								className="nav-icon"
 								onClick={() => trackEvent.socialMediaClick(item.id, item.url)}
 							>
 								{item.icon}

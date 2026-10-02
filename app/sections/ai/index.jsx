@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import { LazyMotion, domAnimation, useInView } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { HeadingDivider } from "components";
+import { useCursorGlow } from "hooks";
 
 export function AISection() {
-	const ref = useRef(null);
-	const isInView = useInView(ref, { once: true });
+	const handleMouseMove = useCursorGlow();
 
 	const aiTools = [
 		{
@@ -50,57 +49,49 @@ export function AISection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<section id="ai" className="section container">
+			<section id="ai" className="section">
 				<HeadingDivider title="AI-Assisted Development" />
+				<p className="pcard-eyebrow">
+					Human-led, <b>AI-accelerated</b>
+				</p>
 
+				<m.p
+					className="ai-lead mt-10"
+					initial={{ opacity: 0, y: 16 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+				>
+					I leverage cutting-edge AI tools to accelerate development while maintaining{" "}
+					<em>human-led architecture and decision-making</em>. My workflow combines specialized AI
+					assistants with strategic prompt engineering to deliver exceptional results.
+				</m.p>
 
-
-				<div className="pb-16 pt-8">
-					<div
-						tabIndex="0"
-						className="text-md font-light leading-relaxed mb-8"
-						style={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-						}}
-					>
-						<p className="text-xl mb-6 max-w-5xl">
-							I leverage cutting-edge AI tools to accelerate development while maintaining human-led architecture and decision-making. My workflow combines specialized AI assistants with strategic prompt engineering to deliver exceptional results.
-						</p>
-					</div>
-
-					<div className="flex justify-center my-0 mx-auto">
-						<div
-							ref={ref}
-							className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl"
+				<ul className="panel-grid pb-16">
+					{aiTools.map((group, index) => (
+						<m.li
+							key={group.title}
+							className="panel"
+							onMouseMove={handleMouseMove}
+							initial={{ opacity: 0, y: 24 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, margin: "-60px" }}
+							transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1], delay: (index % 2) * 0.08 }}
 						>
-							{aiTools.map((section, index) => (
-								<div
-									key={section.title}
-									className="bg-card-light dark:bg-card-dark rounded-lg p-6 border border-gray-200 dark:border-gray-700"
-									style={{
-										transform: isInView ? "none" : "translateY(50px)",
-										opacity: isInView ? 1 : 0,
-										transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${0.2 + index * 0.1}s`
-									}}
-								>
-									<h3 className="text-xl font-bold mb-4">
-										{section.title}
-									</h3>
-									<ul className="space-y-3">
-										{section.items.map((item, itemIndex) => (
-											<li key={itemIndex} className="flex items-start">
-												<span className="mr-2 mt-1">▹</span>
-												<span className="text-sm leading-relaxed">{item}</span>
-											</li>
-										))}
-									</ul>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
+							<span className="pcard-glow" aria-hidden="true" />
+							<p className="panel-meta">
+								<b>{String(index + 1).padStart(2, "0")}</b>
+								<span>/ {String(aiTools.length).padStart(2, "0")}</span>
+							</p>
+							<h3 className="panel-title">{group.title}</h3>
+							<ul className="xp-points">
+								{group.items.map((item) => (
+									<li key={item}>{item}</li>
+								))}
+							</ul>
+						</m.li>
+					))}
+				</ul>
 			</section>
 		</LazyMotion>
 	);

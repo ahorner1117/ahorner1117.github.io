@@ -1,14 +1,22 @@
 import { Suspense } from "react";
+import { DM_Mono } from "next/font/google";
 import { AppHeader, AppFooter, AppMetadata, AnalyticsProvider } from "components";
 import Loading from "./loading";
 import "styles/globals.css";
 import { ThemeContext } from "context";
 
+const mono = DM_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap"
+});
+
 export const metadata = { ...AppMetadata };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={mono.variable} suppressHydrationWarning>
       <head>
         {/* Resource Hints for Performance */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
